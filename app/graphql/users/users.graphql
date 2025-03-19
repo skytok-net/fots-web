@@ -1,0 +1,303 @@
+fragment Role on Roles {
+  id
+  name
+  key
+  createdAt
+}
+
+fragment UserRole on UserRoles {
+  id
+  userId
+  roleId
+  role {
+    ...Role
+  }
+}
+
+fragment User on Users {
+  id
+  did
+  handle
+  pdsUrl
+  lastName
+  firstName
+  email
+  metadata
+  createdAt
+  updatedAt
+  userRolesCollection {
+    edges {
+      node {
+        ...UserRole
+      }
+    }
+  }
+  primaryStationId
+  primaryStation {
+    ...Station
+  }
+  userStationsCollection {
+    edges {
+      node {
+        ...UserStation
+      }
+    }
+  }
+}
+
+query Users {
+  usersCollection {
+    edges {
+      node {
+        ...User
+      }
+    }
+  }
+}
+
+query User($id: UUID!) {
+  usersCollection(filter: {id: {eq: $id}}) {
+    edges {
+      node {
+        ...User
+      }
+    }
+  }
+}
+
+query Roles {
+  rolesCollection {
+    edges {
+      node {
+        ...Role
+      }
+    }
+  }
+}
+
+query Role($id: UUID!) {
+  rolesCollection(filter: {id: {eq: $id}}) {
+    edges {
+      node {
+        ...Role
+      }
+    }
+  }
+}
+
+fragment Permission on Permissions {
+  id
+  name
+  key
+  createdAt
+}
+
+query Permissions {
+  permissionsCollection {
+    edges {
+      node {
+        ...Permission
+      }
+    }
+  }
+}
+
+query Permission($id: UUID!) {
+  permissionsCollection(filter: {id: {eq: $id}}) {
+    edges {
+      node {
+        ...Permission
+      }
+    }
+  }
+}
+
+mutation CreatePermission($input: PermissionsInsertInput!) {
+  insertIntoPermissionsCollection(objects: [$input]) {
+    records {
+      ...Permission
+    }
+  }
+}
+
+mutation UpdatePermission($id: UUID!, $input: PermissionsUpdateInput!) {
+  updatePermissionsCollection(filter: {id: {eq: $id}}, set: $input) {
+    records {
+      ...Permission
+    }
+  }
+}
+
+mutation DeletePermission($id: UUID!) {
+  deleteFromPermissionsCollection(filter: {id: {eq: $id}}) {
+    affectedCount
+  }
+}
+
+mutation CreateRole($input: RolesInsertInput!) {
+  insertIntoRolesCollection(objects: [$input]) {
+    records {
+      ...Role
+    }
+  }
+}
+
+mutation UpdateRole($id: UUID!, $input: RolesUpdateInput!) {
+  updateRolesCollection(filter: {id: {eq: $id}}, set: $input) {
+    records {
+      ...Role
+    }
+  }
+}
+
+mutation DeleteRole($id: UUID!) {
+  deleteFromRolesCollection(filter: {id: {eq: $id}}) {
+    affectedCount
+  }
+}
+
+mutation CreateUser($input: UsersInsertInput!) {
+  insertIntoUsersCollection(objects: [$input]) {
+    records {
+      ...User
+    }
+  }
+}
+
+mutation UpdateUser($id: UUID!, $input: UsersUpdateInput!) {
+  updateUsersCollection(filter: {id: {eq: $id}}, set: $input) {
+    records {
+      ...User
+    }
+  }
+}
+
+mutation DeleteUser($id: UUID!) {
+  deleteFromUsersCollection(filter: {id: {eq: $id}}) {
+    affectedCount
+  }
+}
+
+mutation CreateUserRole($input: UserRolesInsertInput!) {
+  insertIntoUserRolesCollection(objects: [$input]) {
+    records {
+      ...UserRole
+    }
+  }
+}
+
+mutation UpdateUserRole($id: UUID!, $input: UserRolesUpdateInput!) {
+  updateUserRolesCollection(filter: {id: {eq: $id}}, set: $input) {
+    records {
+      ...UserRole
+    }
+  }
+}
+
+mutation DeleteUserRole($id: UUID!) {
+  deleteFromUserRolesCollection(filter: {id: {eq: $id}}) {
+    affectedCount
+  }
+}
+
+fragment UserPermission on UserPermissions {
+  id
+  userId
+  permissionId
+  permission {
+    ...Permission
+  }
+}
+
+query UserPermissions {
+  userPermissionsCollection {
+    edges {
+      node {
+        ...UserPermission
+      }
+    }
+  }
+}
+
+query UserPermission($id: UUID!) {
+  userPermissionsCollection(filter: {id: {eq: $id}}) {
+    edges {
+      node {
+        ...UserPermission
+      }
+    }
+  }
+}
+
+mutation CreateUserPermission($input: UserPermissionsInsertInput!) {
+  insertIntoUserPermissionsCollection(objects: [$input]) {
+    records {
+      ...UserPermission
+    }
+  }
+}
+
+mutation UpdateUserPermission($id: UUID!, $input: UserPermissionsUpdateInput!) {
+  updateUserPermissionsCollection(filter: {id: {eq: $id}}, set: $input) {
+    records {
+      ...UserPermission
+    }
+  }
+}
+
+mutation DeleteUserPermission($id: UUID!) {
+  deleteFromUserPermissionsCollection(filter: {id: {eq: $id}}) {
+    affectedCount
+  }
+}
+
+fragment RolePermission on RolePermissions {
+  id
+  roleId
+  permissionId
+  permission {
+    ...Permission
+  }
+}
+
+query RolePermissions {
+  rolePermissionsCollection {
+    edges {
+      node {
+        ...RolePermission
+      }
+    }
+  }
+}
+
+query RolePermission($id: UUID!) {
+  rolePermissionsCollection(filter: {id: {eq: $id}}) {
+    edges {
+      node {
+        ...RolePermission
+      }
+    }
+  }
+}
+
+mutation CreateRolePermission($input: RolePermissionsInsertInput!) {
+  insertIntoRolePermissionsCollection(objects: [$input]) {
+    records {
+      ...RolePermission
+    }
+  }
+}
+
+mutation UpdateRolePermission($id: UUID!, $input: RolePermissionsUpdateInput!) {
+  updateRolePermissionsCollection(filter: {id: {eq: $id}}, set: $input) {
+    records {
+      ...RolePermission
+    }
+  }
+}
+
+mutation DeleteRolePermission($id: UUID!) {
+  deleteFromRolePermissionsCollection(filter: {id: {eq: $id}}) {
+    affectedCount
+  }
+}

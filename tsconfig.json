@@ -23,8 +23,18 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./app/*"]
+      "~/*": ["./app/*"],
+      "~/components/*": ["./app/components/*"],
+      "~/lib/*": ["./app/lib/*"],
+      "~/styles/*": ["./app/styles/*"],
+      "~/stores/*": ["./app/stores/*"],
+      "~/types/*": ["./app/types/*"]
     },
+    
+    // Enable sourcemaps for debugging
+    "sourceMap": true,
+    "inlineSources": true,
+    "inlineSourceMap": false,
 
     // Vite takes care of building everything, not tsc.
     "noEmit": true

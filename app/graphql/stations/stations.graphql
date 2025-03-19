@@ -1,0 +1,121 @@
+
+fragment Station on Stations {
+  id
+  siteId
+  site {
+    ...Site
+  }
+  name
+  number
+  address
+  address1
+  city
+  state
+  zip
+  latitude
+  longitude
+  description
+  longDescription
+  registrationCode
+  imageUrl
+  coverUrl
+  createdAt
+}
+
+query Stations(
+  $first: Int
+  $last: Int
+  $before: Cursor
+  $after: Cursor
+  $offset: Int
+  $orderBy: [StationsOrderBy!]
+) {
+  stationsCollection(first: $first, last: $last, before: $before, after: $after, offset: $offset, orderBy: $orderBy) {
+    edges {
+      node {
+        ...Station
+      }
+    }
+  }
+}
+
+query Station($id: UUID!) { 
+  stationsCollection(first: 1, filter: {id: {eq: $id}}) {
+    edges {
+      node {
+        ...Station
+      }
+    }
+  }
+}
+
+mutation CreateStation($input: StationsInsertInput!) {
+  insertIntoStationsCollection(objects: [$input]) {
+    records {
+      ...Station
+    }
+  }
+}
+
+mutation UpdateStation($id: UUID!, $input: StationsUpdateInput!) {  
+  updateStationsCollection(set: $input, filter: {id: {eq: $id}}) {      
+    records {
+      ...Station
+    }
+  }
+}   
+
+mutation DeleteStation($id: UUID!) {  
+  deleteFromStationsCollection(filter: {id: {eq: $id}}) {             
+    affectedCount
+  }
+}   
+
+query StationsByRegistrationCode($registrationCode: String!) { 
+  stationsCollection(filter: {registrationCode: {eq: $registrationCode}}) {
+    edges {
+      node {
+        ...Station
+      }
+    }
+  }
+}
+
+fragment UserStation on UserStations {
+  id
+  userId
+  stationId
+  station {
+    ...Station
+  }
+}
+
+query UserStations($userId: UUID!) { 
+  userStationsCollection(filter: {userId: {eq: $userId}}) {
+    edges {
+      node {
+        ...UserStation
+      }
+    }
+  }
+}
+
+query UserStationsByStation($stationId: UUID!) { 
+  userStationsCollection(filter: {stationId: {eq: $stationId}}) {
+    edges {
+      node {
+        ...UserStation
+      }
+    }
+  }
+}
+
+query UserStationsByUser($userId: UUID!) { 
+  userStationsCollection(filter: {userId: {eq: $userId}}) {
+    edges {
+      node {
+        ...UserStation
+      }
+    }
+  }
+}

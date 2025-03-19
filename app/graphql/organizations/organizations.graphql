@@ -1,0 +1,55 @@
+fragment OrganizationType on OrganizationType {
+    id
+    name
+    key
+    schema
+    createdAt
+}
+
+
+fragment Organization on Organization {
+    id
+    organizationTypeId
+    organizationType {
+        ...OrganizationType
+    }
+    name
+    logoUrl
+    coverUrl
+    webUrl
+    description
+    data
+}
+
+query Organizations(
+    $first: Int
+    $last: Int
+    $before: Cursor
+    $after: Cursor
+    $offset: Int
+    $orderBy: [OrganizationOrderBy!]
+) {
+    organizationCollection(first: $first, last: $last, before: $before, after: $after, offset: $offset, orderBy: $orderBy) {
+        edges {
+            node {
+                ...Organization
+            }
+        }
+        pageInfo {
+            startCursor
+            endCursor
+            hasNextPage
+            hasPreviousPage
+        }
+    }
+}
+
+query Organization($id: UUID!) {
+    organizationCollection(first: 1, filter: {id: {eq: $id}}) {
+        edges {
+            node {
+                ...Organization
+            }
+        }
+    }
+}

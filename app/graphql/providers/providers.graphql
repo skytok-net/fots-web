@@ -1,0 +1,27 @@
+fragment ProviderType on ProviderType {
+    id
+    name
+    key
+    schema
+    createdAt
+}
+
+fragment Provider on Provider {
+    id
+    providerTypeId
+    providerType {
+        ...ProviderType
+    }
+    organizationId
+    organization {
+        ...Organization
+    }
+    name
+    description
+    logoUrl
+    webUrl
+    coverUrl
+    data
+    createdAt
+    updatedAt
+}

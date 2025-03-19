@@ -1,0 +1,127 @@
+
+fragment Product on Products {
+  id
+  productTypeId
+  name
+  shortDescription
+  longDescription
+  photoUrl
+  data
+  createdAt
+  updatedAt
+  unitPrice
+  unit
+  instructions
+  productType {
+    ...ProductType
+  }
+}
+
+query Products(
+  $first: Int
+  $last: Int
+  $before: Cursor
+  $after: Cursor
+  $offset: Int
+  $orderBy: [ProductsOrderBy!]
+) {
+  productsCollection(first: $first, last: $last, before: $before, after: $after, offset: $offset, orderBy: $orderBy) {
+    edges {
+      node {
+        ...Product
+      }
+    }
+  }
+}
+
+query Product($id: UUID!) {
+  productsCollection(first: 1, filter: {id: {eq: $id}}) {
+    edges {
+      node {
+        ...Product
+      }
+    }
+  }
+}
+
+mutation CreateProduct($input: ProductsInsertInput!) {
+  insertIntoProductsCollection(objects: [$input]) {
+    records {
+      ...Product
+    }
+  }
+}
+
+mutation UpdateProduct($id: UUID!, $input: ProductsUpdateInput!) {
+  updateProductsCollection(set: $input, filter: {id: {eq: $id}}) {
+    records {
+      ...Product
+    }
+  }
+}
+
+mutation DeleteProduct($id: UUID!) {
+  deleteFromProductsCollection(filter: {id: {eq: $id}}) {
+    affectedCount
+  }
+}   
+
+fragment ProductType on ProductTypes {
+  id
+  name
+  key
+  schema
+  iconUrl
+  coverUrl
+  createdAt
+}
+
+query ProductTypes(
+  $first: Int
+  $last: Int
+  $before: Cursor
+  $after: Cursor
+  $offset: Int
+  $orderBy: [ProductTypesOrderBy!]
+) {
+  productTypesCollection(first: $first, last: $last, before: $before, after: $after, offset: $offset, orderBy: $orderBy) {
+    edges {
+      node {
+        ...ProductType
+      }
+    }
+  }
+}
+
+query ProductType($id: UUID!) { 
+  productTypesCollection(first: 1, filter: {id: {eq: $id}}) {
+    edges {
+      node {
+        ...ProductType
+      }
+    }
+  }
+}
+
+mutation CreateProductType($input: ProductTypesInsertInput!) {
+  insertIntoProductTypesCollection(objects: [$input]) {
+    records {
+      ...ProductType
+    }
+  }
+}
+
+mutation UpdateProductType($id: UUID!, $input: ProductTypesUpdateInput!) {
+  updateProductTypesCollection(set: $input, filter: {id: {eq: $id}}) {
+    records {
+      ...ProductType
+    }
+  }
+}
+
+mutation DeleteProductType($id: UUID!) {
+  deleteFromProductTypesCollection(filter: {id: {eq: $id}}) {
+    affectedCount
+  }
+}
+

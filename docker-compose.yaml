@@ -1,0 +1,94 @@
+version: '3.8'
+
+services:
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: fots-web:latest
+    container_name: fots-webapp
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+      - APP_BASE_URL=${APP_BASE_URL:-http://localhost:3000}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+      - ATPROTO_SERVICE=${ATPROTO_SERVICE:-https://bsky.social}
+      - ATPROTO_FEED_HANDLE=${ATPROTO_FEED_HANDLE}
+      - ATPROTO_FEED_PASSWORD=${ATPROTO_FEED_PASSWORD}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/healthcheck"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    volumes:
+      - ./.env.local:/app/.env.local:ro
+    labels:
+      - "app=fots-web"
+      - "service=webapp"
+    depends_on:
+      - supabase-db
+      - redis
+    networks:
+      - fots-network
+
+  # Optional: Add Supabase services for local development
+  supabase-db:
+    image: supabase/postgres:15.1.0.37
+    container_name: fots-supabase-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_DB=${POSTGRES_DB:-fots}
+    ports:
+      - "5432:5432"
+    volumes:
+      - supabase-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    labels:
+      - "app=fots-web"
+      - "service=database"
+    networks:
+      - fots-network
+
+  # Optional: Redis for caching
+  redis:
+    image: redis:7-alpine
+    container_name: fots-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --save 60 1 --loglevel warning
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    labels:
+      - "app=fots-web"
+      - "service=cache"
+    networks:
+      - fots-network
+
+volumes:
+  supabase-db-data:
+    name: fots-db-data
+  redis-data:
+    name: fots-redis-data
+
+networks:
+  fots-network:
+    name: fots-network
+    driver: bridge 

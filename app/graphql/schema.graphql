@@ -1,0 +1,5190 @@
+# A high precision floating point value represented as a string
+scalar BigFloat
+
+# Boolean expression comparing fields on type "BigFloat"
+input BigFloatFilter {
+  eq: BigFloat
+  gt: BigFloat
+  gte: BigFloat
+  in: [BigFloat!]
+  is: FilterIs
+  lt: BigFloat
+  lte: BigFloat
+  neq: BigFloat
+}
+
+# Boolean expression comparing fields on type "BigFloatList"
+input BigFloatListFilter {
+  containedBy: [BigFloat!]
+  contains: [BigFloat!]
+  eq: [BigFloat!]
+  is: FilterIs
+  overlaps: [BigFloat!]
+}
+
+# An arbitrary size integer represented as a string
+scalar BigInt
+
+# Boolean expression comparing fields on type "BigInt"
+input BigIntFilter {
+  eq: BigInt
+  gt: BigInt
+  gte: BigInt
+  in: [BigInt!]
+  is: FilterIs
+  lt: BigInt
+  lte: BigInt
+  neq: BigInt
+}
+
+# Boolean expression comparing fields on type "BigIntList"
+input BigIntListFilter {
+  containedBy: [BigInt!]
+  contains: [BigInt!]
+  eq: [BigInt!]
+  is: FilterIs
+  overlaps: [BigInt!]
+}
+
+# Boolean expression comparing fields on type "Boolean"
+input BooleanFilter {
+  eq: Boolean
+  is: FilterIs
+}
+
+# Boolean expression comparing fields on type "BooleanList"
+input BooleanListFilter {
+  containedBy: [Boolean!]
+  contains: [Boolean!]
+  eq: [Boolean!]
+  is: FilterIs
+  overlaps: [Boolean!]
+}
+
+# An opaque string using for tracking a position in results during pagination
+scalar Cursor
+
+# A date without time information
+scalar Date
+
+# Boolean expression comparing fields on type "Date"
+input DateFilter {
+  eq: Date
+  gt: Date
+  gte: Date
+  in: [Date!]
+  is: FilterIs
+  lt: Date
+  lte: Date
+  neq: Date
+}
+
+# Boolean expression comparing fields on type "DateList"
+input DateListFilter {
+  containedBy: [Date!]
+  contains: [Date!]
+  eq: [Date!]
+  is: FilterIs
+  overlaps: [Date!]
+}
+
+# A date and time
+scalar Datetime
+
+# Boolean expression comparing fields on type "Datetime"
+input DatetimeFilter {
+  eq: Datetime
+  gt: Datetime
+  gte: Datetime
+  in: [Datetime!]
+  is: FilterIs
+  lt: Datetime
+  lte: Datetime
+  neq: Datetime
+}
+
+# Boolean expression comparing fields on type "DatetimeList"
+input DatetimeListFilter {
+  containedBy: [Datetime!]
+  contains: [Datetime!]
+  eq: [Datetime!]
+  is: FilterIs
+  overlaps: [Datetime!]
+}
+
+type DeliveryLocation implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  name: String!
+  createdAt: Datetime!
+  address: String!
+  address1: String
+  city: String!
+  state: String!
+  zip: String!
+  latitude: Float
+  longitude: Float
+  startOpenTime: Opaque
+  endOpenTime: Opaque
+  providerId: UUID!
+  provider: Provider!
+  stationDeliveryLocationsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: StationDeliveryLocationsFilter
+    # Sort order to apply to the collection
+    orderBy: [StationDeliveryLocationsOrderBy!]
+  ): StationDeliveryLocationsConnection
+}
+
+type DeliveryLocationConnection {
+  edges: [DeliveryLocationEdge!]!
+  pageInfo: PageInfo!
+}
+
+type DeliveryLocationDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [DeliveryLocation!]!
+}
+
+type DeliveryLocationEdge {
+  cursor: String!
+  node: DeliveryLocation!
+}
+
+input DeliveryLocationFilter {
+  id: UUIDFilter
+  name: StringFilter
+  createdAt: DatetimeFilter
+  address: StringFilter
+  address1: StringFilter
+  city: StringFilter
+  state: StringFilter
+  zip: StringFilter
+  latitude: FloatFilter
+  longitude: FloatFilter
+  startOpenTime: OpaqueFilter
+  endOpenTime: OpaqueFilter
+  providerId: UUIDFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [DeliveryLocationFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [DeliveryLocationFilter!]
+  # Negates a filter
+  not: DeliveryLocationFilter
+}
+
+input DeliveryLocationInsertInput {
+  id: UUID
+  name: String
+  createdAt: Datetime
+  address: String
+  address1: String
+  city: String
+  state: String
+  zip: String
+  latitude: Float
+  longitude: Float
+  startOpenTime: Opaque
+  endOpenTime: Opaque
+  providerId: UUID
+}
+
+type DeliveryLocationInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [DeliveryLocation!]!
+}
+
+input DeliveryLocationOrderBy {
+  id: OrderByDirection
+  name: OrderByDirection
+  createdAt: OrderByDirection
+  address: OrderByDirection
+  address1: OrderByDirection
+  city: OrderByDirection
+  state: OrderByDirection
+  zip: OrderByDirection
+  latitude: OrderByDirection
+  longitude: OrderByDirection
+  startOpenTime: OrderByDirection
+  endOpenTime: OrderByDirection
+  providerId: OrderByDirection
+}
+
+input DeliveryLocationUpdateInput {
+  id: UUID
+  name: String
+  createdAt: Datetime
+  address: String
+  address1: String
+  city: String
+  state: String
+  zip: String
+  latitude: Float
+  longitude: Float
+  startOpenTime: Opaque
+  endOpenTime: Opaque
+  providerId: UUID
+}
+
+type DeliveryLocationUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [DeliveryLocation!]!
+}
+
+enum FilterIs {
+  NULL
+  NOT_NULL
+}
+
+# Boolean expression comparing fields on type "Float"
+input FloatFilter {
+  eq: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  is: FilterIs
+  lt: Float
+  lte: Float
+  neq: Float
+}
+
+# Boolean expression comparing fields on type "FloatList"
+input FloatListFilter {
+  containedBy: [Float!]
+  contains: [Float!]
+  eq: [Float!]
+  is: FilterIs
+  overlaps: [Float!]
+}
+
+# Boolean expression comparing fields on type "ID"
+input IDFilter {
+  eq: ID
+}
+
+# Boolean expression comparing fields on type "Int"
+input IntFilter {
+  eq: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  is: FilterIs
+  lt: Int
+  lte: Int
+  neq: Int
+}
+
+# Boolean expression comparing fields on type "IntList"
+input IntListFilter {
+  containedBy: [Int!]
+  contains: [Int!]
+  eq: [Int!]
+  is: FilterIs
+  overlaps: [Int!]
+}
+
+# A Javascript Object Notation value serialized as a string
+scalar JSON
+
+# The root type for creating and mutating data
+type Mutation {
+  # Deletes zero or more records from the `DeliveryLocation` collection
+  deleteFromDeliveryLocationCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: DeliveryLocationFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): DeliveryLocationDeleteResponse!
+  # Deletes zero or more records from the `Navigation` collection
+  deleteFromNavigationCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: NavigationFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): NavigationDeleteResponse!
+  # Deletes zero or more records from the `NavigationItems` collection
+  deleteFromNavigationItemsCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: NavigationItemsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): NavigationItemsDeleteResponse!
+  # Deletes zero or more records from the `NotificationTypes` collection
+  deleteFromNotificationTypesCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: NotificationTypesFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): NotificationTypesDeleteResponse!
+  # Deletes zero or more records from the `Notifications` collection
+  deleteFromNotificationsCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: NotificationsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): NotificationsDeleteResponse!
+  # Deletes zero or more records from the `OrderItems` collection
+  deleteFromOrderItemsCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: OrderItemsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): OrderItemsDeleteResponse!
+  # Deletes zero or more records from the `OrderTransactions` collection
+  deleteFromOrderTransactionsCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: OrderTransactionsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): OrderTransactionsDeleteResponse!
+  # Deletes zero or more records from the `Orders` collection
+  deleteFromOrdersCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: OrdersFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): OrdersDeleteResponse!
+  # Deletes zero or more records from the `Organization` collection
+  deleteFromOrganizationCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: OrganizationFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): OrganizationDeleteResponse!
+  # Deletes zero or more records from the `OrganizationType` collection
+  deleteFromOrganizationTypeCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: OrganizationTypeFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): OrganizationTypeDeleteResponse!
+  # Deletes zero or more records from the `Permissions` collection
+  deleteFromPermissionsCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: PermissionsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): PermissionsDeleteResponse!
+  # Deletes zero or more records from the `ProductInventory` collection
+  deleteFromProductInventoryCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: ProductInventoryFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): ProductInventoryDeleteResponse!
+  # Deletes zero or more records from the `ProductProvider` collection
+  deleteFromProductProviderCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: ProductProviderFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): ProductProviderDeleteResponse!
+  # Deletes zero or more records from the `ProductTypes` collection
+  deleteFromProductTypesCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: ProductTypesFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): ProductTypesDeleteResponse!
+  # Deletes zero or more records from the `Products` collection
+  deleteFromProductsCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: ProductsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): ProductsDeleteResponse!
+  # Deletes zero or more records from the `Provider` collection
+  deleteFromProviderCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: ProviderFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): ProviderDeleteResponse!
+  # Deletes zero or more records from the `ProviderType` collection
+  deleteFromProviderTypeCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: ProviderTypeFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): ProviderTypeDeleteResponse!
+  # Deletes zero or more records from the `RolePermissions` collection
+  deleteFromRolePermissionsCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: RolePermissionsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): RolePermissionsDeleteResponse!
+  # Deletes zero or more records from the `Roles` collection
+  deleteFromRolesCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: RolesFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): RolesDeleteResponse!
+  # Deletes zero or more records from the `Sessions` collection
+  deleteFromSessionsCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: SessionsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): SessionsDeleteResponse!
+  # Deletes zero or more records from the `ShoppingCartItems` collection
+  deleteFromShoppingCartItemsCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: ShoppingCartItemsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): ShoppingCartItemsDeleteResponse!
+  # Deletes zero or more records from the `ShoppingCarts` collection
+  deleteFromShoppingCartsCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: ShoppingCartsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): ShoppingCartsDeleteResponse!
+  # Deletes zero or more records from the `Site` collection
+  deleteFromSiteCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: SiteFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): SiteDeleteResponse!
+  # Deletes zero or more records from the `SiteType` collection
+  deleteFromSiteTypeCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: SiteTypeFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): SiteTypeDeleteResponse!
+  # Deletes zero or more records from the `StationDeliveryLocationTimeslots` collection
+  deleteFromStationDeliveryLocationTimeslotsCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: StationDeliveryLocationTimeslotsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): StationDeliveryLocationTimeslotsDeleteResponse!
+  # Deletes zero or more records from the `StationDeliveryLocations` collection
+  deleteFromStationDeliveryLocationsCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: StationDeliveryLocationsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): StationDeliveryLocationsDeleteResponse!
+  # Deletes zero or more records from the `Stations` collection
+  deleteFromStationsCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: StationsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): StationsDeleteResponse!
+  # Deletes zero or more records from the `UserOrganization` collection
+  deleteFromUserOrganizationCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: UserOrganizationFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): UserOrganizationDeleteResponse!
+  # Deletes zero or more records from the `UserOrganizationRoles` collection
+  deleteFromUserOrganizationRolesCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: UserOrganizationRolesFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): UserOrganizationRolesDeleteResponse!
+  # Deletes zero or more records from the `UserPermissions` collection
+  deleteFromUserPermissionsCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: UserPermissionsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): UserPermissionsDeleteResponse!
+  # Deletes zero or more records from the `UserRoles` collection
+  deleteFromUserRolesCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: UserRolesFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): UserRolesDeleteResponse!
+  # Deletes zero or more records from the `UserStations` collection
+  deleteFromUserStationsCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: UserStationsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): UserStationsDeleteResponse!
+  # Deletes zero or more records from the `Users` collection
+  deleteFromUsersCollection(
+    # Restricts the mutation's impact to records matching the criteria
+    filter: UsersFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): UsersDeleteResponse!
+  # Adds one or more `DeliveryLocation` records to the collection
+  insertIntoDeliveryLocationCollection(
+    objects: [DeliveryLocationInsertInput!]!
+  ): DeliveryLocationInsertResponse
+  # Adds one or more `Navigation` records to the collection
+  insertIntoNavigationCollection(
+    objects: [NavigationInsertInput!]!
+  ): NavigationInsertResponse
+  # Adds one or more `NavigationItems` records to the collection
+  insertIntoNavigationItemsCollection(
+    objects: [NavigationItemsInsertInput!]!
+  ): NavigationItemsInsertResponse
+  # Adds one or more `NotificationTypes` records to the collection
+  insertIntoNotificationTypesCollection(
+    objects: [NotificationTypesInsertInput!]!
+  ): NotificationTypesInsertResponse
+  # Adds one or more `Notifications` records to the collection
+  insertIntoNotificationsCollection(
+    objects: [NotificationsInsertInput!]!
+  ): NotificationsInsertResponse
+  # Adds one or more `OrderItems` records to the collection
+  insertIntoOrderItemsCollection(
+    objects: [OrderItemsInsertInput!]!
+  ): OrderItemsInsertResponse
+  # Adds one or more `OrderTransactions` records to the collection
+  insertIntoOrderTransactionsCollection(
+    objects: [OrderTransactionsInsertInput!]!
+  ): OrderTransactionsInsertResponse
+  # Adds one or more `Orders` records to the collection
+  insertIntoOrdersCollection(
+    objects: [OrdersInsertInput!]!
+  ): OrdersInsertResponse
+  # Adds one or more `Organization` records to the collection
+  insertIntoOrganizationCollection(
+    objects: [OrganizationInsertInput!]!
+  ): OrganizationInsertResponse
+  # Adds one or more `OrganizationType` records to the collection
+  insertIntoOrganizationTypeCollection(
+    objects: [OrganizationTypeInsertInput!]!
+  ): OrganizationTypeInsertResponse
+  # Adds one or more `Permissions` records to the collection
+  insertIntoPermissionsCollection(
+    objects: [PermissionsInsertInput!]!
+  ): PermissionsInsertResponse
+  # Adds one or more `ProductInventory` records to the collection
+  insertIntoProductInventoryCollection(
+    objects: [ProductInventoryInsertInput!]!
+  ): ProductInventoryInsertResponse
+  # Adds one or more `ProductProvider` records to the collection
+  insertIntoProductProviderCollection(
+    objects: [ProductProviderInsertInput!]!
+  ): ProductProviderInsertResponse
+  # Adds one or more `ProductTypes` records to the collection
+  insertIntoProductTypesCollection(
+    objects: [ProductTypesInsertInput!]!
+  ): ProductTypesInsertResponse
+  # Adds one or more `Products` records to the collection
+  insertIntoProductsCollection(
+    objects: [ProductsInsertInput!]!
+  ): ProductsInsertResponse
+  # Adds one or more `Provider` records to the collection
+  insertIntoProviderCollection(
+    objects: [ProviderInsertInput!]!
+  ): ProviderInsertResponse
+  # Adds one or more `ProviderType` records to the collection
+  insertIntoProviderTypeCollection(
+    objects: [ProviderTypeInsertInput!]!
+  ): ProviderTypeInsertResponse
+  # Adds one or more `RolePermissions` records to the collection
+  insertIntoRolePermissionsCollection(
+    objects: [RolePermissionsInsertInput!]!
+  ): RolePermissionsInsertResponse
+  # Adds one or more `Roles` records to the collection
+  insertIntoRolesCollection(objects: [RolesInsertInput!]!): RolesInsertResponse
+  # Adds one or more `Sessions` records to the collection
+  insertIntoSessionsCollection(
+    objects: [SessionsInsertInput!]!
+  ): SessionsInsertResponse
+  # Adds one or more `ShoppingCartItems` records to the collection
+  insertIntoShoppingCartItemsCollection(
+    objects: [ShoppingCartItemsInsertInput!]!
+  ): ShoppingCartItemsInsertResponse
+  # Adds one or more `ShoppingCarts` records to the collection
+  insertIntoShoppingCartsCollection(
+    objects: [ShoppingCartsInsertInput!]!
+  ): ShoppingCartsInsertResponse
+  # Adds one or more `Site` records to the collection
+  insertIntoSiteCollection(objects: [SiteInsertInput!]!): SiteInsertResponse
+  # Adds one or more `SiteType` records to the collection
+  insertIntoSiteTypeCollection(
+    objects: [SiteTypeInsertInput!]!
+  ): SiteTypeInsertResponse
+  # Adds one or more `StationDeliveryLocationTimeslots` records to the collection
+  insertIntoStationDeliveryLocationTimeslotsCollection(
+    objects: [StationDeliveryLocationTimeslotsInsertInput!]!
+  ): StationDeliveryLocationTimeslotsInsertResponse
+  # Adds one or more `StationDeliveryLocations` records to the collection
+  insertIntoStationDeliveryLocationsCollection(
+    objects: [StationDeliveryLocationsInsertInput!]!
+  ): StationDeliveryLocationsInsertResponse
+  # Adds one or more `Stations` records to the collection
+  insertIntoStationsCollection(
+    objects: [StationsInsertInput!]!
+  ): StationsInsertResponse
+  # Adds one or more `UserOrganization` records to the collection
+  insertIntoUserOrganizationCollection(
+    objects: [UserOrganizationInsertInput!]!
+  ): UserOrganizationInsertResponse
+  # Adds one or more `UserOrganizationRoles` records to the collection
+  insertIntoUserOrganizationRolesCollection(
+    objects: [UserOrganizationRolesInsertInput!]!
+  ): UserOrganizationRolesInsertResponse
+  # Adds one or more `UserPermissions` records to the collection
+  insertIntoUserPermissionsCollection(
+    objects: [UserPermissionsInsertInput!]!
+  ): UserPermissionsInsertResponse
+  # Adds one or more `UserRoles` records to the collection
+  insertIntoUserRolesCollection(
+    objects: [UserRolesInsertInput!]!
+  ): UserRolesInsertResponse
+  # Adds one or more `UserStations` records to the collection
+  insertIntoUserStationsCollection(
+    objects: [UserStationsInsertInput!]!
+  ): UserStationsInsertResponse
+  # Adds one or more `Users` records to the collection
+  insertIntoUsersCollection(objects: [UsersInsertInput!]!): UsersInsertResponse
+  # Updates zero or more records in the `DeliveryLocation` collection
+  updateDeliveryLocationCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: DeliveryLocationUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: DeliveryLocationFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): DeliveryLocationUpdateResponse!
+  # Updates zero or more records in the `Navigation` collection
+  updateNavigationCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: NavigationUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: NavigationFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): NavigationUpdateResponse!
+  # Updates zero or more records in the `NavigationItems` collection
+  updateNavigationItemsCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: NavigationItemsUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: NavigationItemsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): NavigationItemsUpdateResponse!
+  # Updates zero or more records in the `NotificationTypes` collection
+  updateNotificationTypesCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: NotificationTypesUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: NotificationTypesFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): NotificationTypesUpdateResponse!
+  # Updates zero or more records in the `Notifications` collection
+  updateNotificationsCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: NotificationsUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: NotificationsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): NotificationsUpdateResponse!
+  # Updates zero or more records in the `OrderItems` collection
+  updateOrderItemsCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: OrderItemsUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: OrderItemsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): OrderItemsUpdateResponse!
+  # Updates zero or more records in the `OrderTransactions` collection
+  updateOrderTransactionsCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: OrderTransactionsUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: OrderTransactionsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): OrderTransactionsUpdateResponse!
+  # Updates zero or more records in the `Orders` collection
+  updateOrdersCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: OrdersUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: OrdersFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): OrdersUpdateResponse!
+  # Updates zero or more records in the `Organization` collection
+  updateOrganizationCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: OrganizationUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: OrganizationFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): OrganizationUpdateResponse!
+  # Updates zero or more records in the `OrganizationType` collection
+  updateOrganizationTypeCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: OrganizationTypeUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: OrganizationTypeFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): OrganizationTypeUpdateResponse!
+  # Updates zero or more records in the `Permissions` collection
+  updatePermissionsCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: PermissionsUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: PermissionsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): PermissionsUpdateResponse!
+  # Updates zero or more records in the `ProductInventory` collection
+  updateProductInventoryCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: ProductInventoryUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: ProductInventoryFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): ProductInventoryUpdateResponse!
+  # Updates zero or more records in the `ProductProvider` collection
+  updateProductProviderCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: ProductProviderUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: ProductProviderFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): ProductProviderUpdateResponse!
+  # Updates zero or more records in the `ProductTypes` collection
+  updateProductTypesCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: ProductTypesUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: ProductTypesFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): ProductTypesUpdateResponse!
+  # Updates zero or more records in the `Products` collection
+  updateProductsCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: ProductsUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: ProductsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): ProductsUpdateResponse!
+  # Updates zero or more records in the `Provider` collection
+  updateProviderCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: ProviderUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: ProviderFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): ProviderUpdateResponse!
+  # Updates zero or more records in the `ProviderType` collection
+  updateProviderTypeCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: ProviderTypeUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: ProviderTypeFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): ProviderTypeUpdateResponse!
+  # Updates zero or more records in the `RolePermissions` collection
+  updateRolePermissionsCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: RolePermissionsUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: RolePermissionsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): RolePermissionsUpdateResponse!
+  # Updates zero or more records in the `Roles` collection
+  updateRolesCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: RolesUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: RolesFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): RolesUpdateResponse!
+  # Updates zero or more records in the `Sessions` collection
+  updateSessionsCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: SessionsUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: SessionsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): SessionsUpdateResponse!
+  # Updates zero or more records in the `ShoppingCartItems` collection
+  updateShoppingCartItemsCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: ShoppingCartItemsUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: ShoppingCartItemsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): ShoppingCartItemsUpdateResponse!
+  # Updates zero or more records in the `ShoppingCarts` collection
+  updateShoppingCartsCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: ShoppingCartsUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: ShoppingCartsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): ShoppingCartsUpdateResponse!
+  # Updates zero or more records in the `Site` collection
+  updateSiteCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: SiteUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: SiteFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): SiteUpdateResponse!
+  # Updates zero or more records in the `SiteType` collection
+  updateSiteTypeCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: SiteTypeUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: SiteTypeFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): SiteTypeUpdateResponse!
+  # Updates zero or more records in the `StationDeliveryLocationTimeslots` collection
+  updateStationDeliveryLocationTimeslotsCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: StationDeliveryLocationTimeslotsUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: StationDeliveryLocationTimeslotsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): StationDeliveryLocationTimeslotsUpdateResponse!
+  # Updates zero or more records in the `StationDeliveryLocations` collection
+  updateStationDeliveryLocationsCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: StationDeliveryLocationsUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: StationDeliveryLocationsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): StationDeliveryLocationsUpdateResponse!
+  # Updates zero or more records in the `Stations` collection
+  updateStationsCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: StationsUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: StationsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): StationsUpdateResponse!
+  # Updates zero or more records in the `UserOrganization` collection
+  updateUserOrganizationCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: UserOrganizationUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: UserOrganizationFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): UserOrganizationUpdateResponse!
+  # Updates zero or more records in the `UserOrganizationRoles` collection
+  updateUserOrganizationRolesCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: UserOrganizationRolesUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: UserOrganizationRolesFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): UserOrganizationRolesUpdateResponse!
+  # Updates zero or more records in the `UserPermissions` collection
+  updateUserPermissionsCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: UserPermissionsUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: UserPermissionsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): UserPermissionsUpdateResponse!
+  # Updates zero or more records in the `UserRoles` collection
+  updateUserRolesCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: UserRolesUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: UserRolesFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): UserRolesUpdateResponse!
+  # Updates zero or more records in the `UserStations` collection
+  updateUserStationsCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: UserStationsUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: UserStationsFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): UserStationsUpdateResponse!
+  # Updates zero or more records in the `Users` collection
+  updateUsersCollection(
+    # Fields that are set will be updated for all records matching the `filter`
+    set: UsersUpdateInput!
+    # Restricts the mutation's impact to records matching the criteria
+    filter: UsersFilter
+    # The maximum number of records in the collection permitted to be affected
+    atMost: Int! = 1
+  ): UsersUpdateResponse!
+}
+
+type Navigation implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  name: String!
+  key: String!
+  data: JSON
+  createdAt: Datetime!
+  navigationItemsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: NavigationItemsFilter
+    # Sort order to apply to the collection
+    orderBy: [NavigationItemsOrderBy!]
+  ): NavigationItemsConnection
+}
+
+type NavigationConnection {
+  edges: [NavigationEdge!]!
+  pageInfo: PageInfo!
+}
+
+type NavigationDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Navigation!]!
+}
+
+type NavigationEdge {
+  cursor: String!
+  node: Navigation!
+}
+
+input NavigationFilter {
+  id: UUIDFilter
+  name: StringFilter
+  key: StringFilter
+  createdAt: DatetimeFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [NavigationFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [NavigationFilter!]
+  # Negates a filter
+  not: NavigationFilter
+}
+
+input NavigationInsertInput {
+  id: UUID
+  name: String
+  key: String
+  data: JSON
+  createdAt: Datetime
+}
+
+type NavigationInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Navigation!]!
+}
+
+type NavigationItems implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  name: String!
+  iconName: String
+  path: String!
+  index: Int!
+  createdAt: Datetime!
+  parentId: UUID
+  roles: [String]
+  data: JSON
+  tag: String!
+  navigationId: UUID!
+  parent: NavigationItems
+  navigation: Navigation!
+  navigationItemsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: NavigationItemsFilter
+    # Sort order to apply to the collection
+    orderBy: [NavigationItemsOrderBy!]
+  ): NavigationItemsConnection
+}
+
+type NavigationItemsConnection {
+  edges: [NavigationItemsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type NavigationItemsDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [NavigationItems!]!
+}
+
+type NavigationItemsEdge {
+  cursor: String!
+  node: NavigationItems!
+}
+
+input NavigationItemsFilter {
+  id: UUIDFilter
+  name: StringFilter
+  iconName: StringFilter
+  path: StringFilter
+  index: IntFilter
+  createdAt: DatetimeFilter
+  parentId: UUIDFilter
+  roles: StringListFilter
+  tag: StringFilter
+  navigationId: UUIDFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [NavigationItemsFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [NavigationItemsFilter!]
+  # Negates a filter
+  not: NavigationItemsFilter
+}
+
+input NavigationItemsInsertInput {
+  id: UUID
+  name: String
+  iconName: String
+  path: String
+  index: Int
+  createdAt: Datetime
+  parentId: UUID
+  roles: [String]
+  data: JSON
+  tag: String
+  navigationId: UUID
+}
+
+type NavigationItemsInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [NavigationItems!]!
+}
+
+input NavigationItemsOrderBy {
+  id: OrderByDirection
+  name: OrderByDirection
+  iconName: OrderByDirection
+  path: OrderByDirection
+  index: OrderByDirection
+  createdAt: OrderByDirection
+  parentId: OrderByDirection
+  tag: OrderByDirection
+  navigationId: OrderByDirection
+}
+
+input NavigationItemsUpdateInput {
+  id: UUID
+  name: String
+  iconName: String
+  path: String
+  index: Int
+  createdAt: Datetime
+  parentId: UUID
+  roles: [String]
+  data: JSON
+  tag: String
+  navigationId: UUID
+}
+
+type NavigationItemsUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [NavigationItems!]!
+}
+
+input NavigationOrderBy {
+  id: OrderByDirection
+  name: OrderByDirection
+  key: OrderByDirection
+  createdAt: OrderByDirection
+}
+
+input NavigationUpdateInput {
+  id: UUID
+  name: String
+  key: String
+  data: JSON
+  createdAt: Datetime
+}
+
+type NavigationUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Navigation!]!
+}
+
+interface Node {
+  # Retrieves a record by `ID`
+  nodeId: ID!
+}
+
+type Notifications implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  notificationTypeId: UUID!
+  userId: UUID!
+  title: String!
+  subtitle: String!
+  iconUrl: String
+  createdAt: Datetime!
+  isRead: Boolean!
+  messageMarkdown: String
+  data: JSON
+  notificationType: NotificationTypes!
+  user: Users!
+}
+
+type NotificationsConnection {
+  edges: [NotificationsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type NotificationsDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Notifications!]!
+}
+
+type NotificationsEdge {
+  cursor: String!
+  node: Notifications!
+}
+
+input NotificationsFilter {
+  id: UUIDFilter
+  notificationTypeId: UUIDFilter
+  userId: UUIDFilter
+  title: StringFilter
+  subtitle: StringFilter
+  iconUrl: StringFilter
+  createdAt: DatetimeFilter
+  isRead: BooleanFilter
+  messageMarkdown: StringFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [NotificationsFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [NotificationsFilter!]
+  # Negates a filter
+  not: NotificationsFilter
+}
+
+input NotificationsInsertInput {
+  id: UUID
+  notificationTypeId: UUID
+  userId: UUID
+  title: String
+  subtitle: String
+  iconUrl: String
+  createdAt: Datetime
+  isRead: Boolean
+  messageMarkdown: String
+  data: JSON
+}
+
+type NotificationsInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Notifications!]!
+}
+
+input NotificationsOrderBy {
+  id: OrderByDirection
+  notificationTypeId: OrderByDirection
+  userId: OrderByDirection
+  title: OrderByDirection
+  subtitle: OrderByDirection
+  iconUrl: OrderByDirection
+  createdAt: OrderByDirection
+  isRead: OrderByDirection
+  messageMarkdown: OrderByDirection
+}
+
+input NotificationsUpdateInput {
+  id: UUID
+  notificationTypeId: UUID
+  userId: UUID
+  title: String
+  subtitle: String
+  iconUrl: String
+  createdAt: Datetime
+  isRead: Boolean
+  messageMarkdown: String
+  data: JSON
+}
+
+type NotificationsUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Notifications!]!
+}
+
+type NotificationTypes implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  name: String!
+  key: String!
+  schema: JSON
+  iconUrl: String
+  createdAt: Datetime!
+  notificationsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: NotificationsFilter
+    # Sort order to apply to the collection
+    orderBy: [NotificationsOrderBy!]
+  ): NotificationsConnection
+}
+
+type NotificationTypesConnection {
+  edges: [NotificationTypesEdge!]!
+  pageInfo: PageInfo!
+}
+
+type NotificationTypesDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [NotificationTypes!]!
+}
+
+type NotificationTypesEdge {
+  cursor: String!
+  node: NotificationTypes!
+}
+
+input NotificationTypesFilter {
+  id: UUIDFilter
+  name: StringFilter
+  key: StringFilter
+  iconUrl: StringFilter
+  createdAt: DatetimeFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [NotificationTypesFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [NotificationTypesFilter!]
+  # Negates a filter
+  not: NotificationTypesFilter
+}
+
+input NotificationTypesInsertInput {
+  id: UUID
+  name: String
+  key: String
+  schema: JSON
+  iconUrl: String
+  createdAt: Datetime
+}
+
+type NotificationTypesInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [NotificationTypes!]!
+}
+
+input NotificationTypesOrderBy {
+  id: OrderByDirection
+  name: OrderByDirection
+  key: OrderByDirection
+  iconUrl: OrderByDirection
+  createdAt: OrderByDirection
+}
+
+input NotificationTypesUpdateInput {
+  id: UUID
+  name: String
+  key: String
+  schema: JSON
+  iconUrl: String
+  createdAt: Datetime
+}
+
+type NotificationTypesUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [NotificationTypes!]!
+}
+
+# Any type not handled by the type system
+scalar Opaque
+
+# Boolean expression comparing fields on type "Opaque"
+input OpaqueFilter {
+  eq: Opaque
+  is: FilterIs
+}
+
+# Defines a per-field sorting order
+enum OrderByDirection {
+  # Ascending order, nulls first
+  AscNullsFirst
+  # Ascending order, nulls last
+  AscNullsLast
+  # Descending order, nulls first
+  DescNullsFirst
+  # Descending order, nulls last
+  DescNullsLast
+}
+
+type OrderItems implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  productId: UUID
+  orderId: UUID!
+  createdAt: Datetime!
+  unitPrice: Float!
+  quantity: Int!
+  notes: String
+  order: Orders!
+  product: Products
+}
+
+type OrderItemsConnection {
+  edges: [OrderItemsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type OrderItemsDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [OrderItems!]!
+}
+
+type OrderItemsEdge {
+  cursor: String!
+  node: OrderItems!
+}
+
+input OrderItemsFilter {
+  id: UUIDFilter
+  productId: UUIDFilter
+  orderId: UUIDFilter
+  createdAt: DatetimeFilter
+  unitPrice: FloatFilter
+  quantity: IntFilter
+  notes: StringFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [OrderItemsFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [OrderItemsFilter!]
+  # Negates a filter
+  not: OrderItemsFilter
+}
+
+input OrderItemsInsertInput {
+  id: UUID
+  productId: UUID
+  orderId: UUID
+  createdAt: Datetime
+  unitPrice: Float
+  quantity: Int
+  notes: String
+}
+
+type OrderItemsInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [OrderItems!]!
+}
+
+input OrderItemsOrderBy {
+  id: OrderByDirection
+  productId: OrderByDirection
+  orderId: OrderByDirection
+  createdAt: OrderByDirection
+  unitPrice: OrderByDirection
+  quantity: OrderByDirection
+  notes: OrderByDirection
+}
+
+input OrderItemsUpdateInput {
+  id: UUID
+  productId: UUID
+  orderId: UUID
+  createdAt: Datetime
+  unitPrice: Float
+  quantity: Int
+  notes: String
+}
+
+type OrderItemsUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [OrderItems!]!
+}
+
+type Orders implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  userId: UUID!
+  createdAt: Datetime!
+  scheduledDeliveryAt: Datetime
+  orderStatus: OrderStatus!
+  deliveryAddress: String
+  deliveryCity: String
+  deliveryZip: String
+  deliveryLocationName: String
+  deliveryAddress1: String
+  updatedAt: Datetime
+  notes: String
+  deliveryLat: Float
+  deliveryLong: Float
+  subtotal: BigFloat
+  tax: BigFloat
+  total: BigFloat
+  deliveryState: String
+  user: Users!
+  orderTransactionsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: OrderTransactionsFilter
+    # Sort order to apply to the collection
+    orderBy: [OrderTransactionsOrderBy!]
+  ): OrderTransactionsConnection
+  orderItemsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: OrderItemsFilter
+    # Sort order to apply to the collection
+    orderBy: [OrderItemsOrderBy!]
+  ): OrderItemsConnection
+  shoppingCartsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: ShoppingCartsFilter
+    # Sort order to apply to the collection
+    orderBy: [ShoppingCartsOrderBy!]
+  ): ShoppingCartsConnection
+}
+
+type OrdersConnection {
+  edges: [OrdersEdge!]!
+  pageInfo: PageInfo!
+}
+
+type OrdersDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Orders!]!
+}
+
+type OrdersEdge {
+  cursor: String!
+  node: Orders!
+}
+
+input OrdersFilter {
+  id: UUIDFilter
+  userId: UUIDFilter
+  createdAt: DatetimeFilter
+  scheduledDeliveryAt: DatetimeFilter
+  orderStatus: OrderStatusFilter
+  deliveryAddress: StringFilter
+  deliveryCity: StringFilter
+  deliveryZip: StringFilter
+  deliveryLocationName: StringFilter
+  deliveryAddress1: StringFilter
+  updatedAt: DatetimeFilter
+  notes: StringFilter
+  deliveryLat: FloatFilter
+  deliveryLong: FloatFilter
+  subtotal: BigFloatFilter
+  tax: BigFloatFilter
+  total: BigFloatFilter
+  deliveryState: StringFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [OrdersFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [OrdersFilter!]
+  # Negates a filter
+  not: OrdersFilter
+}
+
+input OrdersInsertInput {
+  id: UUID
+  userId: UUID
+  createdAt: Datetime
+  scheduledDeliveryAt: Datetime
+  orderStatus: OrderStatus
+  deliveryAddress: String
+  deliveryCity: String
+  deliveryZip: String
+  deliveryLocationName: String
+  deliveryAddress1: String
+  updatedAt: Datetime
+  notes: String
+  deliveryLat: Float
+  deliveryLong: Float
+  subtotal: BigFloat
+  tax: BigFloat
+  total: BigFloat
+  deliveryState: String
+}
+
+type OrdersInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Orders!]!
+}
+
+input OrdersOrderBy {
+  id: OrderByDirection
+  userId: OrderByDirection
+  createdAt: OrderByDirection
+  scheduledDeliveryAt: OrderByDirection
+  orderStatus: OrderByDirection
+  deliveryAddress: OrderByDirection
+  deliveryCity: OrderByDirection
+  deliveryZip: OrderByDirection
+  deliveryLocationName: OrderByDirection
+  deliveryAddress1: OrderByDirection
+  updatedAt: OrderByDirection
+  notes: OrderByDirection
+  deliveryLat: OrderByDirection
+  deliveryLong: OrderByDirection
+  subtotal: OrderByDirection
+  tax: OrderByDirection
+  total: OrderByDirection
+  deliveryState: OrderByDirection
+}
+
+enum OrderStatus {
+  placed
+  in_progress
+  made
+  out_for_delivery
+  delivered
+  canceled
+  error
+}
+
+# Boolean expression comparing fields on type "OrderStatus"
+input OrderStatusFilter {
+  eq: OrderStatus
+  in: [OrderStatus!]
+  is: FilterIs
+  neq: OrderStatus
+}
+
+input OrdersUpdateInput {
+  id: UUID
+  userId: UUID
+  createdAt: Datetime
+  scheduledDeliveryAt: Datetime
+  orderStatus: OrderStatus
+  deliveryAddress: String
+  deliveryCity: String
+  deliveryZip: String
+  deliveryLocationName: String
+  deliveryAddress1: String
+  updatedAt: Datetime
+  notes: String
+  deliveryLat: Float
+  deliveryLong: Float
+  subtotal: BigFloat
+  tax: BigFloat
+  total: BigFloat
+  deliveryState: String
+}
+
+type OrdersUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Orders!]!
+}
+
+type OrderTransactions implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  orderId: UUID!
+  ccLast4: String!
+  ccCard: String!
+  createdAt: Datetime!
+  succeeded: Boolean!
+  amount: Float!
+  error: String
+  data: JSON
+  payerTransactionId: String
+  order: Orders!
+}
+
+type OrderTransactionsConnection {
+  edges: [OrderTransactionsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type OrderTransactionsDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [OrderTransactions!]!
+}
+
+type OrderTransactionsEdge {
+  cursor: String!
+  node: OrderTransactions!
+}
+
+input OrderTransactionsFilter {
+  id: UUIDFilter
+  orderId: UUIDFilter
+  ccLast4: StringFilter
+  ccCard: StringFilter
+  createdAt: DatetimeFilter
+  succeeded: BooleanFilter
+  amount: FloatFilter
+  error: StringFilter
+  payerTransactionId: StringFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [OrderTransactionsFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [OrderTransactionsFilter!]
+  # Negates a filter
+  not: OrderTransactionsFilter
+}
+
+input OrderTransactionsInsertInput {
+  id: UUID
+  orderId: UUID
+  ccLast4: String
+  ccCard: String
+  createdAt: Datetime
+  succeeded: Boolean
+  amount: Float
+  error: String
+  data: JSON
+  payerTransactionId: String
+}
+
+type OrderTransactionsInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [OrderTransactions!]!
+}
+
+input OrderTransactionsOrderBy {
+  id: OrderByDirection
+  orderId: OrderByDirection
+  ccLast4: OrderByDirection
+  ccCard: OrderByDirection
+  createdAt: OrderByDirection
+  succeeded: OrderByDirection
+  amount: OrderByDirection
+  error: OrderByDirection
+  payerTransactionId: OrderByDirection
+}
+
+input OrderTransactionsUpdateInput {
+  id: UUID
+  orderId: UUID
+  ccLast4: String
+  ccCard: String
+  createdAt: Datetime
+  succeeded: Boolean
+  amount: Float
+  error: String
+  data: JSON
+  payerTransactionId: String
+}
+
+type OrderTransactionsUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [OrderTransactions!]!
+}
+
+type Organization implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  organizationTypeId: UUID!
+  name: String
+  logoUrl: String
+  coverUrl: String
+  description: String
+  longDescriptionMarkdown: String
+  webUrl: String
+  data: JSON
+  createdAt: Datetime!
+  organizationType: OrganizationType!
+  siteCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: SiteFilter
+    # Sort order to apply to the collection
+    orderBy: [SiteOrderBy!]
+  ): SiteConnection
+  userOrganizationCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: UserOrganizationFilter
+    # Sort order to apply to the collection
+    orderBy: [UserOrganizationOrderBy!]
+  ): UserOrganizationConnection
+  providerCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: ProviderFilter
+    # Sort order to apply to the collection
+    orderBy: [ProviderOrderBy!]
+  ): ProviderConnection
+  userOrganizationRolesCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: UserOrganizationRolesFilter
+    # Sort order to apply to the collection
+    orderBy: [UserOrganizationRolesOrderBy!]
+  ): UserOrganizationRolesConnection
+}
+
+type OrganizationConnection {
+  edges: [OrganizationEdge!]!
+  pageInfo: PageInfo!
+}
+
+type OrganizationDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Organization!]!
+}
+
+type OrganizationEdge {
+  cursor: String!
+  node: Organization!
+}
+
+input OrganizationFilter {
+  id: UUIDFilter
+  organizationTypeId: UUIDFilter
+  name: StringFilter
+  logoUrl: StringFilter
+  coverUrl: StringFilter
+  description: StringFilter
+  longDescriptionMarkdown: StringFilter
+  webUrl: StringFilter
+  createdAt: DatetimeFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [OrganizationFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [OrganizationFilter!]
+  # Negates a filter
+  not: OrganizationFilter
+}
+
+input OrganizationInsertInput {
+  id: UUID
+  organizationTypeId: UUID
+  name: String
+  logoUrl: String
+  coverUrl: String
+  description: String
+  longDescriptionMarkdown: String
+  webUrl: String
+  data: JSON
+  createdAt: Datetime
+}
+
+type OrganizationInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Organization!]!
+}
+
+input OrganizationOrderBy {
+  id: OrderByDirection
+  organizationTypeId: OrderByDirection
+  name: OrderByDirection
+  logoUrl: OrderByDirection
+  coverUrl: OrderByDirection
+  description: OrderByDirection
+  longDescriptionMarkdown: OrderByDirection
+  webUrl: OrderByDirection
+  createdAt: OrderByDirection
+}
+
+type OrganizationType implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  name: String!
+  key: String!
+  schema: JSON
+  managingTable: String!
+  createdAt: Datetime!
+  organizationCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: OrganizationFilter
+    # Sort order to apply to the collection
+    orderBy: [OrganizationOrderBy!]
+  ): OrganizationConnection
+}
+
+type OrganizationTypeConnection {
+  edges: [OrganizationTypeEdge!]!
+  pageInfo: PageInfo!
+}
+
+type OrganizationTypeDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [OrganizationType!]!
+}
+
+type OrganizationTypeEdge {
+  cursor: String!
+  node: OrganizationType!
+}
+
+input OrganizationTypeFilter {
+  id: UUIDFilter
+  name: StringFilter
+  key: StringFilter
+  managingTable: StringFilter
+  createdAt: DatetimeFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [OrganizationTypeFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [OrganizationTypeFilter!]
+  # Negates a filter
+  not: OrganizationTypeFilter
+}
+
+input OrganizationTypeInsertInput {
+  id: UUID
+  name: String
+  key: String
+  schema: JSON
+  managingTable: String
+  createdAt: Datetime
+}
+
+type OrganizationTypeInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [OrganizationType!]!
+}
+
+input OrganizationTypeOrderBy {
+  id: OrderByDirection
+  name: OrderByDirection
+  key: OrderByDirection
+  managingTable: OrderByDirection
+  createdAt: OrderByDirection
+}
+
+input OrganizationTypeUpdateInput {
+  id: UUID
+  name: String
+  key: String
+  schema: JSON
+  managingTable: String
+  createdAt: Datetime
+}
+
+type OrganizationTypeUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [OrganizationType!]!
+}
+
+input OrganizationUpdateInput {
+  id: UUID
+  organizationTypeId: UUID
+  name: String
+  logoUrl: String
+  coverUrl: String
+  description: String
+  longDescriptionMarkdown: String
+  webUrl: String
+  data: JSON
+  createdAt: Datetime
+}
+
+type OrganizationUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Organization!]!
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+type Permissions implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  name: String!
+  key: String!
+  metadata: JSON
+  createdAt: Datetime!
+  rolePermissionsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: RolePermissionsFilter
+    # Sort order to apply to the collection
+    orderBy: [RolePermissionsOrderBy!]
+  ): RolePermissionsConnection
+  userPermissionsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: UserPermissionsFilter
+    # Sort order to apply to the collection
+    orderBy: [UserPermissionsOrderBy!]
+  ): UserPermissionsConnection
+}
+
+type PermissionsConnection {
+  edges: [PermissionsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type PermissionsDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Permissions!]!
+}
+
+type PermissionsEdge {
+  cursor: String!
+  node: Permissions!
+}
+
+input PermissionsFilter {
+  id: UUIDFilter
+  name: StringFilter
+  key: StringFilter
+  createdAt: DatetimeFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [PermissionsFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [PermissionsFilter!]
+  # Negates a filter
+  not: PermissionsFilter
+}
+
+input PermissionsInsertInput {
+  id: UUID
+  name: String
+  key: String
+  metadata: JSON
+  createdAt: Datetime
+}
+
+type PermissionsInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Permissions!]!
+}
+
+input PermissionsOrderBy {
+  id: OrderByDirection
+  name: OrderByDirection
+  key: OrderByDirection
+  createdAt: OrderByDirection
+}
+
+input PermissionsUpdateInput {
+  id: UUID
+  name: String
+  key: String
+  metadata: JSON
+  createdAt: Datetime
+}
+
+type PermissionsUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Permissions!]!
+}
+
+type ProductInventory implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  count: BigInt!
+  isAlwaysAvailable: Boolean!
+  data: JSON
+  notes: String
+  createdAt: Datetime!
+  updatedAt: Datetime
+  products: Products!
+}
+
+type ProductInventoryConnection {
+  edges: [ProductInventoryEdge!]!
+  pageInfo: PageInfo!
+}
+
+type ProductInventoryDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [ProductInventory!]!
+}
+
+type ProductInventoryEdge {
+  cursor: String!
+  node: ProductInventory!
+}
+
+input ProductInventoryFilter {
+  id: UUIDFilter
+  count: BigIntFilter
+  isAlwaysAvailable: BooleanFilter
+  notes: StringFilter
+  createdAt: DatetimeFilter
+  updatedAt: DatetimeFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [ProductInventoryFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [ProductInventoryFilter!]
+  # Negates a filter
+  not: ProductInventoryFilter
+}
+
+input ProductInventoryInsertInput {
+  id: UUID
+  count: BigInt
+  isAlwaysAvailable: Boolean
+  data: JSON
+  notes: String
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+type ProductInventoryInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [ProductInventory!]!
+}
+
+input ProductInventoryOrderBy {
+  id: OrderByDirection
+  count: OrderByDirection
+  isAlwaysAvailable: OrderByDirection
+  notes: OrderByDirection
+  createdAt: OrderByDirection
+  updatedAt: OrderByDirection
+}
+
+input ProductInventoryUpdateInput {
+  id: UUID
+  count: BigInt
+  isAlwaysAvailable: Boolean
+  data: JSON
+  notes: String
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+type ProductInventoryUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [ProductInventory!]!
+}
+
+type ProductProvider implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  productId: UUID!
+  providerId: UUID!
+  metadata: JSON
+  createdAt: Datetime!
+  product: Products!
+  provider: Provider!
+}
+
+type ProductProviderConnection {
+  edges: [ProductProviderEdge!]!
+  pageInfo: PageInfo!
+}
+
+type ProductProviderDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [ProductProvider!]!
+}
+
+type ProductProviderEdge {
+  cursor: String!
+  node: ProductProvider!
+}
+
+input ProductProviderFilter {
+  id: UUIDFilter
+  productId: UUIDFilter
+  providerId: UUIDFilter
+  createdAt: DatetimeFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [ProductProviderFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [ProductProviderFilter!]
+  # Negates a filter
+  not: ProductProviderFilter
+}
+
+input ProductProviderInsertInput {
+  id: UUID
+  productId: UUID
+  providerId: UUID
+  metadata: JSON
+  createdAt: Datetime
+}
+
+type ProductProviderInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [ProductProvider!]!
+}
+
+input ProductProviderOrderBy {
+  id: OrderByDirection
+  productId: OrderByDirection
+  providerId: OrderByDirection
+  createdAt: OrderByDirection
+}
+
+input ProductProviderUpdateInput {
+  id: UUID
+  productId: UUID
+  providerId: UUID
+  metadata: JSON
+  createdAt: Datetime
+}
+
+type ProductProviderUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [ProductProvider!]!
+}
+
+type Products implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  productTypeId: UUID
+  name: String!
+  shortDescription: String
+  longDescription: String
+  photoUrl: String
+  data: JSON
+  createdAt: Datetime!
+  updatedAt: Datetime
+  unitPrice: Float!
+  unit: String
+  instructions: String
+  productType: ProductTypes
+  shoppingCartItemsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: ShoppingCartItemsFilter
+    # Sort order to apply to the collection
+    orderBy: [ShoppingCartItemsOrderBy!]
+  ): ShoppingCartItemsConnection
+  productProviderCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: ProductProviderFilter
+    # Sort order to apply to the collection
+    orderBy: [ProductProviderOrderBy!]
+  ): ProductProviderConnection
+  orderItemsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: OrderItemsFilter
+    # Sort order to apply to the collection
+    orderBy: [OrderItemsOrderBy!]
+  ): OrderItemsConnection
+  productInventory: ProductInventory
+}
+
+type ProductsConnection {
+  edges: [ProductsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type ProductsDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Products!]!
+}
+
+type ProductsEdge {
+  cursor: String!
+  node: Products!
+}
+
+input ProductsFilter {
+  id: UUIDFilter
+  productTypeId: UUIDFilter
+  name: StringFilter
+  shortDescription: StringFilter
+  longDescription: StringFilter
+  photoUrl: StringFilter
+  createdAt: DatetimeFilter
+  updatedAt: DatetimeFilter
+  unitPrice: FloatFilter
+  unit: StringFilter
+  instructions: StringFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [ProductsFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [ProductsFilter!]
+  # Negates a filter
+  not: ProductsFilter
+}
+
+input ProductsInsertInput {
+  id: UUID
+  productTypeId: UUID
+  name: String
+  shortDescription: String
+  longDescription: String
+  photoUrl: String
+  data: JSON
+  createdAt: Datetime
+  updatedAt: Datetime
+  unitPrice: Float
+  unit: String
+  instructions: String
+}
+
+type ProductsInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Products!]!
+}
+
+input ProductsOrderBy {
+  id: OrderByDirection
+  productTypeId: OrderByDirection
+  name: OrderByDirection
+  shortDescription: OrderByDirection
+  longDescription: OrderByDirection
+  photoUrl: OrderByDirection
+  createdAt: OrderByDirection
+  updatedAt: OrderByDirection
+  unitPrice: OrderByDirection
+  unit: OrderByDirection
+  instructions: OrderByDirection
+}
+
+input ProductsUpdateInput {
+  id: UUID
+  productTypeId: UUID
+  name: String
+  shortDescription: String
+  longDescription: String
+  photoUrl: String
+  data: JSON
+  createdAt: Datetime
+  updatedAt: Datetime
+  unitPrice: Float
+  unit: String
+  instructions: String
+}
+
+type ProductsUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Products!]!
+}
+
+type ProductTypes implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  name: String!
+  key: String!
+  schema: JSON
+  iconUrl: String
+  coverUrl: String
+  createdAt: Datetime!
+  productsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: ProductsFilter
+    # Sort order to apply to the collection
+    orderBy: [ProductsOrderBy!]
+  ): ProductsConnection
+}
+
+type ProductTypesConnection {
+  edges: [ProductTypesEdge!]!
+  pageInfo: PageInfo!
+}
+
+type ProductTypesDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [ProductTypes!]!
+}
+
+type ProductTypesEdge {
+  cursor: String!
+  node: ProductTypes!
+}
+
+input ProductTypesFilter {
+  id: UUIDFilter
+  name: StringFilter
+  key: StringFilter
+  iconUrl: StringFilter
+  coverUrl: StringFilter
+  createdAt: DatetimeFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [ProductTypesFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [ProductTypesFilter!]
+  # Negates a filter
+  not: ProductTypesFilter
+}
+
+input ProductTypesInsertInput {
+  id: UUID
+  name: String
+  key: String
+  schema: JSON
+  iconUrl: String
+  coverUrl: String
+  createdAt: Datetime
+}
+
+type ProductTypesInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [ProductTypes!]!
+}
+
+input ProductTypesOrderBy {
+  id: OrderByDirection
+  name: OrderByDirection
+  key: OrderByDirection
+  iconUrl: OrderByDirection
+  coverUrl: OrderByDirection
+  createdAt: OrderByDirection
+}
+
+input ProductTypesUpdateInput {
+  id: UUID
+  name: String
+  key: String
+  schema: JSON
+  iconUrl: String
+  coverUrl: String
+  createdAt: Datetime
+}
+
+type ProductTypesUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [ProductTypes!]!
+}
+
+type Provider implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  providerTypeId: UUID
+  organizationId: UUID
+  name: String!
+  description: String
+  logoUrl: String
+  coverUrl: String
+  webUrl: String
+  data: JSON
+  createdAt: Datetime!
+  updatedAt: Datetime
+  organization: Organization
+  providerType: ProviderType
+  productProviderCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: ProductProviderFilter
+    # Sort order to apply to the collection
+    orderBy: [ProductProviderOrderBy!]
+  ): ProductProviderConnection
+  deliveryLocationCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: DeliveryLocationFilter
+    # Sort order to apply to the collection
+    orderBy: [DeliveryLocationOrderBy!]
+  ): DeliveryLocationConnection
+}
+
+type ProviderConnection {
+  edges: [ProviderEdge!]!
+  pageInfo: PageInfo!
+}
+
+type ProviderDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Provider!]!
+}
+
+type ProviderEdge {
+  cursor: String!
+  node: Provider!
+}
+
+input ProviderFilter {
+  id: UUIDFilter
+  providerTypeId: UUIDFilter
+  organizationId: UUIDFilter
+  name: StringFilter
+  description: StringFilter
+  logoUrl: StringFilter
+  coverUrl: StringFilter
+  webUrl: StringFilter
+  createdAt: DatetimeFilter
+  updatedAt: DatetimeFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [ProviderFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [ProviderFilter!]
+  # Negates a filter
+  not: ProviderFilter
+}
+
+input ProviderInsertInput {
+  id: UUID
+  providerTypeId: UUID
+  organizationId: UUID
+  name: String
+  description: String
+  logoUrl: String
+  coverUrl: String
+  webUrl: String
+  data: JSON
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+type ProviderInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Provider!]!
+}
+
+input ProviderOrderBy {
+  id: OrderByDirection
+  providerTypeId: OrderByDirection
+  organizationId: OrderByDirection
+  name: OrderByDirection
+  description: OrderByDirection
+  logoUrl: OrderByDirection
+  coverUrl: OrderByDirection
+  webUrl: OrderByDirection
+  createdAt: OrderByDirection
+  updatedAt: OrderByDirection
+}
+
+type ProviderType implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  name: String!
+  key: String!
+  schema: JSON
+  managingTable: String!
+  createdAt: Datetime!
+  providerCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: ProviderFilter
+    # Sort order to apply to the collection
+    orderBy: [ProviderOrderBy!]
+  ): ProviderConnection
+}
+
+type ProviderTypeConnection {
+  edges: [ProviderTypeEdge!]!
+  pageInfo: PageInfo!
+}
+
+type ProviderTypeDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [ProviderType!]!
+}
+
+type ProviderTypeEdge {
+  cursor: String!
+  node: ProviderType!
+}
+
+input ProviderTypeFilter {
+  id: UUIDFilter
+  name: StringFilter
+  key: StringFilter
+  managingTable: StringFilter
+  createdAt: DatetimeFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [ProviderTypeFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [ProviderTypeFilter!]
+  # Negates a filter
+  not: ProviderTypeFilter
+}
+
+input ProviderTypeInsertInput {
+  id: UUID
+  name: String
+  key: String
+  schema: JSON
+  managingTable: String
+  createdAt: Datetime
+}
+
+type ProviderTypeInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [ProviderType!]!
+}
+
+input ProviderTypeOrderBy {
+  id: OrderByDirection
+  name: OrderByDirection
+  key: OrderByDirection
+  managingTable: OrderByDirection
+  createdAt: OrderByDirection
+}
+
+input ProviderTypeUpdateInput {
+  id: UUID
+  name: String
+  key: String
+  schema: JSON
+  managingTable: String
+  createdAt: Datetime
+}
+
+type ProviderTypeUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [ProviderType!]!
+}
+
+input ProviderUpdateInput {
+  id: UUID
+  providerTypeId: UUID
+  organizationId: UUID
+  name: String
+  description: String
+  logoUrl: String
+  coverUrl: String
+  webUrl: String
+  data: JSON
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+type ProviderUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Provider!]!
+}
+
+# The root type for querying data
+type Query {
+  # A pagable collection of type `DeliveryLocation`
+  deliveryLocationCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: DeliveryLocationFilter
+    # Sort order to apply to the collection
+    orderBy: [DeliveryLocationOrderBy!]
+  ): DeliveryLocationConnection
+  # A pagable collection of type `Navigation`
+  navigationCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: NavigationFilter
+    # Sort order to apply to the collection
+    orderBy: [NavigationOrderBy!]
+  ): NavigationConnection
+  # A pagable collection of type `NavigationItems`
+  navigationItemsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: NavigationItemsFilter
+    # Sort order to apply to the collection
+    orderBy: [NavigationItemsOrderBy!]
+  ): NavigationItemsConnection
+  # Retrieve a record by its `ID`
+  node(
+    # The record's `ID`
+    nodeId: ID!
+  ): Node
+  # A pagable collection of type `NotificationTypes`
+  notificationTypesCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: NotificationTypesFilter
+    # Sort order to apply to the collection
+    orderBy: [NotificationTypesOrderBy!]
+  ): NotificationTypesConnection
+  # A pagable collection of type `Notifications`
+  notificationsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: NotificationsFilter
+    # Sort order to apply to the collection
+    orderBy: [NotificationsOrderBy!]
+  ): NotificationsConnection
+  # A pagable collection of type `OrderItems`
+  orderItemsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: OrderItemsFilter
+    # Sort order to apply to the collection
+    orderBy: [OrderItemsOrderBy!]
+  ): OrderItemsConnection
+  # A pagable collection of type `OrderTransactions`
+  orderTransactionsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: OrderTransactionsFilter
+    # Sort order to apply to the collection
+    orderBy: [OrderTransactionsOrderBy!]
+  ): OrderTransactionsConnection
+  # A pagable collection of type `Orders`
+  ordersCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: OrdersFilter
+    # Sort order to apply to the collection
+    orderBy: [OrdersOrderBy!]
+  ): OrdersConnection
+  # A pagable collection of type `Organization`
+  organizationCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: OrganizationFilter
+    # Sort order to apply to the collection
+    orderBy: [OrganizationOrderBy!]
+  ): OrganizationConnection
+  # A pagable collection of type `OrganizationType`
+  organizationTypeCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: OrganizationTypeFilter
+    # Sort order to apply to the collection
+    orderBy: [OrganizationTypeOrderBy!]
+  ): OrganizationTypeConnection
+  # A pagable collection of type `Permissions`
+  permissionsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: PermissionsFilter
+    # Sort order to apply to the collection
+    orderBy: [PermissionsOrderBy!]
+  ): PermissionsConnection
+  # A pagable collection of type `ProductInventory`
+  productInventoryCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: ProductInventoryFilter
+    # Sort order to apply to the collection
+    orderBy: [ProductInventoryOrderBy!]
+  ): ProductInventoryConnection
+  # A pagable collection of type `ProductProvider`
+  productProviderCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: ProductProviderFilter
+    # Sort order to apply to the collection
+    orderBy: [ProductProviderOrderBy!]
+  ): ProductProviderConnection
+  # A pagable collection of type `ProductTypes`
+  productTypesCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: ProductTypesFilter
+    # Sort order to apply to the collection
+    orderBy: [ProductTypesOrderBy!]
+  ): ProductTypesConnection
+  # A pagable collection of type `Products`
+  productsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: ProductsFilter
+    # Sort order to apply to the collection
+    orderBy: [ProductsOrderBy!]
+  ): ProductsConnection
+  # A pagable collection of type `Provider`
+  providerCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: ProviderFilter
+    # Sort order to apply to the collection
+    orderBy: [ProviderOrderBy!]
+  ): ProviderConnection
+  # A pagable collection of type `ProviderType`
+  providerTypeCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: ProviderTypeFilter
+    # Sort order to apply to the collection
+    orderBy: [ProviderTypeOrderBy!]
+  ): ProviderTypeConnection
+  # A pagable collection of type `RolePermissions`
+  rolePermissionsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: RolePermissionsFilter
+    # Sort order to apply to the collection
+    orderBy: [RolePermissionsOrderBy!]
+  ): RolePermissionsConnection
+  # A pagable collection of type `Roles`
+  rolesCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: RolesFilter
+    # Sort order to apply to the collection
+    orderBy: [RolesOrderBy!]
+  ): RolesConnection
+  # A pagable collection of type `Sessions`
+  sessionsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: SessionsFilter
+    # Sort order to apply to the collection
+    orderBy: [SessionsOrderBy!]
+  ): SessionsConnection
+  # A pagable collection of type `ShoppingCartItems`
+  shoppingCartItemsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: ShoppingCartItemsFilter
+    # Sort order to apply to the collection
+    orderBy: [ShoppingCartItemsOrderBy!]
+  ): ShoppingCartItemsConnection
+  # A pagable collection of type `ShoppingCarts`
+  shoppingCartsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: ShoppingCartsFilter
+    # Sort order to apply to the collection
+    orderBy: [ShoppingCartsOrderBy!]
+  ): ShoppingCartsConnection
+  # A pagable collection of type `Site`
+  siteCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: SiteFilter
+    # Sort order to apply to the collection
+    orderBy: [SiteOrderBy!]
+  ): SiteConnection
+  # A pagable collection of type `SiteType`
+  siteTypeCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: SiteTypeFilter
+    # Sort order to apply to the collection
+    orderBy: [SiteTypeOrderBy!]
+  ): SiteTypeConnection
+  # A pagable collection of type `StationDeliveryLocationTimeslots`
+  stationDeliveryLocationTimeslotsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: StationDeliveryLocationTimeslotsFilter
+    # Sort order to apply to the collection
+    orderBy: [StationDeliveryLocationTimeslotsOrderBy!]
+  ): StationDeliveryLocationTimeslotsConnection
+  # A pagable collection of type `StationDeliveryLocations`
+  stationDeliveryLocationsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: StationDeliveryLocationsFilter
+    # Sort order to apply to the collection
+    orderBy: [StationDeliveryLocationsOrderBy!]
+  ): StationDeliveryLocationsConnection
+  # A pagable collection of type `Stations`
+  stationsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: StationsFilter
+    # Sort order to apply to the collection
+    orderBy: [StationsOrderBy!]
+  ): StationsConnection
+  # A pagable collection of type `UserOrganization`
+  userOrganizationCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: UserOrganizationFilter
+    # Sort order to apply to the collection
+    orderBy: [UserOrganizationOrderBy!]
+  ): UserOrganizationConnection
+  # A pagable collection of type `UserOrganizationRoles`
+  userOrganizationRolesCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: UserOrganizationRolesFilter
+    # Sort order to apply to the collection
+    orderBy: [UserOrganizationRolesOrderBy!]
+  ): UserOrganizationRolesConnection
+  # A pagable collection of type `UserPermissions`
+  userPermissionsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: UserPermissionsFilter
+    # Sort order to apply to the collection
+    orderBy: [UserPermissionsOrderBy!]
+  ): UserPermissionsConnection
+  # A pagable collection of type `UserRoles`
+  userRolesCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: UserRolesFilter
+    # Sort order to apply to the collection
+    orderBy: [UserRolesOrderBy!]
+  ): UserRolesConnection
+  # A pagable collection of type `UserStations`
+  userStationsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: UserStationsFilter
+    # Sort order to apply to the collection
+    orderBy: [UserStationsOrderBy!]
+  ): UserStationsConnection
+  # A pagable collection of type `Users`
+  usersCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: UsersFilter
+    # Sort order to apply to the collection
+    orderBy: [UsersOrderBy!]
+  ): UsersConnection
+}
+
+type RolePermissions implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  roleId: UUID!
+  permissionId: UUID!
+  createdAt: Datetime!
+  enabled: Boolean!
+  metadata: JSON
+  role: Roles!
+  permission: Permissions!
+}
+
+type RolePermissionsConnection {
+  edges: [RolePermissionsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type RolePermissionsDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [RolePermissions!]!
+}
+
+type RolePermissionsEdge {
+  cursor: String!
+  node: RolePermissions!
+}
+
+input RolePermissionsFilter {
+  id: UUIDFilter
+  roleId: UUIDFilter
+  permissionId: UUIDFilter
+  createdAt: DatetimeFilter
+  enabled: BooleanFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [RolePermissionsFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [RolePermissionsFilter!]
+  # Negates a filter
+  not: RolePermissionsFilter
+}
+
+input RolePermissionsInsertInput {
+  id: UUID
+  roleId: UUID
+  permissionId: UUID
+  createdAt: Datetime
+  enabled: Boolean
+  metadata: JSON
+}
+
+type RolePermissionsInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [RolePermissions!]!
+}
+
+input RolePermissionsOrderBy {
+  id: OrderByDirection
+  roleId: OrderByDirection
+  permissionId: OrderByDirection
+  createdAt: OrderByDirection
+  enabled: OrderByDirection
+}
+
+input RolePermissionsUpdateInput {
+  id: UUID
+  roleId: UUID
+  permissionId: UUID
+  createdAt: Datetime
+  enabled: Boolean
+  metadata: JSON
+}
+
+type RolePermissionsUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [RolePermissions!]!
+}
+
+type Roles implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  name: String!
+  key: String!
+  createdAt: Datetime!
+  rolePermissionsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: RolePermissionsFilter
+    # Sort order to apply to the collection
+    orderBy: [RolePermissionsOrderBy!]
+  ): RolePermissionsConnection
+  userRolesCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: UserRolesFilter
+    # Sort order to apply to the collection
+    orderBy: [UserRolesOrderBy!]
+  ): UserRolesConnection
+  userOrganizationRolesCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: UserOrganizationRolesFilter
+    # Sort order to apply to the collection
+    orderBy: [UserOrganizationRolesOrderBy!]
+  ): UserOrganizationRolesConnection
+}
+
+type RolesConnection {
+  edges: [RolesEdge!]!
+  pageInfo: PageInfo!
+}
+
+type RolesDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Roles!]!
+}
+
+type RolesEdge {
+  cursor: String!
+  node: Roles!
+}
+
+input RolesFilter {
+  id: UUIDFilter
+  name: StringFilter
+  key: StringFilter
+  createdAt: DatetimeFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [RolesFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [RolesFilter!]
+  # Negates a filter
+  not: RolesFilter
+}
+
+input RolesInsertInput {
+  id: UUID
+  name: String
+  key: String
+  createdAt: Datetime
+}
+
+type RolesInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Roles!]!
+}
+
+input RolesOrderBy {
+  id: OrderByDirection
+  name: OrderByDirection
+  key: OrderByDirection
+  createdAt: OrderByDirection
+}
+
+input RolesUpdateInput {
+  id: UUID
+  name: String
+  key: String
+  createdAt: Datetime
+}
+
+type RolesUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Roles!]!
+}
+
+type Sessions implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  did: String!
+  sessionData: JSON!
+  updatedAt: Datetime!
+}
+
+type SessionsConnection {
+  edges: [SessionsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type SessionsDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Sessions!]!
+}
+
+type SessionsEdge {
+  cursor: String!
+  node: Sessions!
+}
+
+input SessionsFilter {
+  did: StringFilter
+  updatedAt: DatetimeFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [SessionsFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [SessionsFilter!]
+  # Negates a filter
+  not: SessionsFilter
+}
+
+input SessionsInsertInput {
+  did: String
+  sessionData: JSON
+  updatedAt: Datetime
+}
+
+type SessionsInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Sessions!]!
+}
+
+input SessionsOrderBy {
+  did: OrderByDirection
+  updatedAt: OrderByDirection
+}
+
+input SessionsUpdateInput {
+  did: String
+  sessionData: JSON
+  updatedAt: Datetime
+}
+
+type SessionsUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Sessions!]!
+}
+
+type ShoppingCartItems implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  productId: UUID!
+  quantity: Int!
+  createdAt: Datetime!
+  unitPrice: Float!
+  shoppingCartId: UUID!
+  product: Products!
+  shoppingCart: ShoppingCarts!
+}
+
+type ShoppingCartItemsConnection {
+  edges: [ShoppingCartItemsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type ShoppingCartItemsDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [ShoppingCartItems!]!
+}
+
+type ShoppingCartItemsEdge {
+  cursor: String!
+  node: ShoppingCartItems!
+}
+
+input ShoppingCartItemsFilter {
+  id: UUIDFilter
+  productId: UUIDFilter
+  quantity: IntFilter
+  createdAt: DatetimeFilter
+  unitPrice: FloatFilter
+  shoppingCartId: UUIDFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [ShoppingCartItemsFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [ShoppingCartItemsFilter!]
+  # Negates a filter
+  not: ShoppingCartItemsFilter
+}
+
+input ShoppingCartItemsInsertInput {
+  id: UUID
+  productId: UUID
+  quantity: Int
+  createdAt: Datetime
+  unitPrice: Float
+  shoppingCartId: UUID
+}
+
+type ShoppingCartItemsInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [ShoppingCartItems!]!
+}
+
+input ShoppingCartItemsOrderBy {
+  id: OrderByDirection
+  productId: OrderByDirection
+  quantity: OrderByDirection
+  createdAt: OrderByDirection
+  unitPrice: OrderByDirection
+  shoppingCartId: OrderByDirection
+}
+
+input ShoppingCartItemsUpdateInput {
+  id: UUID
+  productId: UUID
+  quantity: Int
+  createdAt: Datetime
+  unitPrice: Float
+  shoppingCartId: UUID
+}
+
+type ShoppingCartItemsUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [ShoppingCartItems!]!
+}
+
+type ShoppingCarts implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  userId: UUID!
+  orderId: UUID
+  createdAt: Datetime!
+  order: Orders
+  user: Users!
+  shoppingCartItemsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: ShoppingCartItemsFilter
+    # Sort order to apply to the collection
+    orderBy: [ShoppingCartItemsOrderBy!]
+  ): ShoppingCartItemsConnection
+}
+
+type ShoppingCartsConnection {
+  edges: [ShoppingCartsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type ShoppingCartsDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [ShoppingCarts!]!
+}
+
+type ShoppingCartsEdge {
+  cursor: String!
+  node: ShoppingCarts!
+}
+
+input ShoppingCartsFilter {
+  id: UUIDFilter
+  userId: UUIDFilter
+  orderId: UUIDFilter
+  createdAt: DatetimeFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [ShoppingCartsFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [ShoppingCartsFilter!]
+  # Negates a filter
+  not: ShoppingCartsFilter
+}
+
+input ShoppingCartsInsertInput {
+  id: UUID
+  userId: UUID
+  orderId: UUID
+  createdAt: Datetime
+}
+
+type ShoppingCartsInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [ShoppingCarts!]!
+}
+
+input ShoppingCartsOrderBy {
+  id: OrderByDirection
+  userId: OrderByDirection
+  orderId: OrderByDirection
+  createdAt: OrderByDirection
+}
+
+input ShoppingCartsUpdateInput {
+  id: UUID
+  userId: UUID
+  orderId: UUID
+  createdAt: Datetime
+}
+
+type ShoppingCartsUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [ShoppingCarts!]!
+}
+
+type Site implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  siteTypeId: UUID!
+  name: String!
+  data: JSON
+  createdAt: Datetime!
+  organizationId: UUID!
+  organization: Organization!
+  siteType: SiteType!
+  stationsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: StationsFilter
+    # Sort order to apply to the collection
+    orderBy: [StationsOrderBy!]
+  ): StationsConnection
+}
+
+type SiteConnection {
+  edges: [SiteEdge!]!
+  pageInfo: PageInfo!
+}
+
+type SiteDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Site!]!
+}
+
+type SiteEdge {
+  cursor: String!
+  node: Site!
+}
+
+input SiteFilter {
+  id: UUIDFilter
+  siteTypeId: UUIDFilter
+  name: StringFilter
+  createdAt: DatetimeFilter
+  organizationId: UUIDFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [SiteFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [SiteFilter!]
+  # Negates a filter
+  not: SiteFilter
+}
+
+input SiteInsertInput {
+  id: UUID
+  siteTypeId: UUID
+  name: String
+  data: JSON
+  createdAt: Datetime
+  organizationId: UUID
+}
+
+type SiteInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Site!]!
+}
+
+input SiteOrderBy {
+  id: OrderByDirection
+  siteTypeId: OrderByDirection
+  name: OrderByDirection
+  createdAt: OrderByDirection
+  organizationId: OrderByDirection
+}
+
+type SiteType implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  name: String!
+  key: String!
+  schema: JSON
+  managingTable: String!
+  createdAt: Datetime!
+  siteCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: SiteFilter
+    # Sort order to apply to the collection
+    orderBy: [SiteOrderBy!]
+  ): SiteConnection
+}
+
+type SiteTypeConnection {
+  edges: [SiteTypeEdge!]!
+  pageInfo: PageInfo!
+}
+
+type SiteTypeDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [SiteType!]!
+}
+
+type SiteTypeEdge {
+  cursor: String!
+  node: SiteType!
+}
+
+input SiteTypeFilter {
+  id: UUIDFilter
+  name: StringFilter
+  key: StringFilter
+  managingTable: StringFilter
+  createdAt: DatetimeFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [SiteTypeFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [SiteTypeFilter!]
+  # Negates a filter
+  not: SiteTypeFilter
+}
+
+input SiteTypeInsertInput {
+  id: UUID
+  name: String
+  key: String
+  schema: JSON
+  managingTable: String
+  createdAt: Datetime
+}
+
+type SiteTypeInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [SiteType!]!
+}
+
+input SiteTypeOrderBy {
+  id: OrderByDirection
+  name: OrderByDirection
+  key: OrderByDirection
+  managingTable: OrderByDirection
+  createdAt: OrderByDirection
+}
+
+input SiteTypeUpdateInput {
+  id: UUID
+  name: String
+  key: String
+  schema: JSON
+  managingTable: String
+  createdAt: Datetime
+}
+
+type SiteTypeUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [SiteType!]!
+}
+
+input SiteUpdateInput {
+  id: UUID
+  siteTypeId: UUID
+  name: String
+  data: JSON
+  createdAt: Datetime
+  organizationId: UUID
+}
+
+type SiteUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Site!]!
+}
+
+type StationDeliveryLocations implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  createdAt: Datetime!
+  stationId: UUID!
+  deliveryLocationId: UUID!
+  station: Stations!
+  deliveryLocation: DeliveryLocation!
+  stationDeliveryLocationTimeslotsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: StationDeliveryLocationTimeslotsFilter
+    # Sort order to apply to the collection
+    orderBy: [StationDeliveryLocationTimeslotsOrderBy!]
+  ): StationDeliveryLocationTimeslotsConnection
+}
+
+type StationDeliveryLocationsConnection {
+  edges: [StationDeliveryLocationsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type StationDeliveryLocationsDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [StationDeliveryLocations!]!
+}
+
+type StationDeliveryLocationsEdge {
+  cursor: String!
+  node: StationDeliveryLocations!
+}
+
+input StationDeliveryLocationsFilter {
+  id: UUIDFilter
+  createdAt: DatetimeFilter
+  stationId: UUIDFilter
+  deliveryLocationId: UUIDFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [StationDeliveryLocationsFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [StationDeliveryLocationsFilter!]
+  # Negates a filter
+  not: StationDeliveryLocationsFilter
+}
+
+input StationDeliveryLocationsInsertInput {
+  id: UUID
+  createdAt: Datetime
+  stationId: UUID
+  deliveryLocationId: UUID
+}
+
+type StationDeliveryLocationsInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [StationDeliveryLocations!]!
+}
+
+input StationDeliveryLocationsOrderBy {
+  id: OrderByDirection
+  createdAt: OrderByDirection
+  stationId: OrderByDirection
+  deliveryLocationId: OrderByDirection
+}
+
+input StationDeliveryLocationsUpdateInput {
+  id: UUID
+  createdAt: Datetime
+  stationId: UUID
+  deliveryLocationId: UUID
+}
+
+type StationDeliveryLocationsUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [StationDeliveryLocations!]!
+}
+
+type StationDeliveryLocationTimeslots implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  createdAt: Datetime!
+  stationDeliveryLocationId: UUID!
+  beginAt: Datetime!
+  endAt: Datetime
+  stationDeliveryLocation: StationDeliveryLocations!
+}
+
+type StationDeliveryLocationTimeslotsConnection {
+  edges: [StationDeliveryLocationTimeslotsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type StationDeliveryLocationTimeslotsDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [StationDeliveryLocationTimeslots!]!
+}
+
+type StationDeliveryLocationTimeslotsEdge {
+  cursor: String!
+  node: StationDeliveryLocationTimeslots!
+}
+
+input StationDeliveryLocationTimeslotsFilter {
+  id: UUIDFilter
+  createdAt: DatetimeFilter
+  stationDeliveryLocationId: UUIDFilter
+  beginAt: DatetimeFilter
+  endAt: DatetimeFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [StationDeliveryLocationTimeslotsFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [StationDeliveryLocationTimeslotsFilter!]
+  # Negates a filter
+  not: StationDeliveryLocationTimeslotsFilter
+}
+
+input StationDeliveryLocationTimeslotsInsertInput {
+  id: UUID
+  createdAt: Datetime
+  stationDeliveryLocationId: UUID
+  beginAt: Datetime
+  endAt: Datetime
+}
+
+type StationDeliveryLocationTimeslotsInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [StationDeliveryLocationTimeslots!]!
+}
+
+input StationDeliveryLocationTimeslotsOrderBy {
+  id: OrderByDirection
+  createdAt: OrderByDirection
+  stationDeliveryLocationId: OrderByDirection
+  beginAt: OrderByDirection
+  endAt: OrderByDirection
+}
+
+input StationDeliveryLocationTimeslotsUpdateInput {
+  id: UUID
+  createdAt: Datetime
+  stationDeliveryLocationId: UUID
+  beginAt: Datetime
+  endAt: Datetime
+}
+
+type StationDeliveryLocationTimeslotsUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [StationDeliveryLocationTimeslots!]!
+}
+
+type Stations implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  name: String!
+  number: Int
+  createdAt: Datetime!
+  address: String!
+  address1: String
+  city: String!
+  state: String!
+  zip: String!
+  imageUrl: String
+  coverUrl: String
+  latitude: Float
+  longitude: Float
+  description: String
+  longDescription: String
+  registrationCode: String!
+  siteId: UUID!
+  site: Site!
+  userStationsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: UserStationsFilter
+    # Sort order to apply to the collection
+    orderBy: [UserStationsOrderBy!]
+  ): UserStationsConnection
+  usersCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: UsersFilter
+    # Sort order to apply to the collection
+    orderBy: [UsersOrderBy!]
+  ): UsersConnection
+  stationDeliveryLocationsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: StationDeliveryLocationsFilter
+    # Sort order to apply to the collection
+    orderBy: [StationDeliveryLocationsOrderBy!]
+  ): StationDeliveryLocationsConnection
+}
+
+type StationsConnection {
+  edges: [StationsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type StationsDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Stations!]!
+}
+
+type StationsEdge {
+  cursor: String!
+  node: Stations!
+}
+
+input StationsFilter {
+  id: UUIDFilter
+  name: StringFilter
+  number: IntFilter
+  createdAt: DatetimeFilter
+  address: StringFilter
+  address1: StringFilter
+  city: StringFilter
+  state: StringFilter
+  zip: StringFilter
+  imageUrl: StringFilter
+  coverUrl: StringFilter
+  latitude: FloatFilter
+  longitude: FloatFilter
+  description: StringFilter
+  longDescription: StringFilter
+  registrationCode: StringFilter
+  siteId: UUIDFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [StationsFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [StationsFilter!]
+  # Negates a filter
+  not: StationsFilter
+}
+
+input StationsInsertInput {
+  id: UUID
+  name: String
+  number: Int
+  createdAt: Datetime
+  address: String
+  address1: String
+  city: String
+  state: String
+  zip: String
+  imageUrl: String
+  coverUrl: String
+  latitude: Float
+  longitude: Float
+  description: String
+  longDescription: String
+  registrationCode: String
+  siteId: UUID
+}
+
+type StationsInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Stations!]!
+}
+
+input StationsOrderBy {
+  id: OrderByDirection
+  name: OrderByDirection
+  number: OrderByDirection
+  createdAt: OrderByDirection
+  address: OrderByDirection
+  address1: OrderByDirection
+  city: OrderByDirection
+  state: OrderByDirection
+  zip: OrderByDirection
+  imageUrl: OrderByDirection
+  coverUrl: OrderByDirection
+  latitude: OrderByDirection
+  longitude: OrderByDirection
+  description: OrderByDirection
+  longDescription: OrderByDirection
+  registrationCode: OrderByDirection
+  siteId: OrderByDirection
+}
+
+input StationsUpdateInput {
+  id: UUID
+  name: String
+  number: Int
+  createdAt: Datetime
+  address: String
+  address1: String
+  city: String
+  state: String
+  zip: String
+  imageUrl: String
+  coverUrl: String
+  latitude: Float
+  longitude: Float
+  description: String
+  longDescription: String
+  registrationCode: String
+  siteId: UUID
+}
+
+type StationsUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Stations!]!
+}
+
+# Boolean expression comparing fields on type "String"
+input StringFilter {
+  eq: String
+  gt: String
+  gte: String
+  ilike: String
+  in: [String!]
+  iregex: String
+  is: FilterIs
+  like: String
+  lt: String
+  lte: String
+  neq: String
+  regex: String
+  startsWith: String
+}
+
+# Boolean expression comparing fields on type "StringList"
+input StringListFilter {
+  containedBy: [String!]
+  contains: [String!]
+  eq: [String!]
+  is: FilterIs
+  overlaps: [String!]
+}
+
+# A time without date information
+scalar Time
+
+# Boolean expression comparing fields on type "Time"
+input TimeFilter {
+  eq: Time
+  gt: Time
+  gte: Time
+  in: [Time!]
+  is: FilterIs
+  lt: Time
+  lte: Time
+  neq: Time
+}
+
+# Boolean expression comparing fields on type "TimeList"
+input TimeListFilter {
+  containedBy: [Time!]
+  contains: [Time!]
+  eq: [Time!]
+  is: FilterIs
+  overlaps: [Time!]
+}
+
+type UserOrganization implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  userId: UUID!
+  organizationId: UUID!
+  metadata: JSON
+  createdAt: Datetime!
+  updatedAt: Datetime
+  user: Users!
+  organization: Organization!
+}
+
+type UserOrganizationConnection {
+  edges: [UserOrganizationEdge!]!
+  pageInfo: PageInfo!
+}
+
+type UserOrganizationDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [UserOrganization!]!
+}
+
+type UserOrganizationEdge {
+  cursor: String!
+  node: UserOrganization!
+}
+
+input UserOrganizationFilter {
+  id: UUIDFilter
+  userId: UUIDFilter
+  organizationId: UUIDFilter
+  createdAt: DatetimeFilter
+  updatedAt: DatetimeFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [UserOrganizationFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [UserOrganizationFilter!]
+  # Negates a filter
+  not: UserOrganizationFilter
+}
+
+input UserOrganizationInsertInput {
+  id: UUID
+  userId: UUID
+  organizationId: UUID
+  metadata: JSON
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+type UserOrganizationInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [UserOrganization!]!
+}
+
+input UserOrganizationOrderBy {
+  id: OrderByDirection
+  userId: OrderByDirection
+  organizationId: OrderByDirection
+  createdAt: OrderByDirection
+  updatedAt: OrderByDirection
+}
+
+type UserOrganizationRoles implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  userId: UUID!
+  organizationId: UUID!
+  roleId: UUID!
+  createdAt: Datetime!
+  user: Users!
+  organization: Organization!
+  role: Roles!
+}
+
+type UserOrganizationRolesConnection {
+  edges: [UserOrganizationRolesEdge!]!
+  pageInfo: PageInfo!
+}
+
+type UserOrganizationRolesDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [UserOrganizationRoles!]!
+}
+
+type UserOrganizationRolesEdge {
+  cursor: String!
+  node: UserOrganizationRoles!
+}
+
+input UserOrganizationRolesFilter {
+  id: UUIDFilter
+  userId: UUIDFilter
+  organizationId: UUIDFilter
+  roleId: UUIDFilter
+  createdAt: DatetimeFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [UserOrganizationRolesFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [UserOrganizationRolesFilter!]
+  # Negates a filter
+  not: UserOrganizationRolesFilter
+}
+
+input UserOrganizationRolesInsertInput {
+  id: UUID
+  userId: UUID
+  organizationId: UUID
+  roleId: UUID
+  createdAt: Datetime
+}
+
+type UserOrganizationRolesInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [UserOrganizationRoles!]!
+}
+
+input UserOrganizationRolesOrderBy {
+  id: OrderByDirection
+  userId: OrderByDirection
+  organizationId: OrderByDirection
+  roleId: OrderByDirection
+  createdAt: OrderByDirection
+}
+
+input UserOrganizationRolesUpdateInput {
+  id: UUID
+  userId: UUID
+  organizationId: UUID
+  roleId: UUID
+  createdAt: Datetime
+}
+
+type UserOrganizationRolesUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [UserOrganizationRoles!]!
+}
+
+input UserOrganizationUpdateInput {
+  id: UUID
+  userId: UUID
+  organizationId: UUID
+  metadata: JSON
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+type UserOrganizationUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [UserOrganization!]!
+}
+
+type UserPermissions implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  userId: UUID!
+  permissionId: UUID!
+  createdAt: Datetime!
+  enabled: Boolean!
+  metadata: JSON
+  user: Users!
+  permission: Permissions!
+}
+
+type UserPermissionsConnection {
+  edges: [UserPermissionsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type UserPermissionsDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [UserPermissions!]!
+}
+
+type UserPermissionsEdge {
+  cursor: String!
+  node: UserPermissions!
+}
+
+input UserPermissionsFilter {
+  id: UUIDFilter
+  userId: UUIDFilter
+  permissionId: UUIDFilter
+  createdAt: DatetimeFilter
+  enabled: BooleanFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [UserPermissionsFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [UserPermissionsFilter!]
+  # Negates a filter
+  not: UserPermissionsFilter
+}
+
+input UserPermissionsInsertInput {
+  id: UUID
+  userId: UUID
+  permissionId: UUID
+  createdAt: Datetime
+  enabled: Boolean
+  metadata: JSON
+}
+
+type UserPermissionsInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [UserPermissions!]!
+}
+
+input UserPermissionsOrderBy {
+  id: OrderByDirection
+  userId: OrderByDirection
+  permissionId: OrderByDirection
+  createdAt: OrderByDirection
+  enabled: OrderByDirection
+}
+
+input UserPermissionsUpdateInput {
+  id: UUID
+  userId: UUID
+  permissionId: UUID
+  createdAt: Datetime
+  enabled: Boolean
+  metadata: JSON
+}
+
+type UserPermissionsUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [UserPermissions!]!
+}
+
+type UserRoles implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  userId: UUID!
+  roleId: UUID!
+  createdAt: Datetime!
+  user: Users!
+  role: Roles!
+}
+
+type UserRolesConnection {
+  edges: [UserRolesEdge!]!
+  pageInfo: PageInfo!
+}
+
+type UserRolesDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [UserRoles!]!
+}
+
+type UserRolesEdge {
+  cursor: String!
+  node: UserRoles!
+}
+
+input UserRolesFilter {
+  id: UUIDFilter
+  userId: UUIDFilter
+  roleId: UUIDFilter
+  createdAt: DatetimeFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [UserRolesFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [UserRolesFilter!]
+  # Negates a filter
+  not: UserRolesFilter
+}
+
+input UserRolesInsertInput {
+  id: UUID
+  userId: UUID
+  roleId: UUID
+  createdAt: Datetime
+}
+
+type UserRolesInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [UserRoles!]!
+}
+
+input UserRolesOrderBy {
+  id: OrderByDirection
+  userId: OrderByDirection
+  roleId: OrderByDirection
+  createdAt: OrderByDirection
+}
+
+input UserRolesUpdateInput {
+  id: UUID
+  userId: UUID
+  roleId: UUID
+  createdAt: Datetime
+}
+
+type UserRolesUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [UserRoles!]!
+}
+
+type Users implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  did: String!
+  handle: String!
+  pdsUrl: String!
+  email: String!
+  lastName: String!
+  firstName: String!
+  metadata: JSON
+  createdAt: Datetime!
+  updatedAt: Datetime
+  primaryStationId: UUID
+  stripeCustomerId: String
+  primaryStation: Stations
+  userRolesCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: UserRolesFilter
+    # Sort order to apply to the collection
+    orderBy: [UserRolesOrderBy!]
+  ): UserRolesConnection
+  userStationsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: UserStationsFilter
+    # Sort order to apply to the collection
+    orderBy: [UserStationsOrderBy!]
+  ): UserStationsConnection
+  notificationsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: NotificationsFilter
+    # Sort order to apply to the collection
+    orderBy: [NotificationsOrderBy!]
+  ): NotificationsConnection
+  ordersCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: OrdersFilter
+    # Sort order to apply to the collection
+    orderBy: [OrdersOrderBy!]
+  ): OrdersConnection
+  userOrganizationCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: UserOrganizationFilter
+    # Sort order to apply to the collection
+    orderBy: [UserOrganizationOrderBy!]
+  ): UserOrganizationConnection
+  userOrganizationRolesCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: UserOrganizationRolesFilter
+    # Sort order to apply to the collection
+    orderBy: [UserOrganizationRolesOrderBy!]
+  ): UserOrganizationRolesConnection
+  shoppingCartsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: ShoppingCartsFilter
+    # Sort order to apply to the collection
+    orderBy: [ShoppingCartsOrderBy!]
+  ): ShoppingCartsConnection
+  userPermissionsCollection(
+    # Query the first `n` records in the collection
+    first: Int
+    # Query the last `n` records in the collection
+    last: Int
+    # Query values in the collection before the provided cursor
+    before: Cursor
+    # Query values in the collection after the provided cursor
+    after: Cursor
+    # Skip n values from the after cursor. Alternative to cursor pagination. Backward pagination not supported.
+    offset: Int
+    # Filters to apply to the results set when querying from the collection
+    filter: UserPermissionsFilter
+    # Sort order to apply to the collection
+    orderBy: [UserPermissionsOrderBy!]
+  ): UserPermissionsConnection
+}
+
+type UsersConnection {
+  edges: [UsersEdge!]!
+  pageInfo: PageInfo!
+}
+
+type UsersDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Users!]!
+}
+
+type UsersEdge {
+  cursor: String!
+  node: Users!
+}
+
+input UsersFilter {
+  id: UUIDFilter
+  did: StringFilter
+  handle: StringFilter
+  pdsUrl: StringFilter
+  email: StringFilter
+  lastName: StringFilter
+  firstName: StringFilter
+  createdAt: DatetimeFilter
+  updatedAt: DatetimeFilter
+  primaryStationId: UUIDFilter
+  stripeCustomerId: StringFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [UsersFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [UsersFilter!]
+  # Negates a filter
+  not: UsersFilter
+}
+
+input UsersInsertInput {
+  id: UUID
+  did: String
+  handle: String
+  pdsUrl: String
+  email: String
+  lastName: String
+  firstName: String
+  metadata: JSON
+  createdAt: Datetime
+  updatedAt: Datetime
+  primaryStationId: UUID
+  stripeCustomerId: String
+}
+
+type UsersInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Users!]!
+}
+
+input UsersOrderBy {
+  id: OrderByDirection
+  did: OrderByDirection
+  handle: OrderByDirection
+  pdsUrl: OrderByDirection
+  email: OrderByDirection
+  lastName: OrderByDirection
+  firstName: OrderByDirection
+  createdAt: OrderByDirection
+  updatedAt: OrderByDirection
+  primaryStationId: OrderByDirection
+  stripeCustomerId: OrderByDirection
+}
+
+type UserStations implements Node {
+  # Globally Unique Record Identifier
+  nodeId: ID!
+  id: UUID!
+  userId: UUID!
+  stationId: UUID!
+  createdAt: Datetime!
+  user: Users!
+  station: Stations!
+}
+
+type UserStationsConnection {
+  edges: [UserStationsEdge!]!
+  pageInfo: PageInfo!
+}
+
+type UserStationsDeleteResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [UserStations!]!
+}
+
+type UserStationsEdge {
+  cursor: String!
+  node: UserStations!
+}
+
+input UserStationsFilter {
+  id: UUIDFilter
+  userId: UUIDFilter
+  stationId: UUIDFilter
+  createdAt: DatetimeFilter
+  nodeId: IDFilter
+  # Returns true only if all its inner filters are true, otherwise returns false
+  and: [UserStationsFilter!]
+  # Returns true if at least one of its inner filters is true, otherwise returns false
+  or: [UserStationsFilter!]
+  # Negates a filter
+  not: UserStationsFilter
+}
+
+input UserStationsInsertInput {
+  id: UUID
+  userId: UUID
+  stationId: UUID
+  createdAt: Datetime
+}
+
+type UserStationsInsertResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [UserStations!]!
+}
+
+input UserStationsOrderBy {
+  id: OrderByDirection
+  userId: OrderByDirection
+  stationId: OrderByDirection
+  createdAt: OrderByDirection
+}
+
+input UserStationsUpdateInput {
+  id: UUID
+  userId: UUID
+  stationId: UUID
+  createdAt: Datetime
+}
+
+type UserStationsUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [UserStations!]!
+}
+
+input UsersUpdateInput {
+  id: UUID
+  did: String
+  handle: String
+  pdsUrl: String
+  email: String
+  lastName: String
+  firstName: String
+  metadata: JSON
+  createdAt: Datetime
+  updatedAt: Datetime
+  primaryStationId: UUID
+  stripeCustomerId: String
+}
+
+type UsersUpdateResponse {
+  # Count of the records impacted by the mutation
+  affectedCount: Int!
+  # Array of records impacted by the mutation
+  records: [Users!]!
+}
+
+# A universally unique identifier
+scalar UUID
+
+# Boolean expression comparing fields on type "UUID"
+input UUIDFilter {
+  eq: UUID
+  in: [UUID!]
+  is: FilterIs
+  neq: UUID
+}
+
+# Boolean expression comparing fields on type "UUIDList"
+input UUIDListFilter {
+  containedBy: [UUID!]
+  contains: [UUID!]
+  eq: [UUID!]
+  is: FilterIs
+  overlaps: [UUID!]
+}
+

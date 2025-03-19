@@ -1,0 +1,112 @@
+
+fragment NotificationFragment on Notifications {
+  id
+  title
+  subtitle
+  createdAt
+  data
+  isRead
+  iconUrl
+  messageMarkdown
+  notificationTypeId
+  notificationType {
+    id
+    iconUrl
+    name
+    schema
+    createdAt
+  }
+}
+
+query GetAllNotifications {
+  notificationsCollection {
+    edges {
+      node {
+        ...NotificationFragment
+      }
+    }
+  }
+}
+
+query GetNotificationById($id: UUID!) {
+  notificationsCollection(filter: {id: {eq: $id}}) {
+    edges {
+      node {
+        ...NotificationFragment
+      }
+    }
+  }
+}
+
+mutation CreateNotificationRecord($input: NotificationsInsertInput!) {
+  insertIntoNotificationsCollection(objects: [$input]) {
+    records {
+      ...NotificationFragment
+    }
+  }
+}
+
+mutation UpdateNotificationRecord($id: UUID!, $input: NotificationsUpdateInput!) {
+  updateNotificationsCollection(set: $input, filter: {id: {eq: $id}}) {
+    records {
+      ...NotificationFragment
+    }
+  }
+}
+
+mutation DeleteNotificationRecord($id: UUID!) {
+  deleteFromNotificationsCollection(filter: {id: {eq: $id}}) {
+    affectedCount
+  }
+}
+
+fragment NotificationTypeFragment on NotificationTypes {
+  id
+  name
+  key
+  iconUrl
+  createdAt
+}
+
+query GetAllNotificationTypes {
+  notificationTypesCollection {
+    edges {
+      node {
+        ...NotificationTypeFragment
+      }
+    }
+  }
+}
+
+query GetNotificationTypeById($id: UUID!) {
+  notificationTypesCollection(filter: {id: {eq: $id}}) {
+    edges {
+      node {
+        ...NotificationTypeFragment
+      }
+    }
+  }
+}
+
+mutation CreateNotificationTypeRecord($input: NotificationTypesInsertInput!) {
+  insertIntoNotificationTypesCollection(objects: [$input]) {
+    records {
+      ...NotificationTypeFragment
+    }
+  }
+}
+
+mutation UpdateNotificationTypeRecord($id: UUID!, $input: NotificationTypesUpdateInput!) {
+  updateNotificationTypesCollection(set: $input, filter: {id: {eq: $id}}) {
+    records {
+      ...NotificationTypeFragment
+    }
+  }
+}
+
+mutation DeleteNotificationTypeRecord($id: UUID!) {
+  deleteFromNotificationTypesCollection(filter: {id: {eq: $id}}) {
+    affectedCount
+  }
+}
+

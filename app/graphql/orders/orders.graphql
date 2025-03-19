@@ -1,0 +1,200 @@
+fragment Order on Orders {
+  id
+  userId
+  orderStatus
+  createdAt
+  updatedAt
+  scheduledDeliveryAt
+  deliveryAddress
+  deliveryAddress1
+  deliveryCity
+  deliveryZip
+  deliveryState
+  deliveryLat
+  deliveryLong
+  notes
+  subtotal
+  tax
+  total
+  orderItemsCollection {
+    edges {
+      node {
+        ...OrderItem
+      }
+    }
+  }
+}
+
+query Orders(
+  $first: Int
+  $last: Int
+  $before: Cursor
+  $after: Cursor
+  $offset: Int
+  $orderBy: [OrdersOrderBy!]
+) {
+  ordersCollection(first: $first, last: $last, before: $before, after: $after, offset: $offset, orderBy: $orderBy) {
+    edges {
+      node {
+        ...Order
+      }
+    }
+  }
+}
+
+query Order($id: UUID!) {
+  ordersCollection(first: 1, filter: {id: {eq: $id}}) {
+    edges {
+      node {
+        ...Order
+      }
+    }
+  }
+}
+
+query OrdersByUser(
+  $first: Int
+  $last: Int
+  $before: Cursor
+  $after: Cursor
+  $offset: Int
+  $orderBy: [OrdersOrderBy!]
+  $userId: UUID!
+) {
+  ordersCollection(first: $first, last: $last, before: $before, after: $after, offset: $offset, orderBy: $orderBy, filter: {userId: {eq: $userId}}) {
+    edges {
+      node {
+        ...Order
+      }
+    }
+  }
+}
+
+query OrdersByStatus(
+  $first: Int
+  $last: Int
+  $before: Cursor
+  $after: Cursor
+  $offset: Int
+  $orderBy: [OrdersOrderBy!]
+  $status: OrderStatus!
+) {
+  ordersCollection(first: $first, last: $last, before: $before, after: $after, offset: $offset, orderBy: $orderBy, filter: {orderStatus: {eq: $status}}) {
+    edges {
+      node {
+        ...Order
+      }
+    }
+  }
+}
+
+query OrdersByStatusAndUser(
+  $first: Int
+  $last: Int
+  $before: Cursor
+  $after: Cursor
+  $offset: Int
+  $orderBy: [OrdersOrderBy!]
+  $status: OrderStatus!
+  $userId: UUID!
+) {
+  ordersCollection(first: $first, last: $last, before: $before, after: $after, offset: $offset, orderBy: $orderBy, filter: {orderStatus: {eq: $status}, userId: {eq: $userId}}) {
+    edges {
+      node {
+        ...Order
+      }
+    }
+  }
+}
+
+mutation CreateOrder($input: OrdersInsertInput!) {
+  insertIntoOrdersCollection(objects: [$input]) {
+    records {
+      ...Order
+    }
+  }
+}
+
+mutation UpdateOrder($id: UUID!, $input: OrdersUpdateInput!) {
+  updateOrdersCollection(set: $input, filter: {id: {eq: $id}}) {
+    records {
+      ...Order
+    }
+  }
+}
+
+mutation DeleteOrder($id: UUID!) {
+  deleteFromOrdersCollection(filter: {id: {eq: $id}}) {
+    affectedCount
+  }
+}
+
+fragment OrderItem on OrderItems {
+  id
+  orderId
+  productId
+  product {
+    ...Product
+  }
+  quantity
+  createdAt
+  notes
+  unitPrice
+}
+
+query OrderItems(
+  $first: Int
+  $last: Int
+  $before: Cursor
+  $after: Cursor
+  $offset: Int
+  $orderBy: [OrderItemsOrderBy!]
+) {
+  orderItemsCollection(first: $first, last: $last, before: $before, after: $after, offset: $offset, orderBy: $orderBy) {
+    edges {
+      node {
+        ...OrderItem
+      }
+    }
+  }
+}
+
+query OrderItemsByOrder(
+  $first: Int
+  $last: Int
+  $before: Cursor
+  $after: Cursor
+  $offset: Int
+  $orderBy: [OrderItemsOrderBy!]
+  $orderId: UUID!
+) {
+  orderItemsCollection(first: $first, last: $last, before: $before, after: $after, offset: $offset, orderBy: $orderBy, filter: {orderId: {eq: $orderId}}) {
+    edges {
+      node {
+        ...OrderItem
+      }
+    }
+  }
+}
+
+mutation CreateOrderItem($input: OrderItemsInsertInput!) {
+  insertIntoOrderItemsCollection(objects: [$input]) {
+    records {
+      ...OrderItem
+    }
+  }
+}
+
+mutation UpdateOrderItem($id: UUID!, $input: OrderItemsUpdateInput!) {
+  updateOrderItemsCollection(set: $input, filter: {id: {eq: $id}}) {
+    records {
+      ...OrderItem
+    }
+  }
+}
+
+mutation DeleteOrderItem($id: UUID!) {
+  deleteFromOrderItemsCollection(filter: {id: {eq: $id}}) {
+    affectedCount
+  }
+}

@@ -1,0 +1,50 @@
+fragment SiteType on SiteType {
+    id 
+    name
+    key
+    schema
+    createdAt
+}
+
+
+fragment Site on Site {
+    id 
+    siteTypeId
+    siteType {
+        ...SiteType
+    }
+    organizationId
+    organization {
+        ...Organization
+    }
+    name
+    data
+    createdAt
+}
+
+query Sites(
+     $first: Int
+  $last: Int
+  $before: Cursor
+  $after: Cursor
+  $offset: Int
+  $orderBy: [SiteOrderBy!]
+) {
+    siteCollection(first: $first, last: $last, before: $before, after: $after, offset: $offset, orderBy: $orderBy) {
+        edges {
+            node {  
+                ...Site
+            }
+        }
+    }
+}
+
+query Site($id: UUID!) {
+    siteCollection(first: 1, filter: {id: {eq: $id}}) {
+        edges {
+            node {
+                ...Site
+            }
+        }
+    }
+}

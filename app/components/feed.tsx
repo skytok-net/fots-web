@@ -31,9 +31,9 @@ export function Feed() {
   }
 
   return (
-    <section className="py-12 bg-white dark:bg-gray-800">
-      <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold mb-8 text-gray-800 dark:text-white">
+    <section className="py-12 bg-white dark:bg-gray-800 w-full">
+      <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-gray-800 dark:text-white">
           Latest Updates
         </h2>
         <div className="space-y-6">

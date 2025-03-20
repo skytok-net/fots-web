@@ -4,93 +4,107 @@
 
 @layer base {
   :root {
-    /* Light mode */
+    /* Light mode - based on Food on the Stove logo */
     --background: 0 0% 100%;
-    --foreground: 220 14% 24%;
+    --foreground: 220 10% 20%;
     
     --card: 0 0% 100%;
-    --card-foreground: 220 14% 24%;
+    --card-foreground: 220 10% 20%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 220 14% 24%;
+    --popover-foreground: 220 10% 20%;
     
-    /* Red from logo's stove/flame icon */
-    --primary: 0 84% 50%;
+    /* Flame red from logo */
+    --primary: 5 85% 45%;
     --primary-foreground: 0 0% 100%;
     
-    /* Dark gray from logo */
-    --secondary: 220 14% 24%;
+    /* Charcoal gray from logo */
+    --secondary: 220 10% 20%;
     --secondary-foreground: 0 0% 100%;
     
     /* Lighter gray for accents */
-    --accent: 220 14% 85%;
-    --accent-foreground: 220 14% 24%;
+    --accent: 220 15% 90%;
+    --accent-foreground: 220 10% 20%;
     
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 14% 46%;
+    --muted: 220 15% 96%;
+    --muted-foreground: 220 10% 40%;
     
-    --destructive: 0 84% 60%;
+    --destructive: 0 85% 60%;
     --destructive-foreground: 0 0% 100%;
     
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 220 14% 24%;
+    --ring: 5 85% 45%;
     
     --radius: 0.5rem;
 
+    /* Chart colors */
+    --chart-1: 5 85% 45%;
+    --chart-2: 220 10% 20%;
+    --chart-3: 25 85% 55%;
+    --chart-4: 200 85% 45%;
+    --chart-5: 280 85% 45%;
+
     /* Sidebar colors matching brand */
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-foreground: 220 10% 20%;
+    --sidebar-primary: 5 85% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 95%;
+    --sidebar-accent-foreground: 220 10% 20%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 5 85% 45%;
   }
 
   .dark {
-    /* Dark mode - based on logo's dark gray */
-    --background: 220 14% 24%;
+    /* Dark mode - based on Food on the Stove logo's dark charcoal */
+    --background: 220 10% 15%;
     --foreground: 0 0% 98%;
     
-    --card: 220 14% 24%;
+    --card: 220 10% 18%;
     --card-foreground: 0 0% 98%;
     
-    --popover: 220 14% 24%;
+    --popover: 220 10% 18%;
     --popover-foreground: 0 0% 98%;
     
-    /* Brighter red for dark mode visibility */
-    --primary: 0 84% 55%;
+    /* Brighter flame red for dark mode visibility */
+    --primary: 5 85% 55%;
     --primary-foreground: 0 0% 100%;
     
-    /* Darker gray from logo */
-    --secondary: 220 14% 18%;
+    /* Darker charcoal from logo */
+    --secondary: 220 10% 12%;
     --secondary-foreground: 0 0% 100%;
     
-    /* Lighter gray for dark mode accents */
-    --accent: 220 14% 35%;
+    /* Medium gray for dark mode accents */
+    --accent: 220 10% 25%;
     --accent-foreground: 0 0% 100%;
     
-    --muted: 220 14% 18%;
-    --muted-foreground: 220 14% 75%;
+    --muted: 220 10% 20%;
+    --muted-foreground: 220 10% 70%;
     
-    --destructive: 0 84% 60%;
+    --destructive: 0 85% 60%;
     --destructive-foreground: 0 0% 98%;
     
-    --border: 220 14% 35%;
-    --input: 220 14% 35%;
-    --ring: 220 14% 75%;
+    --border: 220 10% 30%;
+    --input: 220 10% 30%;
+    --ring: 5 85% 55%;
+
+    /* Chart colors for dark mode */
+    --chart-1: 5 85% 55%;
+    --chart-2: 0 0% 90%;
+    --chart-3: 25 85% 65%;
+    --chart-4: 200 85% 55%;
+    --chart-5: 280 85% 55%;
 
     /* Dark mode sidebar */
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-background: 220 10% 12%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 5 85% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 220 10% 20%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 220 10% 25%;
+    --sidebar-ring: 5 85% 55%;
   }
 }
 

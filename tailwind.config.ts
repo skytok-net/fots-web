@@ -35,11 +35,35 @@ export default {
   			},
   			primary: {
   				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
+  				foreground: 'hsl(var(--primary-foreground))',
+          // Food on the Stove flame red variations
+          50: 'hsl(5, 85%, 95%)',
+          100: 'hsl(5, 85%, 90%)',
+          200: 'hsl(5, 85%, 80%)',
+          300: 'hsl(5, 85%, 70%)',
+          400: 'hsl(5, 85%, 60%)',
+          500: 'hsl(5, 85%, 50%)',
+          600: 'hsl(5, 85%, 45%)',
+          700: 'hsl(5, 85%, 40%)',
+          800: 'hsl(5, 85%, 35%)',
+          900: 'hsl(5, 85%, 30%)',
+          950: 'hsl(5, 85%, 20%)'
   			},
   			secondary: {
   				DEFAULT: 'hsl(var(--secondary))',
-  				foreground: 'hsl(var(--secondary-foreground))'
+  				foreground: 'hsl(var(--secondary-foreground))',
+          // Food on the Stove charcoal gray variations
+          50: 'hsl(220, 10%, 95%)',
+          100: 'hsl(220, 10%, 90%)',
+          200: 'hsl(220, 10%, 80%)',
+          300: 'hsl(220, 10%, 70%)',
+          400: 'hsl(220, 10%, 60%)',
+          500: 'hsl(220, 10%, 50%)',
+          600: 'hsl(220, 10%, 40%)',
+          700: 'hsl(220, 10%, 30%)',
+          800: 'hsl(220, 10%, 20%)',
+          900: 'hsl(220, 10%, 15%)',
+          950: 'hsl(220, 10%, 10%)'
   			},
   			muted: {
   				DEFAULT: 'hsl(var(--muted))',
@@ -72,7 +96,14 @@ export default {
   				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
-  			}
+  			},
+          // Food on the Stove brand colors
+          fots: {
+            red: 'hsl(5, 85%, 45%)',
+            charcoal: 'hsl(220, 10%, 20%)',
+            lightGray: 'hsl(220, 15%, 90%)',
+            darkGray: 'hsl(220, 10%, 30%)'
+          }
   		},
   		keyframes: {
   			'accordion-down': {

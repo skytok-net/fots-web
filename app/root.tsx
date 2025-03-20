@@ -10,6 +10,7 @@ import type { LinksFunction } from "@remix-run/node";
 
 import { PGliteLoader } from '~/components/pglite-loader';
 import { usePGlite } from './stores/pglite-store';
+import { useTheme } from './hooks/use-theme';
 import { PGliteMonitor } from '~/components/pglite-monitor';
 import { ApolloProvider } from '~/lib/apollo-client';
 import { ApolloClient, InMemoryCache, ApolloLink } from '@apollo/client/core/index.js';
@@ -46,6 +47,7 @@ export const links: LinksFunction = () => [
 export function Layout({ children }: { children: React.ReactNode }) {
   const data = useLoaderData<typeof loader>();
   const { isInitialized } = usePGlite();
+  const { isDarkMode } = useTheme();
   
   // Create Apollo Client safely with error handling
   let client;
@@ -62,10 +64,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
   }
   
   return (
-    <html lang="en">
+    <html lang="en" className={isDarkMode ? 'dark' : ''}>
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <Meta />
         <Links />
       </head>

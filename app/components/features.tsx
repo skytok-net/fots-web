@@ -18,12 +18,12 @@ export function Features() {
     ];
   
     return (
-      <section className="py-20 bg-gray-50 dark:bg-gray-900">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">
+      <section className="py-12 sm:py-16 md:py-20 bg-gray-50 dark:bg-gray-900 w-full">
+        <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 text-gray-800 dark:text-white">
             Why Choose FoodOnTheStove?
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             {features.map((feature) => (
               <div
                 key={feature.title}

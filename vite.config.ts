@@ -1,10 +1,53 @@
 import { vitePlugin as remix } from "@remix-run/dev";
-import { defineConfig } from "vite";
+import { defineConfig, Plugin } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { resolve } from 'path';
 import wasm from 'vite-plugin-wasm';
 import topLevelAwait from 'vite-plugin-top-level-await';
 import fs from 'fs';
+
+// Custom plugin to ignore sourcemap warnings in both development and build
+function ignoreSourcemapWarnings(): Plugin {
+  return {
+    name: 'ignore-sourcemap-warnings',
+    // Apply in both serve and build modes
+    configureServer(server) {
+      // Store original logger methods
+      const originalWarn = server.config.logger.warn;
+      
+      // Override warn method to filter out sourcemap warnings
+      server.config.logger.warn = function(msg: any, options?: any) {
+        if (typeof msg === 'string' && msg.includes('Error when using sourcemap')) {
+          // Silently ignore sourcemap warnings
+          return;
+        }
+        return originalWarn.call(server.config.logger, msg, options);
+      };
+    },
+    // For build process
+    buildStart() {
+      // Patch console.warn to filter out sourcemap errors during build
+      const originalConsoleWarn = console.warn;
+      console.warn = function(...args: any[]) {
+        const msg = args[0];
+        if (typeof msg === 'string' && msg.includes('Error when using sourcemap')) {
+          return; // Skip this warning
+        }
+        return originalConsoleWarn.apply(console, args);
+      };
+      
+      // Patch console.error to filter out sourcemap errors during build
+      const originalConsoleError = console.error;
+      console.error = function(...args: any[]) {
+        const msg = args[0];
+        if (typeof msg === 'string' && msg.includes('Error when using sourcemap')) {
+          return; // Skip this error
+        }
+        return originalConsoleError.apply(console, args);
+      };
+    }
+  };
+}
 
 declare module "@remix-run/node" {
   interface Future {
@@ -12,8 +55,12 @@ declare module "@remix-run/node" {
   }
 }
 
+
+
 export default defineConfig({
   plugins: [
+    // Add our custom plugin to ignore sourcemap warnings during development
+    ignoreSourcemapWarnings(),
     remix({
       future: {
         v3_fetcherPersist: true,
@@ -38,14 +85,26 @@ export default defineConfig({
     }
   },
   build: {
+    // Enable sourcemaps in production for debugging
     sourcemap: true,
     target: 'esnext',
     // Ensure proper WASM support
     modulePreload: {
       polyfill: true,
     },
+    // Add rollup options to improve sourcemap handling
+    rollupOptions: {
+      output: {
+        // This helps with sourcemap generation without excluding source content
+        sourcemapPathTransform: (relativeSourcePath) => {
+          // Normalize paths for better compatibility
+          return relativeSourcePath.replace(/\\/g, '/');
+        },
+      },
+    },
   },
   css: {
+    // Enable CSS sourcemaps in all environments
     devSourcemap: true
   },
   optimizeDeps: {

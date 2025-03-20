@@ -96,6 +96,10 @@ export class UserRepository extends BaseRepository implements UserRepositoryInte
 
     async deleteUser(id: string): Promise<Error | null> {
         try {
+            if (this.db === null || this.client === null) {
+                throw new Error('Database or client not initialized');
+            }
+
             const { data } = await this.client.mutate<DeleteUserMutation, DeleteUserMutationVariables>({
                 mutation: DeleteUserDocument,
                 variables: { id }
@@ -122,6 +126,9 @@ export class UserRepository extends BaseRepository implements UserRepositoryInte
     
     async getUser(id: string): Promise<UserFragment | Error | null> {
         try {
+            if (this.db === null || this.client === null) {
+                throw new Error('Database or client not initialized');
+            }
             // First try to get from local database
             const localUsers = await this.db
                 .select()
@@ -160,6 +167,10 @@ export class UserRepository extends BaseRepository implements UserRepositoryInte
     
     async getUsers(): Promise<UserFragment[]> {
         try {
+            if (this.db === null || this.client === null) {
+                throw new Error('Database or client not initialized');
+            }
+
             // First try to get from local database
             const localUsers = await this.db
                 .select()
@@ -181,6 +192,10 @@ export class UserRepository extends BaseRepository implements UserRepositoryInte
 
     async getUserByDID(did: string): Promise<UserFragment | Error | null> {
         try {
+            if (this.db === null || this.client === null) {
+                throw new Error('Database or client not initialized');
+            }
+            
             const localUsers = await this.db
             .select()
             .from(users)
@@ -219,6 +234,10 @@ export class UserRepository extends BaseRepository implements UserRepositoryInte
     
     async getUserByHandle(handle: string): Promise<UserFragment | Error | null> {
         try {
+            if (this.db === null || this.client === null) {
+                throw new Error('Database or client not initialized');
+            }
+            
             // First try to get from local database
             const localUsers = await this.db
                 .select()
@@ -285,6 +304,10 @@ export class UserRepository extends BaseRepository implements UserRepositoryInte
     
     async syncUsers(): Promise<boolean> {
         try {
+            if (this.db === null || this.client === null) {
+                throw new Error('Database or client not initialized');
+            }
+
             const { data } = await this.client.query<
                 UsersQuery
             >({
@@ -333,6 +356,10 @@ export class UserRepository extends BaseRepository implements UserRepositoryInte
     // Private helper to save user to PGlite
     private async saveUserToPGlite(user: UserFragment): Promise<void> {
         try {
+            if (this.db === null || this.client === null) {
+                throw new Error('Database or client not initialized');
+            }
+            
             // Get PGlite client from underlying pglite instance for transaction support
             const pgliteClient = this.db.$client;
             
@@ -358,6 +385,10 @@ export class UserRepository extends BaseRepository implements UserRepositoryInte
     // Helper for transaction-based saves
     private async saveUserToPGliteInTransaction(user: UserFragment): Promise<void> {
         // Check if user exists
+        if (this.db === null) {
+            throw new Error('Database not initialized');
+        }
+        
         const existingUsers = await this.db
             .select()
             .from(users)

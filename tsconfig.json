@@ -28,7 +28,8 @@
       "~/lib/*": ["./app/lib/*"],
       "~/styles/*": ["./app/styles/*"],
       "~/stores/*": ["./app/stores/*"],
-      "~/types/*": ["./app/types/*"]
+      "~/types/*": ["./app/types/*"],
+      "~/hooks/*": ["./app/hooks/*"]
     },
     
     // Enable sourcemaps for debugging

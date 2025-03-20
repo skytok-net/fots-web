@@ -101,7 +101,7 @@ export type Database = {
           parent_id: string | null
           path: string
           roles: string[] | null
-          tag: string
+          slug: string
         }
         Insert: {
           created_at?: string
@@ -114,7 +114,7 @@ export type Database = {
           parent_id?: string | null
           path: string
           roles?: string[] | null
-          tag: string
+          slug: string
         }
         Update: {
           created_at?: string
@@ -127,7 +127,7 @@ export type Database = {
           parent_id?: string | null
           path?: string
           roles?: string[] | null
-          tag?: string
+          slug?: string
         }
         Relationships: [
           {
@@ -1134,6 +1134,94 @@ export type Database = {
           type?: string | null
         }
         Relationships: []
+      }
+      user_organization: {
+        Row: {
+          created_at: string
+          id: string
+          metadata: Json | null
+          organization_id: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          organization_id: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          organization_id?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_organization_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organization"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_organization_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_organization_roles: {
+        Row: {
+          created_at: string
+          id: string
+          organization_id: string
+          role_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          organization_id: string
+          role_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          organization_id?: string
+          role_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_organization_roles_organization_id_fkey"
+            columns: ["organization_id"]
+            isOneToOne: false
+            referencedRelation: "organization"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_organization_roles_role_id_fkey"
+            columns: ["role_id"]
+            isOneToOne: false
+            referencedRelation: "roles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_organization_roles_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       user_permissions: {
         Row: {

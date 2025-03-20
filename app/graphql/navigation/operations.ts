@@ -9,7 +9,7 @@ const NAVIGATION_FRAGMENTS = graphql`
     name
     path
     iconName
-    tag
+    slug
     data
     roles
     createdAt

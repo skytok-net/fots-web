@@ -85,7 +85,7 @@ export class PGliteSyncImpl {
       }
       
       // First fetch the user's unread notifications
-      const userNotifications = await this.db
+      const userNotifications = await this.db!
         .select({
           id: notifications.id
         })
@@ -127,7 +127,7 @@ export class PGliteSyncImpl {
       // If we only have the DID, look up the corresponding user record
       if (authState.user.did) {
         // Get the user record that matches this DID
-        const userRecords = await this.db
+        const userRecords = await this.db!
           .select()
           .from(users)
           .where(eq(users.did, authState.user.did));
@@ -355,6 +355,11 @@ export class PGliteSyncImpl {
    */
   private async handleDeleteRecord(tableName: string, id: string): Promise<void> {
     try {
+
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
+
       // Start a transaction
       await this.client.exec('BEGIN');
       
@@ -430,6 +435,10 @@ export class PGliteSyncImpl {
    */
   private async handleUpsertRecord(tableName: string, record: Record<string, unknown>): Promise<void> {
     try {
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
+
       // Start a transaction
       await this.client.exec('BEGIN');
       
@@ -662,6 +671,10 @@ export class PGliteSyncImpl {
    */
   private async invalidateCache(collectionId: string): Promise<void> {
     try {
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
+
       await this.db
         .delete(cacheMetadata)
         .where(eq(cacheMetadata.id, collectionId));
@@ -677,6 +690,10 @@ export class PGliteSyncImpl {
    */
   private async needsSync(collectionId: string): Promise<boolean> {
     try {
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
+
       // Using Drizzle ORM for querying
       const records = await this.db
         .select()
@@ -706,6 +723,10 @@ export class PGliteSyncImpl {
    */
   private async updateCacheMetadata(collectionId: string, etag?: string, data?: Record<string, unknown>): Promise<void> {
     try {
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
+
       // Using Drizzle ORM for inserting/updating
       await this.db
         .insert(cacheMetadata)
@@ -739,6 +760,10 @@ export class PGliteSyncImpl {
     
     try {
       const apolloClient = getClient();
+
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
       
       // Fetch navigation using the imported query from operations.ts
       const navResult = await apolloClient.query({
@@ -848,6 +873,10 @@ export class PGliteSyncImpl {
     
     try {
       const apolloClient = getClient();
+
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
       
       // Fetch organization types
       const result = await apolloClient.query({
@@ -922,6 +951,10 @@ export class PGliteSyncImpl {
     
     try {
       const apolloClient = getClient();
+
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
       
       // Fetch organizations
       const result = await apolloClient.query({
@@ -998,6 +1031,10 @@ export class PGliteSyncImpl {
     
     try {
       const apolloClient = getClient();
+
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
       
       // Fetch product types
       const result = await apolloClient.query({
@@ -1072,6 +1109,10 @@ export class PGliteSyncImpl {
     
     try {
       const apolloClient = getClient();
+
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
       
       // Fetch products
       const result = await apolloClient.query({
@@ -1148,6 +1189,10 @@ export class PGliteSyncImpl {
     
     try {
       const apolloClient = getClient();
+
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
       
       // Fetch stations
       const result = await apolloClient.query({
@@ -1222,6 +1267,10 @@ export class PGliteSyncImpl {
     
     try {
       const apolloClient = getClient();
+
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
       
       // Fetch delivery locations
       const result = await apolloClient.query({
@@ -1296,6 +1345,10 @@ export class PGliteSyncImpl {
     
     try {
       const apolloClient = getClient();
+
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
       
       // Fetch providers
       const result = await apolloClient.query({
@@ -1586,6 +1639,11 @@ export class PGliteSyncImpl {
    */
   private async handleNotificationReadUpdate(id: string, isRead: boolean): Promise<void> {
     try {
+
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
+
       // Start a transaction
       await this.client.exec('BEGIN');
       
@@ -1624,6 +1682,10 @@ export class PGliteSyncImpl {
     
     try {
       const apolloClient = getClient();
+
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
       
       // Fetch roles
       const result = await apolloClient.query({
@@ -1696,6 +1758,10 @@ export class PGliteSyncImpl {
     
     try {
       const apolloClient = getClient();
+
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
       
       // Fetch permissions
       const result = await apolloClient.query({
@@ -1770,6 +1836,10 @@ export class PGliteSyncImpl {
     
     try {
       const apolloClient = getClient();
+
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
       
       // Get current user from auth store to determine if we should sync all users or just the current one
       const currentUserId = await this.getCurrentUser();
@@ -1876,6 +1946,10 @@ export class PGliteSyncImpl {
     
     try {
       const apolloClient = getClient();
+
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
       
       // Get current user ID to determine if we should sync all user roles or just the current one
       const currentUserId = await this.getCurrentUser();
@@ -1966,6 +2040,10 @@ export class PGliteSyncImpl {
     
     try {
       const apolloClient = getClient();
+
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
       
       // Get current user ID to determine if we should sync all user permissions or just the current one
       const currentUserId = await this.getCurrentUser();
@@ -2060,6 +2138,10 @@ export class PGliteSyncImpl {
     
     try {
       const apolloClient = getClient();
+
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
       
       // Fetch role permissions
       const result = await apolloClient.query({
@@ -2136,6 +2218,10 @@ export class PGliteSyncImpl {
     
     try {
       const apolloClient = getClient();
+
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
       
       // Fetch notification types
       const result = await apolloClient.query({
@@ -2221,6 +2307,10 @@ export class PGliteSyncImpl {
       }
       
       const apolloClient = getClient();
+
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
       
       // Always filter to current user's notifications only
       const filter = { userId: { eq: currentUserId } };
@@ -2285,6 +2375,10 @@ export class PGliteSyncImpl {
    */
   async markNotificationAsRead(notificationId: string): Promise<void> {
     try {
+      if (this.client == null || this.db == null) {
+        throw new Error('Client or DB is not initialized');
+      }
+      
       // Get the current user ID 
       const currentUserId = await this.getCurrentUser();
       

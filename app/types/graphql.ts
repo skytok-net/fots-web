@@ -1,4 +1,4 @@
-import { graphql } from '~/lib/graphql-tag';
+import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -1069,7 +1069,7 @@ export type NavigationItems = Node & {
   parentId?: Maybe<Scalars['UUID']['output']>;
   path: Scalars['String']['output'];
   roles?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  tag: Scalars['String']['output'];
+  slug: Scalars['String']['output'];
 };
 
 
@@ -1115,7 +1115,7 @@ export type NavigationItemsFilter = {
   parentId?: InputMaybe<UuidFilter>;
   path?: InputMaybe<StringFilter>;
   roles?: InputMaybe<StringListFilter>;
-  tag?: InputMaybe<StringFilter>;
+  slug?: InputMaybe<StringFilter>;
 };
 
 export type NavigationItemsInsertInput = {
@@ -1129,7 +1129,7 @@ export type NavigationItemsInsertInput = {
   parentId?: InputMaybe<Scalars['UUID']['input']>;
   path?: InputMaybe<Scalars['String']['input']>;
   roles?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  tag?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type NavigationItemsInsertResponse = {
@@ -1147,7 +1147,7 @@ export type NavigationItemsOrderBy = {
   navigationId?: InputMaybe<OrderByDirection>;
   parentId?: InputMaybe<OrderByDirection>;
   path?: InputMaybe<OrderByDirection>;
-  tag?: InputMaybe<OrderByDirection>;
+  slug?: InputMaybe<OrderByDirection>;
 };
 
 export type NavigationItemsUpdateInput = {
@@ -1161,7 +1161,7 @@ export type NavigationItemsUpdateInput = {
   parentId?: InputMaybe<Scalars['UUID']['input']>;
   path?: InputMaybe<Scalars['String']['input']>;
   roles?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  tag?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type NavigationItemsUpdateResponse = {
@@ -4748,31 +4748,31 @@ export type UsersUpdateResponse = {
   records: Array<Users>;
 };
 
-export type NavigationFragment = { __typename?: 'Navigation', id: any, name: string, key: string, data?: any | null, createdAt: any, navigationItemsCollection?: { __typename?: 'NavigationItemsConnection', edges: Array<{ __typename?: 'NavigationItemsEdge', node: { __typename?: 'NavigationItems', id: any, navigationId: any, parentId?: any | null, name: string, path: string, iconName?: string | null, tag: string, data?: any | null, roles?: Array<string | null> | null, createdAt: any, index: number } }> } | null };
+export type NavigationFragment = { __typename?: 'Navigation', id: any, name: string, key: string, data?: any | null, createdAt: any, navigationItemsCollection?: { __typename?: 'NavigationItemsConnection', edges: Array<{ __typename?: 'NavigationItemsEdge', node: { __typename?: 'NavigationItems', id: any, navigationId: any, parentId?: any | null, name: string, path: string, iconName?: string | null, slug: string, data?: any | null, roles?: Array<string | null> | null, createdAt: any, index: number } }> } | null };
 
-export type NavigationItemFragment = { __typename?: 'NavigationItems', id: any, navigationId: any, parentId?: any | null, name: string, path: string, iconName?: string | null, tag: string, data?: any | null, roles?: Array<string | null> | null, createdAt: any, index: number };
+export type NavigationItemFragment = { __typename?: 'NavigationItems', id: any, navigationId: any, parentId?: any | null, name: string, path: string, iconName?: string | null, slug: string, data?: any | null, roles?: Array<string | null> | null, createdAt: any, index: number };
 
 export type GetAllNavigationQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllNavigationQuery = { __typename?: 'Query', navigationCollection?: { __typename?: 'NavigationConnection', edges: Array<{ __typename?: 'NavigationEdge', node: { __typename?: 'Navigation', id: any, name: string, key: string, data?: any | null, createdAt: any, navigationItemsCollection?: { __typename?: 'NavigationItemsConnection', edges: Array<{ __typename?: 'NavigationItemsEdge', node: { __typename?: 'NavigationItems', id: any, navigationId: any, parentId?: any | null, name: string, path: string, iconName?: string | null, tag: string, data?: any | null, roles?: Array<string | null> | null, createdAt: any, index: number } }> } | null } }> } | null };
+export type GetAllNavigationQuery = { __typename?: 'Query', navigationCollection?: { __typename?: 'NavigationConnection', edges: Array<{ __typename?: 'NavigationEdge', node: { __typename?: 'Navigation', id: any, name: string, key: string, data?: any | null, createdAt: any, navigationItemsCollection?: { __typename?: 'NavigationItemsConnection', edges: Array<{ __typename?: 'NavigationItemsEdge', node: { __typename?: 'NavigationItems', id: any, navigationId: any, parentId?: any | null, name: string, path: string, iconName?: string | null, slug: string, data?: any | null, roles?: Array<string | null> | null, createdAt: any, index: number } }> } | null } }> } | null };
 
 export type GetAdminNavigationQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAdminNavigationQuery = { __typename?: 'Query', navigationCollection?: { __typename?: 'NavigationConnection', edges: Array<{ __typename?: 'NavigationEdge', node: { __typename?: 'Navigation', id: any, name: string, key: string, data?: any | null, createdAt: any, navigationItemsCollection?: { __typename?: 'NavigationItemsConnection', edges: Array<{ __typename?: 'NavigationItemsEdge', node: { __typename?: 'NavigationItems', id: any, navigationId: any, parentId?: any | null, name: string, path: string, iconName?: string | null, tag: string, data?: any | null, roles?: Array<string | null> | null, createdAt: any, index: number } }> } | null } }> } | null };
+export type GetAdminNavigationQuery = { __typename?: 'Query', navigationCollection?: { __typename?: 'NavigationConnection', edges: Array<{ __typename?: 'NavigationEdge', node: { __typename?: 'Navigation', id: any, name: string, key: string, data?: any | null, createdAt: any, navigationItemsCollection?: { __typename?: 'NavigationItemsConnection', edges: Array<{ __typename?: 'NavigationItemsEdge', node: { __typename?: 'NavigationItems', id: any, navigationId: any, parentId?: any | null, name: string, path: string, iconName?: string | null, slug: string, data?: any | null, roles?: Array<string | null> | null, createdAt: any, index: number } }> } | null } }> } | null };
 
 export type GetTopNavigationQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetTopNavigationQuery = { __typename?: 'Query', navigationCollection?: { __typename?: 'NavigationConnection', edges: Array<{ __typename?: 'NavigationEdge', node: { __typename?: 'Navigation', id: any, name: string, key: string, data?: any | null, createdAt: any, navigationItemsCollection?: { __typename?: 'NavigationItemsConnection', edges: Array<{ __typename?: 'NavigationItemsEdge', node: { __typename?: 'NavigationItems', id: any, navigationId: any, parentId?: any | null, name: string, path: string, iconName?: string | null, tag: string, data?: any | null, roles?: Array<string | null> | null, createdAt: any, index: number } }> } | null } }> } | null };
+export type GetTopNavigationQuery = { __typename?: 'Query', navigationCollection?: { __typename?: 'NavigationConnection', edges: Array<{ __typename?: 'NavigationEdge', node: { __typename?: 'Navigation', id: any, name: string, key: string, data?: any | null, createdAt: any, navigationItemsCollection?: { __typename?: 'NavigationItemsConnection', edges: Array<{ __typename?: 'NavigationItemsEdge', node: { __typename?: 'NavigationItems', id: any, navigationId: any, parentId?: any | null, name: string, path: string, iconName?: string | null, slug: string, data?: any | null, roles?: Array<string | null> | null, createdAt: any, index: number } }> } | null } }> } | null };
 
 export type CreateNavigationItemMutationVariables = Exact<{
   input: NavigationInsertInput;
 }>;
 
 
-export type CreateNavigationItemMutation = { __typename?: 'Mutation', insertIntoNavigationCollection?: { __typename?: 'NavigationInsertResponse', records: Array<{ __typename?: 'Navigation', id: any, name: string, key: string, data?: any | null, createdAt: any, navigationItemsCollection?: { __typename?: 'NavigationItemsConnection', edges: Array<{ __typename?: 'NavigationItemsEdge', node: { __typename?: 'NavigationItems', id: any, navigationId: any, parentId?: any | null, name: string, path: string, iconName?: string | null, tag: string, data?: any | null, roles?: Array<string | null> | null, createdAt: any, index: number } }> } | null }> } | null };
+export type CreateNavigationItemMutation = { __typename?: 'Mutation', insertIntoNavigationCollection?: { __typename?: 'NavigationInsertResponse', records: Array<{ __typename?: 'Navigation', id: any, name: string, key: string, data?: any | null, createdAt: any, navigationItemsCollection?: { __typename?: 'NavigationItemsConnection', edges: Array<{ __typename?: 'NavigationItemsEdge', node: { __typename?: 'NavigationItems', id: any, navigationId: any, parentId?: any | null, name: string, path: string, iconName?: string | null, slug: string, data?: any | null, roles?: Array<string | null> | null, createdAt: any, index: number } }> } | null }> } | null };
 
 export type UpdateNavigationItemMutationVariables = Exact<{
   id: Scalars['UUID']['input'];
@@ -4780,7 +4780,7 @@ export type UpdateNavigationItemMutationVariables = Exact<{
 }>;
 
 
-export type UpdateNavigationItemMutation = { __typename?: 'Mutation', updateNavigationCollection: { __typename?: 'NavigationUpdateResponse', records: Array<{ __typename?: 'Navigation', id: any, name: string, key: string, data?: any | null, createdAt: any, navigationItemsCollection?: { __typename?: 'NavigationItemsConnection', edges: Array<{ __typename?: 'NavigationItemsEdge', node: { __typename?: 'NavigationItems', id: any, navigationId: any, parentId?: any | null, name: string, path: string, iconName?: string | null, tag: string, data?: any | null, roles?: Array<string | null> | null, createdAt: any, index: number } }> } | null }> } };
+export type UpdateNavigationItemMutation = { __typename?: 'Mutation', updateNavigationCollection: { __typename?: 'NavigationUpdateResponse', records: Array<{ __typename?: 'Navigation', id: any, name: string, key: string, data?: any | null, createdAt: any, navigationItemsCollection?: { __typename?: 'NavigationItemsConnection', edges: Array<{ __typename?: 'NavigationItemsEdge', node: { __typename?: 'NavigationItems', id: any, navigationId: any, parentId?: any | null, name: string, path: string, iconName?: string | null, slug: string, data?: any | null, roles?: Array<string | null> | null, createdAt: any, index: number } }> } | null }> } };
 
 export type DeleteNavigationItemMutationVariables = Exact<{
   id: Scalars['UUID']['input'];
@@ -4794,7 +4794,7 @@ export type CreateNavigationSubItemMutationVariables = Exact<{
 }>;
 
 
-export type CreateNavigationSubItemMutation = { __typename?: 'Mutation', insertIntoNavigationItemsCollection?: { __typename?: 'NavigationItemsInsertResponse', records: Array<{ __typename?: 'NavigationItems', id: any, navigationId: any, parentId?: any | null, name: string, path: string, iconName?: string | null, tag: string, data?: any | null, roles?: Array<string | null> | null, createdAt: any, index: number }> } | null };
+export type CreateNavigationSubItemMutation = { __typename?: 'Mutation', insertIntoNavigationItemsCollection?: { __typename?: 'NavigationItemsInsertResponse', records: Array<{ __typename?: 'NavigationItems', id: any, navigationId: any, parentId?: any | null, name: string, path: string, iconName?: string | null, slug: string, data?: any | null, roles?: Array<string | null> | null, createdAt: any, index: number }> } | null };
 
 export type UpdateNavigationSubItemMutationVariables = Exact<{
   id: Scalars['UUID']['input'];
@@ -4802,7 +4802,7 @@ export type UpdateNavigationSubItemMutationVariables = Exact<{
 }>;
 
 
-export type UpdateNavigationSubItemMutation = { __typename?: 'Mutation', updateNavigationItemsCollection: { __typename?: 'NavigationItemsUpdateResponse', records: Array<{ __typename?: 'NavigationItems', id: any, navigationId: any, parentId?: any | null, name: string, path: string, iconName?: string | null, tag: string, data?: any | null, roles?: Array<string | null> | null, createdAt: any, index: number }> } };
+export type UpdateNavigationSubItemMutation = { __typename?: 'Mutation', updateNavigationItemsCollection: { __typename?: 'NavigationItemsUpdateResponse', records: Array<{ __typename?: 'NavigationItems', id: any, navigationId: any, parentId?: any | null, name: string, path: string, iconName?: string | null, slug: string, data?: any | null, roles?: Array<string | null> | null, createdAt: any, index: number }> } };
 
 export type DeleteNavigationSubItemMutationVariables = Exact<{
   id: Scalars['UUID']['input'];
@@ -5428,7 +5428,7 @@ export type DeleteRolePermissionMutationVariables = Exact<{
 
 export type DeleteRolePermissionMutation = { __typename?: 'Mutation', deleteFromRolePermissionsCollection: { __typename?: 'RolePermissionsDeleteResponse', affectedCount: number } };
 
-export const NavigationItemFragmentDoc = graphql`
+export const NavigationItemFragmentDoc = gql`
     fragment NavigationItem on NavigationItems {
   id
   navigationId
@@ -5436,14 +5436,14 @@ export const NavigationItemFragmentDoc = graphql`
   name
   path
   iconName
-  tag
+  slug
   data
   roles
   createdAt
   index
 }
     `;
-export const NavigationFragmentDoc = graphql`
+export const NavigationFragmentDoc = gql`
     fragment Navigation on Navigation {
   id
   name
@@ -5459,7 +5459,7 @@ export const NavigationFragmentDoc = graphql`
   }
 }
     ${NavigationItemFragmentDoc}`;
-export const NotificationFragmentFragmentDoc = graphql`
+export const NotificationFragmentFragmentDoc = gql`
     fragment NotificationFragment on Notifications {
   id
   title
@@ -5479,7 +5479,7 @@ export const NotificationFragmentFragmentDoc = graphql`
   }
 }
     `;
-export const NotificationTypeFragmentFragmentDoc = graphql`
+export const NotificationTypeFragmentFragmentDoc = gql`
     fragment NotificationTypeFragment on NotificationTypes {
   id
   name
@@ -5488,7 +5488,7 @@ export const NotificationTypeFragmentFragmentDoc = graphql`
   createdAt
 }
     `;
-export const ProductTypeFragmentDoc = graphql`
+export const ProductTypeFragmentDoc = gql`
     fragment ProductType on ProductTypes {
   id
   name
@@ -5499,7 +5499,7 @@ export const ProductTypeFragmentDoc = graphql`
   createdAt
 }
     `;
-export const ProductFragmentDoc = graphql`
+export const ProductFragmentDoc = gql`
     fragment Product on Products {
   id
   productTypeId
@@ -5518,7 +5518,7 @@ export const ProductFragmentDoc = graphql`
   }
 }
     ${ProductTypeFragmentDoc}`;
-export const OrderItemFragmentDoc = graphql`
+export const OrderItemFragmentDoc = gql`
     fragment OrderItem on OrderItems {
   id
   orderId
@@ -5532,7 +5532,7 @@ export const OrderItemFragmentDoc = graphql`
   unitPrice
 }
     ${ProductFragmentDoc}`;
-export const OrderFragmentDoc = graphql`
+export const OrderFragmentDoc = gql`
     fragment Order on Orders {
   id
   userId
@@ -5560,7 +5560,7 @@ export const OrderFragmentDoc = graphql`
   }
 }
     ${OrderItemFragmentDoc}`;
-export const ProviderTypeFragmentDoc = graphql`
+export const ProviderTypeFragmentDoc = gql`
     fragment ProviderType on ProviderType {
   id
   name
@@ -5569,7 +5569,7 @@ export const ProviderTypeFragmentDoc = graphql`
   createdAt
 }
     `;
-export const OrganizationTypeFragmentDoc = graphql`
+export const OrganizationTypeFragmentDoc = gql`
     fragment OrganizationType on OrganizationType {
   id
   name
@@ -5578,7 +5578,7 @@ export const OrganizationTypeFragmentDoc = graphql`
   createdAt
 }
     `;
-export const OrganizationFragmentDoc = graphql`
+export const OrganizationFragmentDoc = gql`
     fragment Organization on Organization {
   id
   organizationTypeId
@@ -5593,7 +5593,7 @@ export const OrganizationFragmentDoc = graphql`
   data
 }
     ${OrganizationTypeFragmentDoc}`;
-export const ProviderFragmentDoc = graphql`
+export const ProviderFragmentDoc = gql`
     fragment Provider on Provider {
   id
   providerTypeId
@@ -5615,7 +5615,7 @@ export const ProviderFragmentDoc = graphql`
 }
     ${ProviderTypeFragmentDoc}
 ${OrganizationFragmentDoc}`;
-export const RoleFragmentDoc = graphql`
+export const RoleFragmentDoc = gql`
     fragment Role on Roles {
   id
   name
@@ -5623,7 +5623,7 @@ export const RoleFragmentDoc = graphql`
   createdAt
 }
     `;
-export const UserRoleFragmentDoc = graphql`
+export const UserRoleFragmentDoc = gql`
     fragment UserRole on UserRoles {
   id
   userId
@@ -5633,7 +5633,7 @@ export const UserRoleFragmentDoc = graphql`
   }
 }
     ${RoleFragmentDoc}`;
-export const SiteTypeFragmentDoc = graphql`
+export const SiteTypeFragmentDoc = gql`
     fragment SiteType on SiteType {
   id
   name
@@ -5642,7 +5642,7 @@ export const SiteTypeFragmentDoc = graphql`
   createdAt
 }
     `;
-export const SiteFragmentDoc = graphql`
+export const SiteFragmentDoc = gql`
     fragment Site on Site {
   id
   siteTypeId
@@ -5659,7 +5659,7 @@ export const SiteFragmentDoc = graphql`
 }
     ${SiteTypeFragmentDoc}
 ${OrganizationFragmentDoc}`;
-export const StationFragmentDoc = graphql`
+export const StationFragmentDoc = gql`
     fragment Station on Stations {
   id
   siteId
@@ -5683,7 +5683,7 @@ export const StationFragmentDoc = graphql`
   createdAt
 }
     ${SiteFragmentDoc}`;
-export const UserStationFragmentDoc = graphql`
+export const UserStationFragmentDoc = gql`
     fragment UserStation on UserStations {
   id
   userId
@@ -5693,7 +5693,7 @@ export const UserStationFragmentDoc = graphql`
   }
 }
     ${StationFragmentDoc}`;
-export const UserFragmentDoc = graphql`
+export const UserFragmentDoc = gql`
     fragment User on Users {
   id
   did
@@ -5727,7 +5727,7 @@ export const UserFragmentDoc = graphql`
     ${UserRoleFragmentDoc}
 ${StationFragmentDoc}
 ${UserStationFragmentDoc}`;
-export const PermissionFragmentDoc = graphql`
+export const PermissionFragmentDoc = gql`
     fragment Permission on Permissions {
   id
   name
@@ -5735,7 +5735,7 @@ export const PermissionFragmentDoc = graphql`
   createdAt
 }
     `;
-export const UserPermissionFragmentDoc = graphql`
+export const UserPermissionFragmentDoc = gql`
     fragment UserPermission on UserPermissions {
   id
   userId
@@ -5745,7 +5745,7 @@ export const UserPermissionFragmentDoc = graphql`
   }
 }
     ${PermissionFragmentDoc}`;
-export const RolePermissionFragmentDoc = graphql`
+export const RolePermissionFragmentDoc = gql`
     fragment RolePermission on RolePermissions {
   id
   roleId
@@ -5755,7 +5755,7 @@ export const RolePermissionFragmentDoc = graphql`
   }
 }
     ${PermissionFragmentDoc}`;
-export const GetAllNavigationDocument = graphql`
+export const GetAllNavigationDocument = gql`
     query GetAllNavigation {
   navigationCollection {
     edges {
@@ -5798,7 +5798,7 @@ export type GetAllNavigationQueryHookResult = ReturnType<typeof useGetAllNavigat
 export type GetAllNavigationLazyQueryHookResult = ReturnType<typeof useGetAllNavigationLazyQuery>;
 export type GetAllNavigationSuspenseQueryHookResult = ReturnType<typeof useGetAllNavigationSuspenseQuery>;
 export type GetAllNavigationQueryResult = Apollo.QueryResult<GetAllNavigationQuery, GetAllNavigationQueryVariables>;
-export const GetAdminNavigationDocument = graphql`
+export const GetAdminNavigationDocument = gql`
     query GetAdminNavigation {
   navigationCollection(filter: {key: {eq: "admin"}}) {
     edges {
@@ -5841,7 +5841,7 @@ export type GetAdminNavigationQueryHookResult = ReturnType<typeof useGetAdminNav
 export type GetAdminNavigationLazyQueryHookResult = ReturnType<typeof useGetAdminNavigationLazyQuery>;
 export type GetAdminNavigationSuspenseQueryHookResult = ReturnType<typeof useGetAdminNavigationSuspenseQuery>;
 export type GetAdminNavigationQueryResult = Apollo.QueryResult<GetAdminNavigationQuery, GetAdminNavigationQueryVariables>;
-export const GetTopNavigationDocument = graphql`
+export const GetTopNavigationDocument = gql`
     query GetTopNavigation {
   navigationCollection(filter: {key: {eq: "top"}}) {
     edges {
@@ -5884,7 +5884,7 @@ export type GetTopNavigationQueryHookResult = ReturnType<typeof useGetTopNavigat
 export type GetTopNavigationLazyQueryHookResult = ReturnType<typeof useGetTopNavigationLazyQuery>;
 export type GetTopNavigationSuspenseQueryHookResult = ReturnType<typeof useGetTopNavigationSuspenseQuery>;
 export type GetTopNavigationQueryResult = Apollo.QueryResult<GetTopNavigationQuery, GetTopNavigationQueryVariables>;
-export const CreateNavigationItemDocument = graphql`
+export const CreateNavigationItemDocument = gql`
     mutation CreateNavigationItem($input: NavigationInsertInput!) {
   insertIntoNavigationCollection(objects: [$input]) {
     records {
@@ -5919,7 +5919,7 @@ export function useCreateNavigationItemMutation(baseOptions?: Apollo.MutationHoo
 export type CreateNavigationItemMutationHookResult = ReturnType<typeof useCreateNavigationItemMutation>;
 export type CreateNavigationItemMutationResult = Apollo.MutationResult<CreateNavigationItemMutation>;
 export type CreateNavigationItemMutationOptions = Apollo.BaseMutationOptions<CreateNavigationItemMutation, CreateNavigationItemMutationVariables>;
-export const UpdateNavigationItemDocument = graphql`
+export const UpdateNavigationItemDocument = gql`
     mutation UpdateNavigationItem($id: UUID!, $input: NavigationUpdateInput!) {
   updateNavigationCollection(set: $input, filter: {id: {eq: $id}}) {
     records {
@@ -5955,7 +5955,7 @@ export function useUpdateNavigationItemMutation(baseOptions?: Apollo.MutationHoo
 export type UpdateNavigationItemMutationHookResult = ReturnType<typeof useUpdateNavigationItemMutation>;
 export type UpdateNavigationItemMutationResult = Apollo.MutationResult<UpdateNavigationItemMutation>;
 export type UpdateNavigationItemMutationOptions = Apollo.BaseMutationOptions<UpdateNavigationItemMutation, UpdateNavigationItemMutationVariables>;
-export const DeleteNavigationItemDocument = graphql`
+export const DeleteNavigationItemDocument = gql`
     mutation DeleteNavigationItem($id: UUID!) {
   deleteFromNavigationCollection(filter: {id: {eq: $id}}) {
     affectedCount
@@ -5988,7 +5988,7 @@ export function useDeleteNavigationItemMutation(baseOptions?: Apollo.MutationHoo
 export type DeleteNavigationItemMutationHookResult = ReturnType<typeof useDeleteNavigationItemMutation>;
 export type DeleteNavigationItemMutationResult = Apollo.MutationResult<DeleteNavigationItemMutation>;
 export type DeleteNavigationItemMutationOptions = Apollo.BaseMutationOptions<DeleteNavigationItemMutation, DeleteNavigationItemMutationVariables>;
-export const CreateNavigationSubItemDocument = graphql`
+export const CreateNavigationSubItemDocument = gql`
     mutation CreateNavigationSubItem($input: NavigationItemsInsertInput!) {
   insertIntoNavigationItemsCollection(objects: [$input]) {
     records {
@@ -6023,7 +6023,7 @@ export function useCreateNavigationSubItemMutation(baseOptions?: Apollo.Mutation
 export type CreateNavigationSubItemMutationHookResult = ReturnType<typeof useCreateNavigationSubItemMutation>;
 export type CreateNavigationSubItemMutationResult = Apollo.MutationResult<CreateNavigationSubItemMutation>;
 export type CreateNavigationSubItemMutationOptions = Apollo.BaseMutationOptions<CreateNavigationSubItemMutation, CreateNavigationSubItemMutationVariables>;
-export const UpdateNavigationSubItemDocument = graphql`
+export const UpdateNavigationSubItemDocument = gql`
     mutation UpdateNavigationSubItem($id: UUID!, $input: NavigationItemsUpdateInput!) {
   updateNavigationItemsCollection(set: $input, filter: {id: {eq: $id}}) {
     records {
@@ -6059,7 +6059,7 @@ export function useUpdateNavigationSubItemMutation(baseOptions?: Apollo.Mutation
 export type UpdateNavigationSubItemMutationHookResult = ReturnType<typeof useUpdateNavigationSubItemMutation>;
 export type UpdateNavigationSubItemMutationResult = Apollo.MutationResult<UpdateNavigationSubItemMutation>;
 export type UpdateNavigationSubItemMutationOptions = Apollo.BaseMutationOptions<UpdateNavigationSubItemMutation, UpdateNavigationSubItemMutationVariables>;
-export const DeleteNavigationSubItemDocument = graphql`
+export const DeleteNavigationSubItemDocument = gql`
     mutation DeleteNavigationSubItem($id: UUID!) {
   deleteFromNavigationItemsCollection(filter: {id: {eq: $id}}) {
     affectedCount
@@ -6092,7 +6092,7 @@ export function useDeleteNavigationSubItemMutation(baseOptions?: Apollo.Mutation
 export type DeleteNavigationSubItemMutationHookResult = ReturnType<typeof useDeleteNavigationSubItemMutation>;
 export type DeleteNavigationSubItemMutationResult = Apollo.MutationResult<DeleteNavigationSubItemMutation>;
 export type DeleteNavigationSubItemMutationOptions = Apollo.BaseMutationOptions<DeleteNavigationSubItemMutation, DeleteNavigationSubItemMutationVariables>;
-export const GetAllNotificationsDocument = graphql`
+export const GetAllNotificationsDocument = gql`
     query GetAllNotifications {
   notificationsCollection {
     edges {
@@ -6135,7 +6135,7 @@ export type GetAllNotificationsQueryHookResult = ReturnType<typeof useGetAllNoti
 export type GetAllNotificationsLazyQueryHookResult = ReturnType<typeof useGetAllNotificationsLazyQuery>;
 export type GetAllNotificationsSuspenseQueryHookResult = ReturnType<typeof useGetAllNotificationsSuspenseQuery>;
 export type GetAllNotificationsQueryResult = Apollo.QueryResult<GetAllNotificationsQuery, GetAllNotificationsQueryVariables>;
-export const GetNotificationByIdDocument = graphql`
+export const GetNotificationByIdDocument = gql`
     query GetNotificationById($id: UUID!) {
   notificationsCollection(filter: {id: {eq: $id}}) {
     edges {
@@ -6179,7 +6179,7 @@ export type GetNotificationByIdQueryHookResult = ReturnType<typeof useGetNotific
 export type GetNotificationByIdLazyQueryHookResult = ReturnType<typeof useGetNotificationByIdLazyQuery>;
 export type GetNotificationByIdSuspenseQueryHookResult = ReturnType<typeof useGetNotificationByIdSuspenseQuery>;
 export type GetNotificationByIdQueryResult = Apollo.QueryResult<GetNotificationByIdQuery, GetNotificationByIdQueryVariables>;
-export const CreateNotificationRecordDocument = graphql`
+export const CreateNotificationRecordDocument = gql`
     mutation CreateNotificationRecord($input: NotificationsInsertInput!) {
   insertIntoNotificationsCollection(objects: [$input]) {
     records {
@@ -6214,7 +6214,7 @@ export function useCreateNotificationRecordMutation(baseOptions?: Apollo.Mutatio
 export type CreateNotificationRecordMutationHookResult = ReturnType<typeof useCreateNotificationRecordMutation>;
 export type CreateNotificationRecordMutationResult = Apollo.MutationResult<CreateNotificationRecordMutation>;
 export type CreateNotificationRecordMutationOptions = Apollo.BaseMutationOptions<CreateNotificationRecordMutation, CreateNotificationRecordMutationVariables>;
-export const UpdateNotificationRecordDocument = graphql`
+export const UpdateNotificationRecordDocument = gql`
     mutation UpdateNotificationRecord($id: UUID!, $input: NotificationsUpdateInput!) {
   updateNotificationsCollection(set: $input, filter: {id: {eq: $id}}) {
     records {
@@ -6250,7 +6250,7 @@ export function useUpdateNotificationRecordMutation(baseOptions?: Apollo.Mutatio
 export type UpdateNotificationRecordMutationHookResult = ReturnType<typeof useUpdateNotificationRecordMutation>;
 export type UpdateNotificationRecordMutationResult = Apollo.MutationResult<UpdateNotificationRecordMutation>;
 export type UpdateNotificationRecordMutationOptions = Apollo.BaseMutationOptions<UpdateNotificationRecordMutation, UpdateNotificationRecordMutationVariables>;
-export const DeleteNotificationRecordDocument = graphql`
+export const DeleteNotificationRecordDocument = gql`
     mutation DeleteNotificationRecord($id: UUID!) {
   deleteFromNotificationsCollection(filter: {id: {eq: $id}}) {
     affectedCount
@@ -6283,7 +6283,7 @@ export function useDeleteNotificationRecordMutation(baseOptions?: Apollo.Mutatio
 export type DeleteNotificationRecordMutationHookResult = ReturnType<typeof useDeleteNotificationRecordMutation>;
 export type DeleteNotificationRecordMutationResult = Apollo.MutationResult<DeleteNotificationRecordMutation>;
 export type DeleteNotificationRecordMutationOptions = Apollo.BaseMutationOptions<DeleteNotificationRecordMutation, DeleteNotificationRecordMutationVariables>;
-export const GetAllNotificationTypesDocument = graphql`
+export const GetAllNotificationTypesDocument = gql`
     query GetAllNotificationTypes {
   notificationTypesCollection {
     edges {
@@ -6326,7 +6326,7 @@ export type GetAllNotificationTypesQueryHookResult = ReturnType<typeof useGetAll
 export type GetAllNotificationTypesLazyQueryHookResult = ReturnType<typeof useGetAllNotificationTypesLazyQuery>;
 export type GetAllNotificationTypesSuspenseQueryHookResult = ReturnType<typeof useGetAllNotificationTypesSuspenseQuery>;
 export type GetAllNotificationTypesQueryResult = Apollo.QueryResult<GetAllNotificationTypesQuery, GetAllNotificationTypesQueryVariables>;
-export const GetNotificationTypeByIdDocument = graphql`
+export const GetNotificationTypeByIdDocument = gql`
     query GetNotificationTypeById($id: UUID!) {
   notificationTypesCollection(filter: {id: {eq: $id}}) {
     edges {
@@ -6370,7 +6370,7 @@ export type GetNotificationTypeByIdQueryHookResult = ReturnType<typeof useGetNot
 export type GetNotificationTypeByIdLazyQueryHookResult = ReturnType<typeof useGetNotificationTypeByIdLazyQuery>;
 export type GetNotificationTypeByIdSuspenseQueryHookResult = ReturnType<typeof useGetNotificationTypeByIdSuspenseQuery>;
 export type GetNotificationTypeByIdQueryResult = Apollo.QueryResult<GetNotificationTypeByIdQuery, GetNotificationTypeByIdQueryVariables>;
-export const CreateNotificationTypeRecordDocument = graphql`
+export const CreateNotificationTypeRecordDocument = gql`
     mutation CreateNotificationTypeRecord($input: NotificationTypesInsertInput!) {
   insertIntoNotificationTypesCollection(objects: [$input]) {
     records {
@@ -6405,7 +6405,7 @@ export function useCreateNotificationTypeRecordMutation(baseOptions?: Apollo.Mut
 export type CreateNotificationTypeRecordMutationHookResult = ReturnType<typeof useCreateNotificationTypeRecordMutation>;
 export type CreateNotificationTypeRecordMutationResult = Apollo.MutationResult<CreateNotificationTypeRecordMutation>;
 export type CreateNotificationTypeRecordMutationOptions = Apollo.BaseMutationOptions<CreateNotificationTypeRecordMutation, CreateNotificationTypeRecordMutationVariables>;
-export const UpdateNotificationTypeRecordDocument = graphql`
+export const UpdateNotificationTypeRecordDocument = gql`
     mutation UpdateNotificationTypeRecord($id: UUID!, $input: NotificationTypesUpdateInput!) {
   updateNotificationTypesCollection(set: $input, filter: {id: {eq: $id}}) {
     records {
@@ -6441,7 +6441,7 @@ export function useUpdateNotificationTypeRecordMutation(baseOptions?: Apollo.Mut
 export type UpdateNotificationTypeRecordMutationHookResult = ReturnType<typeof useUpdateNotificationTypeRecordMutation>;
 export type UpdateNotificationTypeRecordMutationResult = Apollo.MutationResult<UpdateNotificationTypeRecordMutation>;
 export type UpdateNotificationTypeRecordMutationOptions = Apollo.BaseMutationOptions<UpdateNotificationTypeRecordMutation, UpdateNotificationTypeRecordMutationVariables>;
-export const DeleteNotificationTypeRecordDocument = graphql`
+export const DeleteNotificationTypeRecordDocument = gql`
     mutation DeleteNotificationTypeRecord($id: UUID!) {
   deleteFromNotificationTypesCollection(filter: {id: {eq: $id}}) {
     affectedCount
@@ -6474,7 +6474,7 @@ export function useDeleteNotificationTypeRecordMutation(baseOptions?: Apollo.Mut
 export type DeleteNotificationTypeRecordMutationHookResult = ReturnType<typeof useDeleteNotificationTypeRecordMutation>;
 export type DeleteNotificationTypeRecordMutationResult = Apollo.MutationResult<DeleteNotificationTypeRecordMutation>;
 export type DeleteNotificationTypeRecordMutationOptions = Apollo.BaseMutationOptions<DeleteNotificationTypeRecordMutation, DeleteNotificationTypeRecordMutationVariables>;
-export const OrdersDocument = graphql`
+export const OrdersDocument = gql`
     query Orders($first: Int, $last: Int, $before: Cursor, $after: Cursor, $offset: Int, $orderBy: [OrdersOrderBy!]) {
   ordersCollection(
     first: $first
@@ -6530,7 +6530,7 @@ export type OrdersQueryHookResult = ReturnType<typeof useOrdersQuery>;
 export type OrdersLazyQueryHookResult = ReturnType<typeof useOrdersLazyQuery>;
 export type OrdersSuspenseQueryHookResult = ReturnType<typeof useOrdersSuspenseQuery>;
 export type OrdersQueryResult = Apollo.QueryResult<OrdersQuery, OrdersQueryVariables>;
-export const OrderDocument = graphql`
+export const OrderDocument = gql`
     query Order($id: UUID!) {
   ordersCollection(first: 1, filter: {id: {eq: $id}}) {
     edges {
@@ -6574,7 +6574,7 @@ export type OrderQueryHookResult = ReturnType<typeof useOrderQuery>;
 export type OrderLazyQueryHookResult = ReturnType<typeof useOrderLazyQuery>;
 export type OrderSuspenseQueryHookResult = ReturnType<typeof useOrderSuspenseQuery>;
 export type OrderQueryResult = Apollo.QueryResult<OrderQuery, OrderQueryVariables>;
-export const OrdersByUserDocument = graphql`
+export const OrdersByUserDocument = gql`
     query OrdersByUser($first: Int, $last: Int, $before: Cursor, $after: Cursor, $offset: Int, $orderBy: [OrdersOrderBy!], $userId: UUID!) {
   ordersCollection(
     first: $first
@@ -6632,7 +6632,7 @@ export type OrdersByUserQueryHookResult = ReturnType<typeof useOrdersByUserQuery
 export type OrdersByUserLazyQueryHookResult = ReturnType<typeof useOrdersByUserLazyQuery>;
 export type OrdersByUserSuspenseQueryHookResult = ReturnType<typeof useOrdersByUserSuspenseQuery>;
 export type OrdersByUserQueryResult = Apollo.QueryResult<OrdersByUserQuery, OrdersByUserQueryVariables>;
-export const OrdersByStatusDocument = graphql`
+export const OrdersByStatusDocument = gql`
     query OrdersByStatus($first: Int, $last: Int, $before: Cursor, $after: Cursor, $offset: Int, $orderBy: [OrdersOrderBy!], $status: OrderStatus!) {
   ordersCollection(
     first: $first
@@ -6690,7 +6690,7 @@ export type OrdersByStatusQueryHookResult = ReturnType<typeof useOrdersByStatusQ
 export type OrdersByStatusLazyQueryHookResult = ReturnType<typeof useOrdersByStatusLazyQuery>;
 export type OrdersByStatusSuspenseQueryHookResult = ReturnType<typeof useOrdersByStatusSuspenseQuery>;
 export type OrdersByStatusQueryResult = Apollo.QueryResult<OrdersByStatusQuery, OrdersByStatusQueryVariables>;
-export const OrdersByStatusAndUserDocument = graphql`
+export const OrdersByStatusAndUserDocument = gql`
     query OrdersByStatusAndUser($first: Int, $last: Int, $before: Cursor, $after: Cursor, $offset: Int, $orderBy: [OrdersOrderBy!], $status: OrderStatus!, $userId: UUID!) {
   ordersCollection(
     first: $first
@@ -6749,7 +6749,7 @@ export type OrdersByStatusAndUserQueryHookResult = ReturnType<typeof useOrdersBy
 export type OrdersByStatusAndUserLazyQueryHookResult = ReturnType<typeof useOrdersByStatusAndUserLazyQuery>;
 export type OrdersByStatusAndUserSuspenseQueryHookResult = ReturnType<typeof useOrdersByStatusAndUserSuspenseQuery>;
 export type OrdersByStatusAndUserQueryResult = Apollo.QueryResult<OrdersByStatusAndUserQuery, OrdersByStatusAndUserQueryVariables>;
-export const CreateOrderDocument = graphql`
+export const CreateOrderDocument = gql`
     mutation CreateOrder($input: OrdersInsertInput!) {
   insertIntoOrdersCollection(objects: [$input]) {
     records {
@@ -6784,7 +6784,7 @@ export function useCreateOrderMutation(baseOptions?: Apollo.MutationHookOptions<
 export type CreateOrderMutationHookResult = ReturnType<typeof useCreateOrderMutation>;
 export type CreateOrderMutationResult = Apollo.MutationResult<CreateOrderMutation>;
 export type CreateOrderMutationOptions = Apollo.BaseMutationOptions<CreateOrderMutation, CreateOrderMutationVariables>;
-export const UpdateOrderDocument = graphql`
+export const UpdateOrderDocument = gql`
     mutation UpdateOrder($id: UUID!, $input: OrdersUpdateInput!) {
   updateOrdersCollection(set: $input, filter: {id: {eq: $id}}) {
     records {
@@ -6820,7 +6820,7 @@ export function useUpdateOrderMutation(baseOptions?: Apollo.MutationHookOptions<
 export type UpdateOrderMutationHookResult = ReturnType<typeof useUpdateOrderMutation>;
 export type UpdateOrderMutationResult = Apollo.MutationResult<UpdateOrderMutation>;
 export type UpdateOrderMutationOptions = Apollo.BaseMutationOptions<UpdateOrderMutation, UpdateOrderMutationVariables>;
-export const DeleteOrderDocument = graphql`
+export const DeleteOrderDocument = gql`
     mutation DeleteOrder($id: UUID!) {
   deleteFromOrdersCollection(filter: {id: {eq: $id}}) {
     affectedCount
@@ -6853,7 +6853,7 @@ export function useDeleteOrderMutation(baseOptions?: Apollo.MutationHookOptions<
 export type DeleteOrderMutationHookResult = ReturnType<typeof useDeleteOrderMutation>;
 export type DeleteOrderMutationResult = Apollo.MutationResult<DeleteOrderMutation>;
 export type DeleteOrderMutationOptions = Apollo.BaseMutationOptions<DeleteOrderMutation, DeleteOrderMutationVariables>;
-export const OrderItemsDocument = graphql`
+export const OrderItemsDocument = gql`
     query OrderItems($first: Int, $last: Int, $before: Cursor, $after: Cursor, $offset: Int, $orderBy: [OrderItemsOrderBy!]) {
   orderItemsCollection(
     first: $first
@@ -6909,7 +6909,7 @@ export type OrderItemsQueryHookResult = ReturnType<typeof useOrderItemsQuery>;
 export type OrderItemsLazyQueryHookResult = ReturnType<typeof useOrderItemsLazyQuery>;
 export type OrderItemsSuspenseQueryHookResult = ReturnType<typeof useOrderItemsSuspenseQuery>;
 export type OrderItemsQueryResult = Apollo.QueryResult<OrderItemsQuery, OrderItemsQueryVariables>;
-export const OrderItemsByOrderDocument = graphql`
+export const OrderItemsByOrderDocument = gql`
     query OrderItemsByOrder($first: Int, $last: Int, $before: Cursor, $after: Cursor, $offset: Int, $orderBy: [OrderItemsOrderBy!], $orderId: UUID!) {
   orderItemsCollection(
     first: $first
@@ -6967,7 +6967,7 @@ export type OrderItemsByOrderQueryHookResult = ReturnType<typeof useOrderItemsBy
 export type OrderItemsByOrderLazyQueryHookResult = ReturnType<typeof useOrderItemsByOrderLazyQuery>;
 export type OrderItemsByOrderSuspenseQueryHookResult = ReturnType<typeof useOrderItemsByOrderSuspenseQuery>;
 export type OrderItemsByOrderQueryResult = Apollo.QueryResult<OrderItemsByOrderQuery, OrderItemsByOrderQueryVariables>;
-export const CreateOrderItemDocument = graphql`
+export const CreateOrderItemDocument = gql`
     mutation CreateOrderItem($input: OrderItemsInsertInput!) {
   insertIntoOrderItemsCollection(objects: [$input]) {
     records {
@@ -7002,7 +7002,7 @@ export function useCreateOrderItemMutation(baseOptions?: Apollo.MutationHookOpti
 export type CreateOrderItemMutationHookResult = ReturnType<typeof useCreateOrderItemMutation>;
 export type CreateOrderItemMutationResult = Apollo.MutationResult<CreateOrderItemMutation>;
 export type CreateOrderItemMutationOptions = Apollo.BaseMutationOptions<CreateOrderItemMutation, CreateOrderItemMutationVariables>;
-export const UpdateOrderItemDocument = graphql`
+export const UpdateOrderItemDocument = gql`
     mutation UpdateOrderItem($id: UUID!, $input: OrderItemsUpdateInput!) {
   updateOrderItemsCollection(set: $input, filter: {id: {eq: $id}}) {
     records {
@@ -7038,7 +7038,7 @@ export function useUpdateOrderItemMutation(baseOptions?: Apollo.MutationHookOpti
 export type UpdateOrderItemMutationHookResult = ReturnType<typeof useUpdateOrderItemMutation>;
 export type UpdateOrderItemMutationResult = Apollo.MutationResult<UpdateOrderItemMutation>;
 export type UpdateOrderItemMutationOptions = Apollo.BaseMutationOptions<UpdateOrderItemMutation, UpdateOrderItemMutationVariables>;
-export const DeleteOrderItemDocument = graphql`
+export const DeleteOrderItemDocument = gql`
     mutation DeleteOrderItem($id: UUID!) {
   deleteFromOrderItemsCollection(filter: {id: {eq: $id}}) {
     affectedCount
@@ -7071,7 +7071,7 @@ export function useDeleteOrderItemMutation(baseOptions?: Apollo.MutationHookOpti
 export type DeleteOrderItemMutationHookResult = ReturnType<typeof useDeleteOrderItemMutation>;
 export type DeleteOrderItemMutationResult = Apollo.MutationResult<DeleteOrderItemMutation>;
 export type DeleteOrderItemMutationOptions = Apollo.BaseMutationOptions<DeleteOrderItemMutation, DeleteOrderItemMutationVariables>;
-export const OrganizationsDocument = graphql`
+export const OrganizationsDocument = gql`
     query Organizations($first: Int, $last: Int, $before: Cursor, $after: Cursor, $offset: Int, $orderBy: [OrganizationOrderBy!]) {
   organizationCollection(
     first: $first
@@ -7133,7 +7133,7 @@ export type OrganizationsQueryHookResult = ReturnType<typeof useOrganizationsQue
 export type OrganizationsLazyQueryHookResult = ReturnType<typeof useOrganizationsLazyQuery>;
 export type OrganizationsSuspenseQueryHookResult = ReturnType<typeof useOrganizationsSuspenseQuery>;
 export type OrganizationsQueryResult = Apollo.QueryResult<OrganizationsQuery, OrganizationsQueryVariables>;
-export const OrganizationDocument = graphql`
+export const OrganizationDocument = gql`
     query Organization($id: UUID!) {
   organizationCollection(first: 1, filter: {id: {eq: $id}}) {
     edges {
@@ -7177,7 +7177,7 @@ export type OrganizationQueryHookResult = ReturnType<typeof useOrganizationQuery
 export type OrganizationLazyQueryHookResult = ReturnType<typeof useOrganizationLazyQuery>;
 export type OrganizationSuspenseQueryHookResult = ReturnType<typeof useOrganizationSuspenseQuery>;
 export type OrganizationQueryResult = Apollo.QueryResult<OrganizationQuery, OrganizationQueryVariables>;
-export const ProductsDocument = graphql`
+export const ProductsDocument = gql`
     query Products($first: Int, $last: Int, $before: Cursor, $after: Cursor, $offset: Int, $orderBy: [ProductsOrderBy!]) {
   productsCollection(
     first: $first
@@ -7233,7 +7233,7 @@ export type ProductsQueryHookResult = ReturnType<typeof useProductsQuery>;
 export type ProductsLazyQueryHookResult = ReturnType<typeof useProductsLazyQuery>;
 export type ProductsSuspenseQueryHookResult = ReturnType<typeof useProductsSuspenseQuery>;
 export type ProductsQueryResult = Apollo.QueryResult<ProductsQuery, ProductsQueryVariables>;
-export const ProductDocument = graphql`
+export const ProductDocument = gql`
     query Product($id: UUID!) {
   productsCollection(first: 1, filter: {id: {eq: $id}}) {
     edges {
@@ -7277,7 +7277,7 @@ export type ProductQueryHookResult = ReturnType<typeof useProductQuery>;
 export type ProductLazyQueryHookResult = ReturnType<typeof useProductLazyQuery>;
 export type ProductSuspenseQueryHookResult = ReturnType<typeof useProductSuspenseQuery>;
 export type ProductQueryResult = Apollo.QueryResult<ProductQuery, ProductQueryVariables>;
-export const CreateProductDocument = graphql`
+export const CreateProductDocument = gql`
     mutation CreateProduct($input: ProductsInsertInput!) {
   insertIntoProductsCollection(objects: [$input]) {
     records {
@@ -7312,7 +7312,7 @@ export function useCreateProductMutation(baseOptions?: Apollo.MutationHookOption
 export type CreateProductMutationHookResult = ReturnType<typeof useCreateProductMutation>;
 export type CreateProductMutationResult = Apollo.MutationResult<CreateProductMutation>;
 export type CreateProductMutationOptions = Apollo.BaseMutationOptions<CreateProductMutation, CreateProductMutationVariables>;
-export const UpdateProductDocument = graphql`
+export const UpdateProductDocument = gql`
     mutation UpdateProduct($id: UUID!, $input: ProductsUpdateInput!) {
   updateProductsCollection(set: $input, filter: {id: {eq: $id}}) {
     records {
@@ -7348,7 +7348,7 @@ export function useUpdateProductMutation(baseOptions?: Apollo.MutationHookOption
 export type UpdateProductMutationHookResult = ReturnType<typeof useUpdateProductMutation>;
 export type UpdateProductMutationResult = Apollo.MutationResult<UpdateProductMutation>;
 export type UpdateProductMutationOptions = Apollo.BaseMutationOptions<UpdateProductMutation, UpdateProductMutationVariables>;
-export const DeleteProductDocument = graphql`
+export const DeleteProductDocument = gql`
     mutation DeleteProduct($id: UUID!) {
   deleteFromProductsCollection(filter: {id: {eq: $id}}) {
     affectedCount
@@ -7381,7 +7381,7 @@ export function useDeleteProductMutation(baseOptions?: Apollo.MutationHookOption
 export type DeleteProductMutationHookResult = ReturnType<typeof useDeleteProductMutation>;
 export type DeleteProductMutationResult = Apollo.MutationResult<DeleteProductMutation>;
 export type DeleteProductMutationOptions = Apollo.BaseMutationOptions<DeleteProductMutation, DeleteProductMutationVariables>;
-export const ProductTypesDocument = graphql`
+export const ProductTypesDocument = gql`
     query ProductTypes($first: Int, $last: Int, $before: Cursor, $after: Cursor, $offset: Int, $orderBy: [ProductTypesOrderBy!]) {
   productTypesCollection(
     first: $first
@@ -7437,7 +7437,7 @@ export type ProductTypesQueryHookResult = ReturnType<typeof useProductTypesQuery
 export type ProductTypesLazyQueryHookResult = ReturnType<typeof useProductTypesLazyQuery>;
 export type ProductTypesSuspenseQueryHookResult = ReturnType<typeof useProductTypesSuspenseQuery>;
 export type ProductTypesQueryResult = Apollo.QueryResult<ProductTypesQuery, ProductTypesQueryVariables>;
-export const ProductTypeDocument = graphql`
+export const ProductTypeDocument = gql`
     query ProductType($id: UUID!) {
   productTypesCollection(first: 1, filter: {id: {eq: $id}}) {
     edges {
@@ -7481,7 +7481,7 @@ export type ProductTypeQueryHookResult = ReturnType<typeof useProductTypeQuery>;
 export type ProductTypeLazyQueryHookResult = ReturnType<typeof useProductTypeLazyQuery>;
 export type ProductTypeSuspenseQueryHookResult = ReturnType<typeof useProductTypeSuspenseQuery>;
 export type ProductTypeQueryResult = Apollo.QueryResult<ProductTypeQuery, ProductTypeQueryVariables>;
-export const CreateProductTypeDocument = graphql`
+export const CreateProductTypeDocument = gql`
     mutation CreateProductType($input: ProductTypesInsertInput!) {
   insertIntoProductTypesCollection(objects: [$input]) {
     records {
@@ -7516,7 +7516,7 @@ export function useCreateProductTypeMutation(baseOptions?: Apollo.MutationHookOp
 export type CreateProductTypeMutationHookResult = ReturnType<typeof useCreateProductTypeMutation>;
 export type CreateProductTypeMutationResult = Apollo.MutationResult<CreateProductTypeMutation>;
 export type CreateProductTypeMutationOptions = Apollo.BaseMutationOptions<CreateProductTypeMutation, CreateProductTypeMutationVariables>;
-export const UpdateProductTypeDocument = graphql`
+export const UpdateProductTypeDocument = gql`
     mutation UpdateProductType($id: UUID!, $input: ProductTypesUpdateInput!) {
   updateProductTypesCollection(set: $input, filter: {id: {eq: $id}}) {
     records {
@@ -7552,7 +7552,7 @@ export function useUpdateProductTypeMutation(baseOptions?: Apollo.MutationHookOp
 export type UpdateProductTypeMutationHookResult = ReturnType<typeof useUpdateProductTypeMutation>;
 export type UpdateProductTypeMutationResult = Apollo.MutationResult<UpdateProductTypeMutation>;
 export type UpdateProductTypeMutationOptions = Apollo.BaseMutationOptions<UpdateProductTypeMutation, UpdateProductTypeMutationVariables>;
-export const DeleteProductTypeDocument = graphql`
+export const DeleteProductTypeDocument = gql`
     mutation DeleteProductType($id: UUID!) {
   deleteFromProductTypesCollection(filter: {id: {eq: $id}}) {
     affectedCount
@@ -7585,7 +7585,7 @@ export function useDeleteProductTypeMutation(baseOptions?: Apollo.MutationHookOp
 export type DeleteProductTypeMutationHookResult = ReturnType<typeof useDeleteProductTypeMutation>;
 export type DeleteProductTypeMutationResult = Apollo.MutationResult<DeleteProductTypeMutation>;
 export type DeleteProductTypeMutationOptions = Apollo.BaseMutationOptions<DeleteProductTypeMutation, DeleteProductTypeMutationVariables>;
-export const SitesDocument = graphql`
+export const SitesDocument = gql`
     query Sites($first: Int, $last: Int, $before: Cursor, $after: Cursor, $offset: Int, $orderBy: [SiteOrderBy!]) {
   siteCollection(
     first: $first
@@ -7641,7 +7641,7 @@ export type SitesQueryHookResult = ReturnType<typeof useSitesQuery>;
 export type SitesLazyQueryHookResult = ReturnType<typeof useSitesLazyQuery>;
 export type SitesSuspenseQueryHookResult = ReturnType<typeof useSitesSuspenseQuery>;
 export type SitesQueryResult = Apollo.QueryResult<SitesQuery, SitesQueryVariables>;
-export const SiteDocument = graphql`
+export const SiteDocument = gql`
     query Site($id: UUID!) {
   siteCollection(first: 1, filter: {id: {eq: $id}}) {
     edges {
@@ -7685,7 +7685,7 @@ export type SiteQueryHookResult = ReturnType<typeof useSiteQuery>;
 export type SiteLazyQueryHookResult = ReturnType<typeof useSiteLazyQuery>;
 export type SiteSuspenseQueryHookResult = ReturnType<typeof useSiteSuspenseQuery>;
 export type SiteQueryResult = Apollo.QueryResult<SiteQuery, SiteQueryVariables>;
-export const StationsDocument = graphql`
+export const StationsDocument = gql`
     query Stations($first: Int, $last: Int, $before: Cursor, $after: Cursor, $offset: Int, $orderBy: [StationsOrderBy!]) {
   stationsCollection(
     first: $first
@@ -7741,7 +7741,7 @@ export type StationsQueryHookResult = ReturnType<typeof useStationsQuery>;
 export type StationsLazyQueryHookResult = ReturnType<typeof useStationsLazyQuery>;
 export type StationsSuspenseQueryHookResult = ReturnType<typeof useStationsSuspenseQuery>;
 export type StationsQueryResult = Apollo.QueryResult<StationsQuery, StationsQueryVariables>;
-export const StationDocument = graphql`
+export const StationDocument = gql`
     query Station($id: UUID!) {
   stationsCollection(first: 1, filter: {id: {eq: $id}}) {
     edges {
@@ -7785,7 +7785,7 @@ export type StationQueryHookResult = ReturnType<typeof useStationQuery>;
 export type StationLazyQueryHookResult = ReturnType<typeof useStationLazyQuery>;
 export type StationSuspenseQueryHookResult = ReturnType<typeof useStationSuspenseQuery>;
 export type StationQueryResult = Apollo.QueryResult<StationQuery, StationQueryVariables>;
-export const CreateStationDocument = graphql`
+export const CreateStationDocument = gql`
     mutation CreateStation($input: StationsInsertInput!) {
   insertIntoStationsCollection(objects: [$input]) {
     records {
@@ -7820,7 +7820,7 @@ export function useCreateStationMutation(baseOptions?: Apollo.MutationHookOption
 export type CreateStationMutationHookResult = ReturnType<typeof useCreateStationMutation>;
 export type CreateStationMutationResult = Apollo.MutationResult<CreateStationMutation>;
 export type CreateStationMutationOptions = Apollo.BaseMutationOptions<CreateStationMutation, CreateStationMutationVariables>;
-export const UpdateStationDocument = graphql`
+export const UpdateStationDocument = gql`
     mutation UpdateStation($id: UUID!, $input: StationsUpdateInput!) {
   updateStationsCollection(set: $input, filter: {id: {eq: $id}}) {
     records {
@@ -7856,7 +7856,7 @@ export function useUpdateStationMutation(baseOptions?: Apollo.MutationHookOption
 export type UpdateStationMutationHookResult = ReturnType<typeof useUpdateStationMutation>;
 export type UpdateStationMutationResult = Apollo.MutationResult<UpdateStationMutation>;
 export type UpdateStationMutationOptions = Apollo.BaseMutationOptions<UpdateStationMutation, UpdateStationMutationVariables>;
-export const DeleteStationDocument = graphql`
+export const DeleteStationDocument = gql`
     mutation DeleteStation($id: UUID!) {
   deleteFromStationsCollection(filter: {id: {eq: $id}}) {
     affectedCount
@@ -7889,7 +7889,7 @@ export function useDeleteStationMutation(baseOptions?: Apollo.MutationHookOption
 export type DeleteStationMutationHookResult = ReturnType<typeof useDeleteStationMutation>;
 export type DeleteStationMutationResult = Apollo.MutationResult<DeleteStationMutation>;
 export type DeleteStationMutationOptions = Apollo.BaseMutationOptions<DeleteStationMutation, DeleteStationMutationVariables>;
-export const StationsByRegistrationCodeDocument = graphql`
+export const StationsByRegistrationCodeDocument = gql`
     query StationsByRegistrationCode($registrationCode: String!) {
   stationsCollection(filter: {registrationCode: {eq: $registrationCode}}) {
     edges {
@@ -7933,7 +7933,7 @@ export type StationsByRegistrationCodeQueryHookResult = ReturnType<typeof useSta
 export type StationsByRegistrationCodeLazyQueryHookResult = ReturnType<typeof useStationsByRegistrationCodeLazyQuery>;
 export type StationsByRegistrationCodeSuspenseQueryHookResult = ReturnType<typeof useStationsByRegistrationCodeSuspenseQuery>;
 export type StationsByRegistrationCodeQueryResult = Apollo.QueryResult<StationsByRegistrationCodeQuery, StationsByRegistrationCodeQueryVariables>;
-export const UserStationsDocument = graphql`
+export const UserStationsDocument = gql`
     query UserStations($userId: UUID!) {
   userStationsCollection(filter: {userId: {eq: $userId}}) {
     edges {
@@ -7977,7 +7977,7 @@ export type UserStationsQueryHookResult = ReturnType<typeof useUserStationsQuery
 export type UserStationsLazyQueryHookResult = ReturnType<typeof useUserStationsLazyQuery>;
 export type UserStationsSuspenseQueryHookResult = ReturnType<typeof useUserStationsSuspenseQuery>;
 export type UserStationsQueryResult = Apollo.QueryResult<UserStationsQuery, UserStationsQueryVariables>;
-export const UserStationsByStationDocument = graphql`
+export const UserStationsByStationDocument = gql`
     query UserStationsByStation($stationId: UUID!) {
   userStationsCollection(filter: {stationId: {eq: $stationId}}) {
     edges {
@@ -8021,7 +8021,7 @@ export type UserStationsByStationQueryHookResult = ReturnType<typeof useUserStat
 export type UserStationsByStationLazyQueryHookResult = ReturnType<typeof useUserStationsByStationLazyQuery>;
 export type UserStationsByStationSuspenseQueryHookResult = ReturnType<typeof useUserStationsByStationSuspenseQuery>;
 export type UserStationsByStationQueryResult = Apollo.QueryResult<UserStationsByStationQuery, UserStationsByStationQueryVariables>;
-export const UserStationsByUserDocument = graphql`
+export const UserStationsByUserDocument = gql`
     query UserStationsByUser($userId: UUID!) {
   userStationsCollection(filter: {userId: {eq: $userId}}) {
     edges {
@@ -8065,7 +8065,7 @@ export type UserStationsByUserQueryHookResult = ReturnType<typeof useUserStation
 export type UserStationsByUserLazyQueryHookResult = ReturnType<typeof useUserStationsByUserLazyQuery>;
 export type UserStationsByUserSuspenseQueryHookResult = ReturnType<typeof useUserStationsByUserSuspenseQuery>;
 export type UserStationsByUserQueryResult = Apollo.QueryResult<UserStationsByUserQuery, UserStationsByUserQueryVariables>;
-export const UsersDocument = graphql`
+export const UsersDocument = gql`
     query Users {
   usersCollection {
     edges {
@@ -8108,7 +8108,7 @@ export type UsersQueryHookResult = ReturnType<typeof useUsersQuery>;
 export type UsersLazyQueryHookResult = ReturnType<typeof useUsersLazyQuery>;
 export type UsersSuspenseQueryHookResult = ReturnType<typeof useUsersSuspenseQuery>;
 export type UsersQueryResult = Apollo.QueryResult<UsersQuery, UsersQueryVariables>;
-export const UserDocument = graphql`
+export const UserDocument = gql`
     query User($id: UUID!) {
   usersCollection(filter: {id: {eq: $id}}) {
     edges {
@@ -8152,7 +8152,7 @@ export type UserQueryHookResult = ReturnType<typeof useUserQuery>;
 export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>;
 export type UserSuspenseQueryHookResult = ReturnType<typeof useUserSuspenseQuery>;
 export type UserQueryResult = Apollo.QueryResult<UserQuery, UserQueryVariables>;
-export const RolesDocument = graphql`
+export const RolesDocument = gql`
     query Roles {
   rolesCollection {
     edges {
@@ -8195,7 +8195,7 @@ export type RolesQueryHookResult = ReturnType<typeof useRolesQuery>;
 export type RolesLazyQueryHookResult = ReturnType<typeof useRolesLazyQuery>;
 export type RolesSuspenseQueryHookResult = ReturnType<typeof useRolesSuspenseQuery>;
 export type RolesQueryResult = Apollo.QueryResult<RolesQuery, RolesQueryVariables>;
-export const RoleDocument = graphql`
+export const RoleDocument = gql`
     query Role($id: UUID!) {
   rolesCollection(filter: {id: {eq: $id}}) {
     edges {
@@ -8239,7 +8239,7 @@ export type RoleQueryHookResult = ReturnType<typeof useRoleQuery>;
 export type RoleLazyQueryHookResult = ReturnType<typeof useRoleLazyQuery>;
 export type RoleSuspenseQueryHookResult = ReturnType<typeof useRoleSuspenseQuery>;
 export type RoleQueryResult = Apollo.QueryResult<RoleQuery, RoleQueryVariables>;
-export const PermissionsDocument = graphql`
+export const PermissionsDocument = gql`
     query Permissions {
   permissionsCollection {
     edges {
@@ -8282,7 +8282,7 @@ export type PermissionsQueryHookResult = ReturnType<typeof usePermissionsQuery>;
 export type PermissionsLazyQueryHookResult = ReturnType<typeof usePermissionsLazyQuery>;
 export type PermissionsSuspenseQueryHookResult = ReturnType<typeof usePermissionsSuspenseQuery>;
 export type PermissionsQueryResult = Apollo.QueryResult<PermissionsQuery, PermissionsQueryVariables>;
-export const PermissionDocument = graphql`
+export const PermissionDocument = gql`
     query Permission($id: UUID!) {
   permissionsCollection(filter: {id: {eq: $id}}) {
     edges {
@@ -8326,7 +8326,7 @@ export type PermissionQueryHookResult = ReturnType<typeof usePermissionQuery>;
 export type PermissionLazyQueryHookResult = ReturnType<typeof usePermissionLazyQuery>;
 export type PermissionSuspenseQueryHookResult = ReturnType<typeof usePermissionSuspenseQuery>;
 export type PermissionQueryResult = Apollo.QueryResult<PermissionQuery, PermissionQueryVariables>;
-export const CreatePermissionDocument = graphql`
+export const CreatePermissionDocument = gql`
     mutation CreatePermission($input: PermissionsInsertInput!) {
   insertIntoPermissionsCollection(objects: [$input]) {
     records {
@@ -8361,7 +8361,7 @@ export function useCreatePermissionMutation(baseOptions?: Apollo.MutationHookOpt
 export type CreatePermissionMutationHookResult = ReturnType<typeof useCreatePermissionMutation>;
 export type CreatePermissionMutationResult = Apollo.MutationResult<CreatePermissionMutation>;
 export type CreatePermissionMutationOptions = Apollo.BaseMutationOptions<CreatePermissionMutation, CreatePermissionMutationVariables>;
-export const UpdatePermissionDocument = graphql`
+export const UpdatePermissionDocument = gql`
     mutation UpdatePermission($id: UUID!, $input: PermissionsUpdateInput!) {
   updatePermissionsCollection(filter: {id: {eq: $id}}, set: $input) {
     records {
@@ -8397,7 +8397,7 @@ export function useUpdatePermissionMutation(baseOptions?: Apollo.MutationHookOpt
 export type UpdatePermissionMutationHookResult = ReturnType<typeof useUpdatePermissionMutation>;
 export type UpdatePermissionMutationResult = Apollo.MutationResult<UpdatePermissionMutation>;
 export type UpdatePermissionMutationOptions = Apollo.BaseMutationOptions<UpdatePermissionMutation, UpdatePermissionMutationVariables>;
-export const DeletePermissionDocument = graphql`
+export const DeletePermissionDocument = gql`
     mutation DeletePermission($id: UUID!) {
   deleteFromPermissionsCollection(filter: {id: {eq: $id}}) {
     affectedCount
@@ -8430,7 +8430,7 @@ export function useDeletePermissionMutation(baseOptions?: Apollo.MutationHookOpt
 export type DeletePermissionMutationHookResult = ReturnType<typeof useDeletePermissionMutation>;
 export type DeletePermissionMutationResult = Apollo.MutationResult<DeletePermissionMutation>;
 export type DeletePermissionMutationOptions = Apollo.BaseMutationOptions<DeletePermissionMutation, DeletePermissionMutationVariables>;
-export const CreateRoleDocument = graphql`
+export const CreateRoleDocument = gql`
     mutation CreateRole($input: RolesInsertInput!) {
   insertIntoRolesCollection(objects: [$input]) {
     records {
@@ -8465,7 +8465,7 @@ export function useCreateRoleMutation(baseOptions?: Apollo.MutationHookOptions<C
 export type CreateRoleMutationHookResult = ReturnType<typeof useCreateRoleMutation>;
 export type CreateRoleMutationResult = Apollo.MutationResult<CreateRoleMutation>;
 export type CreateRoleMutationOptions = Apollo.BaseMutationOptions<CreateRoleMutation, CreateRoleMutationVariables>;
-export const UpdateRoleDocument = graphql`
+export const UpdateRoleDocument = gql`
     mutation UpdateRole($id: UUID!, $input: RolesUpdateInput!) {
   updateRolesCollection(filter: {id: {eq: $id}}, set: $input) {
     records {
@@ -8501,7 +8501,7 @@ export function useUpdateRoleMutation(baseOptions?: Apollo.MutationHookOptions<U
 export type UpdateRoleMutationHookResult = ReturnType<typeof useUpdateRoleMutation>;
 export type UpdateRoleMutationResult = Apollo.MutationResult<UpdateRoleMutation>;
 export type UpdateRoleMutationOptions = Apollo.BaseMutationOptions<UpdateRoleMutation, UpdateRoleMutationVariables>;
-export const DeleteRoleDocument = graphql`
+export const DeleteRoleDocument = gql`
     mutation DeleteRole($id: UUID!) {
   deleteFromRolesCollection(filter: {id: {eq: $id}}) {
     affectedCount
@@ -8534,7 +8534,7 @@ export function useDeleteRoleMutation(baseOptions?: Apollo.MutationHookOptions<D
 export type DeleteRoleMutationHookResult = ReturnType<typeof useDeleteRoleMutation>;
 export type DeleteRoleMutationResult = Apollo.MutationResult<DeleteRoleMutation>;
 export type DeleteRoleMutationOptions = Apollo.BaseMutationOptions<DeleteRoleMutation, DeleteRoleMutationVariables>;
-export const CreateUserDocument = graphql`
+export const CreateUserDocument = gql`
     mutation CreateUser($input: UsersInsertInput!) {
   insertIntoUsersCollection(objects: [$input]) {
     records {
@@ -8569,7 +8569,7 @@ export function useCreateUserMutation(baseOptions?: Apollo.MutationHookOptions<C
 export type CreateUserMutationHookResult = ReturnType<typeof useCreateUserMutation>;
 export type CreateUserMutationResult = Apollo.MutationResult<CreateUserMutation>;
 export type CreateUserMutationOptions = Apollo.BaseMutationOptions<CreateUserMutation, CreateUserMutationVariables>;
-export const UpdateUserDocument = graphql`
+export const UpdateUserDocument = gql`
     mutation UpdateUser($id: UUID!, $input: UsersUpdateInput!) {
   updateUsersCollection(filter: {id: {eq: $id}}, set: $input) {
     records {
@@ -8605,7 +8605,7 @@ export function useUpdateUserMutation(baseOptions?: Apollo.MutationHookOptions<U
 export type UpdateUserMutationHookResult = ReturnType<typeof useUpdateUserMutation>;
 export type UpdateUserMutationResult = Apollo.MutationResult<UpdateUserMutation>;
 export type UpdateUserMutationOptions = Apollo.BaseMutationOptions<UpdateUserMutation, UpdateUserMutationVariables>;
-export const DeleteUserDocument = graphql`
+export const DeleteUserDocument = gql`
     mutation DeleteUser($id: UUID!) {
   deleteFromUsersCollection(filter: {id: {eq: $id}}) {
     affectedCount
@@ -8638,7 +8638,7 @@ export function useDeleteUserMutation(baseOptions?: Apollo.MutationHookOptions<D
 export type DeleteUserMutationHookResult = ReturnType<typeof useDeleteUserMutation>;
 export type DeleteUserMutationResult = Apollo.MutationResult<DeleteUserMutation>;
 export type DeleteUserMutationOptions = Apollo.BaseMutationOptions<DeleteUserMutation, DeleteUserMutationVariables>;
-export const CreateUserRoleDocument = graphql`
+export const CreateUserRoleDocument = gql`
     mutation CreateUserRole($input: UserRolesInsertInput!) {
   insertIntoUserRolesCollection(objects: [$input]) {
     records {
@@ -8673,7 +8673,7 @@ export function useCreateUserRoleMutation(baseOptions?: Apollo.MutationHookOptio
 export type CreateUserRoleMutationHookResult = ReturnType<typeof useCreateUserRoleMutation>;
 export type CreateUserRoleMutationResult = Apollo.MutationResult<CreateUserRoleMutation>;
 export type CreateUserRoleMutationOptions = Apollo.BaseMutationOptions<CreateUserRoleMutation, CreateUserRoleMutationVariables>;
-export const UpdateUserRoleDocument = graphql`
+export const UpdateUserRoleDocument = gql`
     mutation UpdateUserRole($id: UUID!, $input: UserRolesUpdateInput!) {
   updateUserRolesCollection(filter: {id: {eq: $id}}, set: $input) {
     records {
@@ -8709,7 +8709,7 @@ export function useUpdateUserRoleMutation(baseOptions?: Apollo.MutationHookOptio
 export type UpdateUserRoleMutationHookResult = ReturnType<typeof useUpdateUserRoleMutation>;
 export type UpdateUserRoleMutationResult = Apollo.MutationResult<UpdateUserRoleMutation>;
 export type UpdateUserRoleMutationOptions = Apollo.BaseMutationOptions<UpdateUserRoleMutation, UpdateUserRoleMutationVariables>;
-export const DeleteUserRoleDocument = graphql`
+export const DeleteUserRoleDocument = gql`
     mutation DeleteUserRole($id: UUID!) {
   deleteFromUserRolesCollection(filter: {id: {eq: $id}}) {
     affectedCount
@@ -8742,7 +8742,7 @@ export function useDeleteUserRoleMutation(baseOptions?: Apollo.MutationHookOptio
 export type DeleteUserRoleMutationHookResult = ReturnType<typeof useDeleteUserRoleMutation>;
 export type DeleteUserRoleMutationResult = Apollo.MutationResult<DeleteUserRoleMutation>;
 export type DeleteUserRoleMutationOptions = Apollo.BaseMutationOptions<DeleteUserRoleMutation, DeleteUserRoleMutationVariables>;
-export const UserPermissionsDocument = graphql`
+export const UserPermissionsDocument = gql`
     query UserPermissions {
   userPermissionsCollection {
     edges {
@@ -8785,7 +8785,7 @@ export type UserPermissionsQueryHookResult = ReturnType<typeof useUserPermission
 export type UserPermissionsLazyQueryHookResult = ReturnType<typeof useUserPermissionsLazyQuery>;
 export type UserPermissionsSuspenseQueryHookResult = ReturnType<typeof useUserPermissionsSuspenseQuery>;
 export type UserPermissionsQueryResult = Apollo.QueryResult<UserPermissionsQuery, UserPermissionsQueryVariables>;
-export const UserPermissionDocument = graphql`
+export const UserPermissionDocument = gql`
     query UserPermission($id: UUID!) {
   userPermissionsCollection(filter: {id: {eq: $id}}) {
     edges {
@@ -8829,7 +8829,7 @@ export type UserPermissionQueryHookResult = ReturnType<typeof useUserPermissionQ
 export type UserPermissionLazyQueryHookResult = ReturnType<typeof useUserPermissionLazyQuery>;
 export type UserPermissionSuspenseQueryHookResult = ReturnType<typeof useUserPermissionSuspenseQuery>;
 export type UserPermissionQueryResult = Apollo.QueryResult<UserPermissionQuery, UserPermissionQueryVariables>;
-export const CreateUserPermissionDocument = graphql`
+export const CreateUserPermissionDocument = gql`
     mutation CreateUserPermission($input: UserPermissionsInsertInput!) {
   insertIntoUserPermissionsCollection(objects: [$input]) {
     records {
@@ -8864,7 +8864,7 @@ export function useCreateUserPermissionMutation(baseOptions?: Apollo.MutationHoo
 export type CreateUserPermissionMutationHookResult = ReturnType<typeof useCreateUserPermissionMutation>;
 export type CreateUserPermissionMutationResult = Apollo.MutationResult<CreateUserPermissionMutation>;
 export type CreateUserPermissionMutationOptions = Apollo.BaseMutationOptions<CreateUserPermissionMutation, CreateUserPermissionMutationVariables>;
-export const UpdateUserPermissionDocument = graphql`
+export const UpdateUserPermissionDocument = gql`
     mutation UpdateUserPermission($id: UUID!, $input: UserPermissionsUpdateInput!) {
   updateUserPermissionsCollection(filter: {id: {eq: $id}}, set: $input) {
     records {
@@ -8900,7 +8900,7 @@ export function useUpdateUserPermissionMutation(baseOptions?: Apollo.MutationHoo
 export type UpdateUserPermissionMutationHookResult = ReturnType<typeof useUpdateUserPermissionMutation>;
 export type UpdateUserPermissionMutationResult = Apollo.MutationResult<UpdateUserPermissionMutation>;
 export type UpdateUserPermissionMutationOptions = Apollo.BaseMutationOptions<UpdateUserPermissionMutation, UpdateUserPermissionMutationVariables>;
-export const DeleteUserPermissionDocument = graphql`
+export const DeleteUserPermissionDocument = gql`
     mutation DeleteUserPermission($id: UUID!) {
   deleteFromUserPermissionsCollection(filter: {id: {eq: $id}}) {
     affectedCount
@@ -8933,7 +8933,7 @@ export function useDeleteUserPermissionMutation(baseOptions?: Apollo.MutationHoo
 export type DeleteUserPermissionMutationHookResult = ReturnType<typeof useDeleteUserPermissionMutation>;
 export type DeleteUserPermissionMutationResult = Apollo.MutationResult<DeleteUserPermissionMutation>;
 export type DeleteUserPermissionMutationOptions = Apollo.BaseMutationOptions<DeleteUserPermissionMutation, DeleteUserPermissionMutationVariables>;
-export const RolePermissionsDocument = graphql`
+export const RolePermissionsDocument = gql`
     query RolePermissions {
   rolePermissionsCollection {
     edges {
@@ -8976,7 +8976,7 @@ export type RolePermissionsQueryHookResult = ReturnType<typeof useRolePermission
 export type RolePermissionsLazyQueryHookResult = ReturnType<typeof useRolePermissionsLazyQuery>;
 export type RolePermissionsSuspenseQueryHookResult = ReturnType<typeof useRolePermissionsSuspenseQuery>;
 export type RolePermissionsQueryResult = Apollo.QueryResult<RolePermissionsQuery, RolePermissionsQueryVariables>;
-export const RolePermissionDocument = graphql`
+export const RolePermissionDocument = gql`
     query RolePermission($id: UUID!) {
   rolePermissionsCollection(filter: {id: {eq: $id}}) {
     edges {
@@ -9020,7 +9020,7 @@ export type RolePermissionQueryHookResult = ReturnType<typeof useRolePermissionQ
 export type RolePermissionLazyQueryHookResult = ReturnType<typeof useRolePermissionLazyQuery>;
 export type RolePermissionSuspenseQueryHookResult = ReturnType<typeof useRolePermissionSuspenseQuery>;
 export type RolePermissionQueryResult = Apollo.QueryResult<RolePermissionQuery, RolePermissionQueryVariables>;
-export const CreateRolePermissionDocument = graphql`
+export const CreateRolePermissionDocument = gql`
     mutation CreateRolePermission($input: RolePermissionsInsertInput!) {
   insertIntoRolePermissionsCollection(objects: [$input]) {
     records {
@@ -9055,7 +9055,7 @@ export function useCreateRolePermissionMutation(baseOptions?: Apollo.MutationHoo
 export type CreateRolePermissionMutationHookResult = ReturnType<typeof useCreateRolePermissionMutation>;
 export type CreateRolePermissionMutationResult = Apollo.MutationResult<CreateRolePermissionMutation>;
 export type CreateRolePermissionMutationOptions = Apollo.BaseMutationOptions<CreateRolePermissionMutation, CreateRolePermissionMutationVariables>;
-export const UpdateRolePermissionDocument = graphql`
+export const UpdateRolePermissionDocument = gql`
     mutation UpdateRolePermission($id: UUID!, $input: RolePermissionsUpdateInput!) {
   updateRolePermissionsCollection(filter: {id: {eq: $id}}, set: $input) {
     records {
@@ -9091,7 +9091,7 @@ export function useUpdateRolePermissionMutation(baseOptions?: Apollo.MutationHoo
 export type UpdateRolePermissionMutationHookResult = ReturnType<typeof useUpdateRolePermissionMutation>;
 export type UpdateRolePermissionMutationResult = Apollo.MutationResult<UpdateRolePermissionMutation>;
 export type UpdateRolePermissionMutationOptions = Apollo.BaseMutationOptions<UpdateRolePermissionMutation, UpdateRolePermissionMutationVariables>;
-export const DeleteRolePermissionDocument = graphql`
+export const DeleteRolePermissionDocument = gql`
     mutation DeleteRolePermission($id: UUID!) {
   deleteFromRolePermissionsCollection(filter: {id: {eq: $id}}) {
     affectedCount

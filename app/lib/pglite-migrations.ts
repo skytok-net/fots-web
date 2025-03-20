@@ -60,7 +60,7 @@ const MIGRATIONS = [
         name TEXT NOT NULL,
         path TEXT,
         icon_name TEXT,
-        tag TEXT,
+        slug TEXT,
         data JSONB,
         roles TEXT[],
         created_at TIMESTAMP WITH TIME ZONE NOT NULL,

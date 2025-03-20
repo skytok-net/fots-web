@@ -22,7 +22,7 @@ fragment NavigationItem on NavigationItems {
   name
   path
   iconName
-  tag
+  slug
   data
   roles
   createdAt

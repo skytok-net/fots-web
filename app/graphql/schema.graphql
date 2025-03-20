@@ -1046,7 +1046,7 @@ type NavigationItems implements Node {
   parentId: UUID
   roles: [String]
   data: JSON
-  tag: String!
+  slug: String!
   navigationId: UUID!
   parent: NavigationItems
   navigation: Navigation!
@@ -1094,7 +1094,7 @@ input NavigationItemsFilter {
   createdAt: DatetimeFilter
   parentId: UUIDFilter
   roles: StringListFilter
-  tag: StringFilter
+  slug: StringFilter
   navigationId: UUIDFilter
   nodeId: IDFilter
   # Returns true only if all its inner filters are true, otherwise returns false
@@ -1115,7 +1115,7 @@ input NavigationItemsInsertInput {
   parentId: UUID
   roles: [String]
   data: JSON
-  tag: String
+  slug: String
   navigationId: UUID
 }
 
@@ -1134,7 +1134,7 @@ input NavigationItemsOrderBy {
   index: OrderByDirection
   createdAt: OrderByDirection
   parentId: OrderByDirection
-  tag: OrderByDirection
+  slug: OrderByDirection
   navigationId: OrderByDirection
 }
 
@@ -1148,7 +1148,7 @@ input NavigationItemsUpdateInput {
   parentId: UUID
   roles: [String]
   data: JSON
-  tag: String
+  slug: String
   navigationId: UUID
 }
 
